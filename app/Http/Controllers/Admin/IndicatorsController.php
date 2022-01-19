@@ -99,6 +99,7 @@ class IndicatorsController extends Controller
     
     public function store(Request $request, Indicator $indicator){
            $request->validate([
+            'slug' => 'unique:indicators,slug',
             'nama'=>'required',
             'tahun' => 'required|numeric',
             'status' =>'required',

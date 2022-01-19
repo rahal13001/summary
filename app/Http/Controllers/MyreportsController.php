@@ -55,14 +55,21 @@ class MyreportsController extends Controller
     }
 
     public function pengikut(Request $request){
-
-
+         $pengikut = Follower::where('user_id', Auth::user()->id)->get('report_id');
+                        foreach ($pengikut as $peng) {
+                        $report_id =  $peng->report_id;
+                        }
+        if (count($pengikut)==0) {
+            return redirect()->back()->with('ikut', 'Anda Belum Mengikuti Siapapun');
+        }
+                
         if (request()->ajax()) {
             $pengikut = Follower::where('user_id', Auth::user()->id)->get('report_id');
                         foreach ($pengikut as $peng) {
                         $report_id =  $peng->report_id;
                         }
-
+         
+            
             //Jika request from_date ada value(datanya) maka
             if (!empty($request->from_date)) {
                 //Jika tanggal awal(from_date) hingga tanggal akhir(to_date) adalah sama maka
@@ -81,7 +88,7 @@ class MyreportsController extends Controller
             return DataTables::of($query)
             ->addColumn('aksi', function ($report) {
                     return '
-            <a href = "' . route('report_show', $report->slug) . '"
+            <a href = "' . route('myreport_show', $report->slug) . '"
             class = "btn btn-info text-center">
                 Detail </a>
             
@@ -241,7 +248,6 @@ class MyreportsController extends Controller
        $request->validate([
              'user_id' => 'required',
              'what' => 'required|max:250',
-             'slug' => 'unique:reports,slug',
              'when' => 'required|date',
              'who' => 'required|max:250',
              'why' => 'required|max:250',
@@ -249,7 +255,7 @@ class MyreportsController extends Controller
              'tanggal_selesai' => 'required|date|after_or_equal:when',
              'total_jam' => 'required|numeric',
              'no_st' => 'required|max:150',
-             'dokumentasi1' => 'required|image|max:1024',
+             'dokumentasi1' => 'nullable|image|max:1024',
              'dokumentasi2' => 'nullable|image|max:1024',
              'dokumentasi3' => 'nullable|image|max:1024',
              'lainnya' => 'nullable|file|max:10240',

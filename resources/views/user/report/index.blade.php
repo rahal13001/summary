@@ -16,6 +16,12 @@ $role = Role::get();
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 {{ session ('status') }}
             </div>
+
+            @elseif (session('ikut'))
+            <div class="alert alert-warning alert-dismissible fade show">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                {{ session ('ikut') }}
+            </div>
             @endif
             
             @if (count(Auth::user()->roles) == 0)

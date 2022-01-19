@@ -1,8 +1,9 @@
 @extends('layouts.back')
 
-@section('menu', 'Dashboard 5W1H')
+@section('menu', 'Dashboard 5W1H Yang Diikuti')
 
 @section('content')
+
     
             @if (session('status'))
             <div class="alert alert-success alert-dismissible fade show">

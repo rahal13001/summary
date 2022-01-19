@@ -23,6 +23,18 @@
 
 @section('content')
 
+    @if ($errors->any())
+        <div class="alert alert-danger alert-dismissible fade show">
+             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+             Edit Data Gagal !!!
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
 
     <form action="{{ route('myreport_update', $report) }}" method="post" enctype="multipart/form-data">
        @csrf
