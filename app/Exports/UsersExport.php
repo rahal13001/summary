@@ -35,31 +35,44 @@ class UsersExport implements FromQuery, WithHeadings, WithStyles, ShouldAutoSize
     //Utamakan pakai qury untuk load data besar dengan lebih mudah
     public function query()
     {
-        $pengikut = Follower::where('user_id', Auth::user()->id)->get('report_id');
-                        foreach ($pengikut as $peng) {
-                        $report_id =  $peng->report_id;
-                        }
        
-
         //Jika this from_date ada value(datanya) maka
             if (!empty($this->from_date)) {
                 //Jika tanggal awal(from_date) hingga tanggal akhir(to_date) adalah sama maka
                 if ($this->from_date === $this->to_date) {
                     //kita filter tanggalnya sesuai dengan this from_date
+                     $pengikut = Follower::where('user_id', Auth::user()->id)->get('report_id');
+                        foreach ($pengikut as $peng) {
+                        $report_id =  $peng->report_id;
+                        }
+
+
                      if ($report_id == null) {
                         $query = Report::query()->whereDate('when', '=', $this->from_date)->where('user_id', Auth::user()->id)->with(['user', 'indicators', 'follower']);
                     } else{
                     $query = Report::query()->whereDate('when', '=', $this->from_date)->where('user_id', Auth::user()->id)->orWhere('id', $report_id)->with(['user', 'indicators', 'follower']);
                     }
                 } else {
+
+                     $pengikut = Follower::where('user_id', Auth::user()->id)->get('report_id');
+                        foreach ($pengikut as $peng) {
+                        $report_id =  $peng->report_id;
+                        }
                     //kita filter dari tanggal awal ke akhir
                     if ($report_id == null) {
+                        
+
                         $query = Report::query()->whereBetween('when', array($this->from_date, $this->to_date))->where('user_id', Auth::user()->id)->with(['user', 'indicators', 'follower']);
                     } else{
                         $query = Report::query()->whereBetween('when', array($this->from_date, $this->to_date))->where('user_id', Auth::user()->id)->orWhere('id', $report_id)->with(['user', 'indicators', 'follower']);
                     }
                 }
             } else {
+
+                 $pengikut = Follower::where('user_id', Auth::user()->id)->get('report_id');
+                        foreach ($pengikut as $peng) {
+                        $report_id =  $peng->report_id;
+                        }
                  if ($report_id == null) {
                      $query = Report::query()->where('user_id', Auth::user()->id)->with(['user', 'indicators', 'follower']);
                 } else{
