@@ -20,30 +20,20 @@ class IndicatorsController extends Controller
             return DataTables::of($query)
                 ->addColumn('aksi', function ($item) {
                     return '
-
-                    <div class="btn-group float-left" role="group">
-                        <button id="btnGroupDrop1" type="button" class="btn btn-primary btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        Aksi
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                        <li>
-                            <a href = "' . route('iku', $item->slug) . '"" class="btn btn-outline-info btn-sm d-block mb-2">
-                            Lihat Post </a>
-                        </li>
-                        <li>
-                            <a href = "' . route('indicator_edit', $item->slug) . '"" class="btn btn-outline-warning btn-sm d-block mb-2">
-                            Edit </a>
-                        </li>
-                        <li>
+                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                            <a href = "' . route('iku', $item->slug) . '"" class="btn btn-outline-primary btn-sm float-left ml-n3 !importan">
+                            <i class="bi bi-eye-fill"></i> </a>
+                        
+                            <a href = "' . route('indicator_edit', $item->slug) . '"" class="btn btn-outline-warning">
+                            <i class="bi bi-pencil-fill"></i></a>
+                       
                             <form action="' . route('indicator_delete', $item->slug) . '" method="POST">
                                 ' . method_field('delete') . csrf_field() . '
-                                <button type="submit" class="btn btn-outline-danger d-block btn-sm col-sm-12" onclick = "return confirm(\'Anda yakin ingin menghapus data ?\') ">
-                                    Hapus
+                                <button type="submit" class="btn btn-outline-danger float-right" onclick = "return confirm(\'Anda yakin ingin menghapus data ?\') ">
+                                   <i class="bi bi-trash-fill"></i>
                                 </button>
                             </form>
-                        </li>
-                        </ul>
-                    </div>
+                       </div>
 
                         ';
                 })->rawColumns(['aksi'])

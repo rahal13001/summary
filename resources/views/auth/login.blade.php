@@ -72,7 +72,7 @@
                                 @endif
                                 <div class="mx-auto tex-center d-block mt-3">
                                   @if (Route::has('register'))
-                                    <li class="nav-item">
+                                    <li class="nav-item" style="list-style-type:none;">
                                         <a class="btn btn-link" href="{{ route('register') }}">{{ __('Anda Belum Memiliki Akun ? Klik Disini') }}</a>
                                     </li>
                                  @endif

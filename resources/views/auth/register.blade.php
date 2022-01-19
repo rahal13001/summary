@@ -73,7 +73,7 @@
                        <div class="row mt-3 mx-auto tex-center d-block">
                             <span class="user-avatar">
                             @if (Route::has('login'))
-                                <li class="nav-item">
+                                <li class="nav-item" style="list-style-type:none;">
                                     <a class="btn btn-link" href="{{ route('login') }}">{{ __('Sudah Punya Akun dan Ingin Login ?') }}</a>
                                 </li>
                             @endif

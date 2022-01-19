@@ -1,309 +1,415 @@
+  <!-- Sidebar -->
+      <!--//app-header-inner-->
+      <div id="app-sidepanel" class="app-sidepanel">
+        <div id="sidepanel-drop" class="sidepanel-drop"></div>
+        <div class="sidepanel-inner d-flex flex-column">
+          <a href="#" id="sidepanel-close" class="sidepanel-close d-xl-none"
+            >&times;</a
+          >
 
-<div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures">
-      <div class="nano">
-        <div class="nano-content">
-          <div class="logo">
-            <a href="index.html">
-              <!-- <img src="assets/images/logo.png" alt="" /> -->
-              <span>SUMMARY</span>
-            </a>
+          {{-- Logo --}}
+          <div class="app-branding">
+            <a class="app-logo" href="#"
+              dissable><img
+                class="logo-icon me-2"
+                src="/assets/images/logokkpgaruda.jpg"
+                alt="logo"
+              /><span class="logo-text">SUMMARY</span></a
+            >
           </div>
-          <ul>
-             @hasanyrole($role)
-            {{-- <li class="label">Aplikasi</li>
-            <li>
-              <a class="sidebar-sub-toggle">
-                <i class="ti-home"></i> Dashboard
-                <span class="sidebar-collapse-icon ti-angle-down"></span>
-              </a>
-              <ul>
-                <li>
-                  <a href="index.html">Pelaporan</a>
-                </li>
-                <li>
-                  <a href="index1.html">Presensi</a>
-                </li>
-              </ul>
-            </li> --}}
-            
+          <!--//app-branding-->
 
-            
-            <li class="label">Pelaporan</li>
-            <li>
-              <a href="{{ route('myreport_create') }}">
-                <i class="ti-pencil-alt"></i> Buat 5w1H
-              </a>
-            </li>
+          <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
+            <ul class="app-menu list-unstyled accordion" id="menu-accordion">
+              <li class="nav-item">
+                <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
 
-             <li>
-              <a class="sidebar-sub-toggle">
-                <i class="ti-write"></i> 5W1H-Ku
-                <span class="sidebar-collapse-icon ti-angle-down"></span>
-              </a>
-              <ul>
-                <li>
-                  <a href="{{ route('myreport') }}">Penyusun</a>
-                </li>
-                <li>
-                  <a href="{{ route('pengikut') }}">Pengikut</a>
-                </li>
-              </ul>
+                @hasanyrole($role)
+                <a class="nav-link active" href="{{ url('/') }}">
+                  <span class="nav-icon">
+                    <svg
+                      width="1em"
+                      height="1em"
+                      viewBox="0 0 16 16"
+                      class="bi bi-house-door"
+                      fill="currentColor"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M7.646 1.146a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 .146.354v7a.5.5 0 0 1-.5.5H9.5a.5.5 0 0 1-.5-.5v-4H7v4a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .146-.354l6-6zM2.5 7.707V14H6v-4a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v4h3.5V7.707L8 2.207l-5.5 5.5z"
+                      />
+                      <path
+                        fill-rule="evenodd"
+                        d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"
+                      />
+                    </svg>
+                  </span>
+                  <span class="nav-link-text">5W1H Ku</span> </a
+                ><!--//nav-link-->
+              </li>
+              <!--//nav-item-->
+              <li class="nav-item">
+                <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+                <a class="nav-link" href="{{ route('pengikut') }}">
+                  <span class="nav-icon">
+                    <svg
+                      width="1em"
+                      height="1em"
+                      viewBox="0 0 16 16"
+                      class="bi bi-folder"
+                      fill="currentColor"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M9.828 4a3 3 0 0 1-2.12-.879l-.83-.828A1 1 0 0 0 6.173 2H2.5a1 1 0 0 0-1 .981L1.546 4h-1L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3v1z"
+                      />
+                      <path
+                        fill-rule="evenodd"
+                        d="M13.81 4H2.19a1 1 0 0 0-.996 1.09l.637 7a1 1 0 0 0 .995.91h10.348a1 1 0 0 0 .995-.91l.637-7A1 1 0 0 0 13.81 4zM2.19 3A2 2 0 0 0 .198 5.181l.637 7A2 2 0 0 0 2.826 14h10.348a2 2 0 0 0 1.991-1.819l.637-7A2 2 0 0 0 13.81 3H2.19z"
+                      />
+                    </svg>
+                  </span>
+                  <span class="nav-link-text">Sebagai Pengikut</span> </a
+                ><!--//nav-link-->
+              </li>
+              <!--//nav-item-->
+              <li class="nav-item">
+                <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+                <a class="nav-link" href="{{ route('myreport_create') }}">
+                  <span class="nav-icon">
+                    <svg
+                      width="1em"
+                      height="1em"
+                      viewBox="0 0 16 16"
+                      class="bi bi-card-list"
+                      fill="currentColor"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M14.5 3h-13a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"
+                      />
+                      <path
+                        fill-rule="evenodd"
+                        d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8zm0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5z"
+                      />
+                      <circle cx="3.5" cy="5.5" r=".5" />
+                      <circle cx="3.5" cy="8" r=".5" />
+                      <circle cx="3.5" cy="10.5" r=".5" />
+                    </svg>
+                  </span>
+                  <span class="nav-link-text">Tambah 5W1H</span> </a
+                ><!--//nav-link-->
+              </li>
+              @endhasanyrole
 
-            </li>
+          @can('show user')
               
+              {{-- Dropdown User --}}
+              
+              <!--//nav-item-->
+              <li class="nav-item has-submenu">
+                <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+                <a
+                  class="nav-link submenu-toggle"
+                  href="#"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#submenu-1"
+                  aria-expanded="false"
+                  aria-controls="submenu-1"
+                >
+                  <span class="nav-icon">
+                    <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+                    <svg
+                      width="1em"
+                      height="1em"
+                      viewBox="0 0 16 16"
+                      class="bi bi-files"
+                      fill="currentColor"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M4 2h7a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4z"
+                      />
+                      <path
+                        d="M6 0h7a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2v-1a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6a1 1 0 0 0-1 1H4a2 2 0 0 1 2-2z"
+                      />
+                    </svg>
+                  </span>
+                  <span class="nav-link-text">User</span>
+                  <span class="submenu-arrow">
+                    <svg
+                      width="1em"
+                      height="1em"
+                      viewBox="0 0 16 16"
+                      class="bi bi-chevron-down"
+                      fill="currentColor"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
+                      />
+                    </svg> </span
+                  ><!--//submenu-arrow--> </a
+                ><!--//nav-link-->
+                <div
+                  id="submenu-1"
+                  class="collapse submenu submenu-1"
+                  data-bs-parent="#menu-accordion"
+                >
+                  <ul class="submenu-list list-unstyled">
+                    <li class="submenu-item">
+                      <a class="submenu-link" href="#"
+                        >Lihat User</a
+                      >
+                    </li>
+                    <li class="submenu-item">
+                      <a class="submenu-link" href="{{ route('report_index') }}">5W1H Semua User</a>
+                    </li>
+                    {{-- <li class="submenu-item">
+                      <a class="submenu-link" href="settings.html">Settings</a>
+                    </li> --}}
+                  </ul>
+                </div>
+              </li>
+               @endcan
+              <!--//nav-item-->
+
+             
+              {{-- Akhir Role --}}
+
+              {{-- IKU --}}
+
+            @can('create category')  
+              <li class="nav-item">
+                <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+                <a class="nav-link" href="{{ route('indicator_create') }}">
+                  <span class="nav-icon">
+                    <svg
+                      width="1em"
+                      height="1em"
+                      viewBox="0 0 16 16"
+                      class="bi bi-bar-chart-line"
+                      fill="currentColor"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2zm1 12h2V2h-2v12zm-3 0V7H7v7h2zm-5 0v-3H2v3h2z"
+                      />
+                    </svg>
+                  </span>
+                  <span class="nav-link-text">IKU</span> </a>
+              <!--//nav-link-->
+              </li>
+              <!--//nav-item-->
+            @endcan
+              {{-- Akhir IKU --}}
+
+              {{-- <li class="nav-item">
+                <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+                <a class="nav-link" href="help.html">
+                  <span class="nav-icon">
+                    <svg
+                      width="1em"
+                      height="1em"
+                      viewBox="0 0 16 16"
+                      class="bi bi-question-circle"
+                      fill="currentColor"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+                      />
+                      <path
+                        d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"
+                      />
+                    </svg>
+                  </span>
+                  <span class="nav-link-text">Help</span> </a>
+                <!--//nav-link-->
+              </li> --}}
+              <!--//nav-item-->
+
+
+               @can('assign role')
+                
+              <li class="nav-item has-submenu">
+                <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+                <a
+                  class="nav-link submenu-toggle"
+                  href=""
+                  data-bs-toggle="collapse"
+                  data-bs-target="#submenu-2"
+                  aria-expanded="false"
+                  aria-controls="submenu-2">
+
+   
+                {{-- Akhir Dropdown User --}}
+
+                  <span class="nav-icon">
+                    <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+                    <svg
+                      width="1em"
+                      height="1em"
+                      viewBox="0 0 16 16"
+                      class="bi bi-columns-gap"
+                      fill="currentColor"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M6 1H1v3h5V1zM1 0a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1H1zm14 12h-5v3h5v-3zm-5-1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1h-5zM6 8H1v7h5V8zM1 7a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1H1zm14-6h-5v7h5V1zm-5-1a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1h-5z"
+                      />
+                    </svg>
+                  </span>
           
-            @endhasanyrole
 
-            @can('create indicator')
-            <li class="label">Kategori IKU</li>
-            <li>
-              <a href="{{ route('indicator_create') }}"> <i class="ti-book"></i> Kategori IKU </a>
-            </li>
-            @endcan
-            
-            @can('show user')
-            <li class="label">Menu Pengguna</li>
-            <li>
-              
-              <a class="sidebar-sub-toggle">
-                <i class="ti-user"></i> Lihat User
-                <span class="sidebar-collapse-icon ti-angle-down"></span>
-              </a>
-              <ul>
-                <li>
-                  <a href="chart-flot.html">Lihat Pengguna</a>
-                </li>
-                <li>
-                  <a href="{{ route('report_index') }}">5W1H Seluruh Pengguna</a>
-                </li>
-              </ul>
-            </li>
-            @endcan
-            
-            @can('assign permission')
-              <li class="label">Kebijakan</li>
-            <li>
-              <a class="sidebar-sub-toggle">
-                <i class="ti-settings"></i> Role & Permission
-                <span class="sidebar-collapse-icon ti-angle-down"></span>
-              </a>
-              <ul>
-                <li>
-                  <a href="{{ route('role_index') }}">Role</a>
-                </li>
-                <li>
-                  <a href="{{ route('permission_index') }}">Permission</a>
-                </li>
-                <li>
-                  <a href="{{ route('assign_create') }}">Pemberian Akses Role</a>
-                </li>
-                <li>
-                  <a href="{{ route('user_create') }}">Pemberian Akses User</a>
-                </li>
-              </ul>
-            </li>
-            @endcan
-            
-            {{-- <li>
-              <a href="app-widget-card.html">
-                <i class="ti-layout-grid2-alt"></i> Widget</a
-              >
-            </li>
-            <li class="label">Features</li>
-            <li>
-              <a class="sidebar-sub-toggle">
-                <i class="ti-layout"></i> UI Elements
-                <span class="sidebar-collapse-icon ti-angle-down"></span>
-              </a>
-              <ul>
-                <li>
-                  <a href="ui-typography.html">Typography</a>
-                </li>
-                <li>
-                  <a href="ui-alerts.html">Alerts</a>
-                </li>
+                  <span class="nav-link-text">Role And Permission</span>
+                  <span class="submenu-arrow">
+                    <svg
+                      width="1em"
+                      height="1em"
+                      viewBox="0 0 16 16"
+                      class="bi bi-chevron-down"
+                      fill="currentColor"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
+                      />
+                    </svg> </span
+                  ><!--//submenu-arrow--> </a
+                ><!--//nav-link-->
+                
+                <div
+                  id="submenu-2"
+                  class="collapse submenu submenu-2"
+                  data-bs-parent="#menu-accordion"
+                >
+                  <ul class="submenu-list list-unstyled">
+                    <li class="submenu-item">
+                      <a class="submenu-link" href="{{ route('role_index') }}">Role</a>
+                    </li>
+                    <li class="submenu-item">
+                      <a class="submenu-link" href="{{ route('permission_index') }}">Permission</a>
+                    </li>
+                    <li class="submenu-item">
+                      <a class="submenu-link" href="{{ route('assign_create') }}"
+                        >Pemberian Akses Role</a
+                      >
+                    </li>
+                    <li class="submenu-item">
+                      <a class="submenu-link" href="{{ route('user_create') }}">Pemberian Akses User</a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <!--//nav-item-->
+        @endcan
 
-                <li>
-                  <a href="ui-button.html">Button</a>
+            </ul>
+            <!--//app-menu-->
+          </nav>
+          <!--//app-nav-->
+          <div class="app-sidepanel-footer">
+            <nav class="app-nav app-nav-footer">
+              <ul class="app-menu footer-menu list-unstyled">
+                <li class="nav-item">
+                  <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+                  <a class="nav-link" href="{{ route('password_edit') }}">
+                    <span class="nav-icon">
+                      <svg
+                        width="1em"
+                        height="1em"
+                        viewBox="0 0 16 16"
+                        class="bi bi-gear"
+                        fill="currentColor"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M8.837 1.626c-.246-.835-1.428-.835-1.674 0l-.094.319A1.873 1.873 0 0 1 4.377 3.06l-.292-.16c-.764-.415-1.6.42-1.184 1.185l.159.292a1.873 1.873 0 0 1-1.115 2.692l-.319.094c-.835.246-.835 1.428 0 1.674l.319.094a1.873 1.873 0 0 1 1.115 2.693l-.16.291c-.415.764.42 1.6 1.185 1.184l.292-.159a1.873 1.873 0 0 1 2.692 1.116l.094.318c.246.835 1.428.835 1.674 0l.094-.319a1.873 1.873 0 0 1 2.693-1.115l.291.16c.764.415 1.6-.42 1.184-1.185l-.159-.291a1.873 1.873 0 0 1 1.116-2.693l.318-.094c.835-.246.835-1.428 0-1.674l-.319-.094a1.873 1.873 0 0 1-1.115-2.692l.16-.292c.415-.764-.42-1.6-1.185-1.184l-.291.159A1.873 1.873 0 0 1 8.93 1.945l-.094-.319zm-2.633-.283c.527-1.79 3.065-1.79 3.592 0l.094.319a.873.873 0 0 0 1.255.52l.292-.16c1.64-.892 3.434.901 2.54 2.541l-.159.292a.873.873 0 0 0 .52 1.255l.319.094c1.79.527 1.79 3.065 0 3.592l-.319.094a.873.873 0 0 0-.52 1.255l.16.292c.893 1.64-.902 3.434-2.541 2.54l-.292-.159a.873.873 0 0 0-1.255.52l-.094.319c-.527 1.79-3.065 1.79-3.592 0l-.094-.319a.873.873 0 0 0-1.255-.52l-.292.16c-1.64.893-3.433-.902-2.54-2.541l.159-.292a.873.873 0 0 0-.52-1.255l-.319-.094c-1.79-.527-1.79-3.065 0-3.592l.319-.094a.873.873 0 0 0 .52-1.255l-.16-.292c-.892-1.64.902-3.433 2.541-2.54l.292.159a.873.873 0 0 0 1.255-.52l.094-.319z"
+                        />
+                        <path
+                          fill-rule="evenodd"
+                          d="M8 5.754a2.246 2.246 0 1 0 0 4.492 2.246 2.246 0 0 0 0-4.492zM4.754 8a3.246 3.246 0 1 1 6.492 0 3.246 3.246 0 0 1-6.492 0z"
+                        />
+                      </svg>
+                    </span>
+                    <span class="nav-link-text">Ubah Password</span> </a
+                  ><!--//nav-link-->
                 </li>
-                <li>
-                  <a href="ui-dropdown.html">Dropdown</a>
-                </li>
-
-                <li>
-                  <a href="ui-list-group.html">List Group</a>
-                </li>
-
-                <li>
-                  <a href="ui-progressbar.html">Progressbar</a>
-                </li>
-                <li>
-                  <a href="ui-tab.html">Tab</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a class="sidebar-sub-toggle">
-                <i class="ti-panel"></i> Components
-                <span class="sidebar-collapse-icon ti-angle-down"></span>
-              </a>
-              <ul>
-                <li>
-                  <a href="uc-calendar.html">Calendar</a>
-                </li>
-                <li>
-                  <a href="uc-carousel.html">Carousel</a>
-                </li>
-                <li>
-                  <a href="uc-weather.html">Weather</a>
-                </li>
-                <li>
-                  <a href="uc-datamap.html">Datamap</a>
-                </li>
-                <li>
-                  <a href="uc-todo-list.html">To do</a>
-                </li>
-                <li>
-                  <a href="uc-scrollable.html">Scrollable</a>
-                </li>
-                <li>
-                  <a href="uc-sweetalert.html">Sweet Alert</a>
-                </li>
-                <li>
-                  <a href="uc-toastr.html">Toastr</a>
-                </li>
-                <li>
-                  <a href="uc-range-slider-basic.html">Basic Range Slider</a>
-                </li>
-                <li>
-                  <a href="uc-range-slider-advance.html"
-                    >Advance Range Slider</a
+                <!--//nav-item-->
+                {{-- <li class="nav-item"> --}}
+                  <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+                  {{-- <a
+                    class="nav-link"
+                    href="https://themes.3rdwavemedia.com/bootstrap-templates/admin-dashboard/portal-free-bootstrap-admin-dashboard-template-for-developers/"
                   >
+                    <span class="nav-icon">
+                      <svg
+                        width="1em"
+                        height="1em"
+                        viewBox="0 0 16 16"
+                        class="bi bi-download"
+                        fill="currentColor"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"
+                        />
+                        <path
+                          fill-rule="evenodd"
+                          d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"
+                        />
+                      </svg>
+                    </span>
+                    <span class="nav-link-text">Download</span> </a --}}
+                  {{-- ><!--//nav-link--> --}}
+                {{-- </li> --}}
+                <!--//nav-item-->
+                <li class="nav-item">
+                  <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+                  <a
+                    class="nav-link"
+                    href="#"
+                  >
+                    <span class="nav-icon">
+                      <svg
+                        width="1em"
+                        height="1em"
+                        viewBox="0 0 16 16"
+                        class="bi bi-file-person"
+                        fill="currentColor"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M12 1H4a1 1 0 0 0-1 1v10.755S4 11 8 11s5 1.755 5 1.755V2a1 1 0 0 0-1-1zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z"
+                        />
+                        <path
+                          fill-rule="evenodd"
+                          d="M8 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
+                        />
+                      </svg>
+                    </span>
+                    <span class="nav-link-text">Profil</span> </a
+                  ><!--//nav-link-->
                 </li>
-                <li>
-                  <a href="uc-nestable.html">Nestable</a>
-                </li>
-
-                <li>
-                  <a href="uc-rating-bar-rating.html">Bar Rating</a>
-                </li>
-                <li>
-                  <a href="uc-rating-jRate.html">jRate</a>
-                </li>
+                <!--//nav-item-->
               </ul>
-            </li>
-            <li>
-              <a class="sidebar-sub-toggle">
-                <i class="ti-layout-grid4-alt"></i> Table
-                <span class="sidebar-collapse-icon ti-angle-down"></span>
-              </a>
-              <ul>
-                <li>
-                  <a href="table-basic.html">Basic</a>
-                </li>
-
-                <li>
-                  <a href="table-export.html">Datatable Export</a>
-                </li>
-                <li>
-                  <a href="table-row-select.html">Datatable Row Select</a>
-                </li>
-                <li>
-                  <a href="table-jsgrid.html">Editable </a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a class="sidebar-sub-toggle">
-                <i class="ti-heart"></i> Icons
-                <span class="sidebar-collapse-icon ti-angle-down"></span>
-              </a>
-              <ul>
-                <li>
-                  <a href="font-themify.html">Themify</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a class="sidebar-sub-toggle">
-                <i class="ti-map"></i> Maps
-                <span class="sidebar-collapse-icon ti-angle-down"></span>
-              </a>
-              <ul>
-                <li>
-                  <a href="gmaps.html">Basic</a>
-                </li>
-                <li>
-                  <a href="vector-map.html">Vector Map</a>
-                </li>
-              </ul>
-            </li>
-            <li class="label">Form</li>
-            <li>
-              <a href="form-basic.html">
-                <i class="ti-view-list-alt"></i> Basic Form
-              </a>
-            </li>
-            <li class="label">Extra</li>
-            <li>
-              <a class="sidebar-sub-toggle">
-                <i class="ti-files"></i> Invoice
-                <span class="sidebar-collapse-icon ti-angle-down"></span>
-              </a>
-              <ul>
-                <li>
-                  <a href="invoice.html">Basic</a>
-                </li>
-                <li>
-                  <a href="invoice-editable.html">Editable</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a class="sidebar-sub-toggle">
-                <i class="ti-target"></i> Pages
-                <span class="sidebar-collapse-icon ti-angle-down"></span>
-              </a>
-              <ul>
-                <li>
-                  <a href="page-login.html">Login</a>
-                </li>
-                <li>
-                  <a href="page-register.html">Register</a>
-                </li>
-                <li>
-                  <a href="page-reset-password.html">Forgot password</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="../documentation/index.html">
-                <i class="ti-file"></i> Documentation</a
-              >
-            </li>
-            <li>
-              <a> <i class="ti-close"></i> Logout</a>
-            </li> --}}
-            @hasanyrole($role)
-              <li>
-              <a class="sidebar-sub-toggle">
-                <i class="ti-write"></i> Akun
-                <span class="sidebar-collapse-icon ti-angle-down"></span>
-              </a>
-              <ul>
-                {{-- <li>
-                  <a href="{{ route('pengikut') }}">Profil</a>
-                </li> --}}
-                <li>
-                  <a href="{{ route('password_edit') }}">Ubah Password</a>
-                </li>
-              </ul>
-
-            </li>
-            @endhasanyrole
-          </ul>
+              <!--//footer-menu-->
+            </nav>
+          </div>
+          <!--//app-sidepanel-footer-->
         </div>
+        <!--//sidepanel-inner-->
       </div>
-    </div>
-
- 
+      <!--//app-sidepanel-->

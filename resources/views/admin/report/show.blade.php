@@ -6,8 +6,8 @@
         
         <div class="row">
         <div class="col-md-6">
-        <h1> Judul Kegiatan : {{ $report->what }}</h1>
-        <table class="table table-borderless table-responsive">
+        <h4> Judul Kegiatan : {{ $report->what }}</h4>
+        <table class="table table-borderless table-responsive text-align-top">
                    <thead>
                <tr>
                   <th scope="row"> Penyusun </th>
@@ -16,9 +16,11 @@
                <tr>
                   <th scope="row"> Pengikut </th>
                   <td scope="col">
+                     
                        @foreach ($follower as $fol )
-                         <li>{{ $fol->userfoll->name }}</li>
+                         <li style="list-style-type:none;">{{ $fol->userfoll->name }}</li>
                         @endforeach
+               
                </td>
                </tr>
                <tr>
@@ -52,7 +54,7 @@
                 <tr>
                     <th scope="row"> IKU </th>
                     <td scope="col"> @foreach ($report->indicators as $iku )
-                         <li>{{ $iku->nama }}</li>
+                         <li style="list-style-type:none;">{{ $iku->nama }}</li>
                                 @endforeach
                         </td>
                  </tr>
@@ -105,35 +107,34 @@
 
                  <div class="card">
                     <div class="card-title">
-                        <h4>How</h4>          
+                        <h5>How</h5>          
                      </div>
                  <div class="card-body">
                          <p class="card-text">
-
                                  {!! $report->how !!}
                          </p>
                  </div>
                 </div>
                 <div class="row">
-                <div class="mt-3">
+                  <div class="mt-3">
 
-                  @can('show user')
-                  <a href="{{ route('report_index') }}" class="btn btn-outline-info ml-2 float-right">Kembali Ke 5w1H Semua</a>
-                  @endcan
-                  <a href="{{ route('myreport') }}" class="btn btn-outline-info ml-2 float-right">Kembali Ke 5w1H-Ku</a>
+                        @can('show user')
+                        <a href="{{ route('report_index') }}" class="btn btn-outline-info ml-3 float-right">Kembali Ke 5w1H Semua</a>
+                        @endcan
+                        <a href="{{ route('myreport') }}" class="btn btn-outline-info ml-3 float-right">Kembali Ke 5w1H-Ku</a>
 
-                <a href="{{ route('pdf', $report->slug) }}" class="btn btn-danger ml-2">Eksport pdf</a>
+                     <a href="{{ route('pdf', $report->slug) }}" class="btn btn-danger ml-3">Eksport pdf</a>
 
 
-                <a class="btn btn-warning ml-2" href="{{ route('report_edit', $report->slug)}}">Edit</a>
+                     <a class="btn btn-warning ml-3" href="{{ route('report_edit', $report->slug)}}">Edit</a>
 
-               
-                 <button type="button" class="btn btn-outline-danger ml-2" data-toggle="modal" data-target="#deleteModal">
+                     <button type="button" class="btn btn-outline-danger ml-3" data-toggle="modal" data-target="#deleteModal">
                         Hapus
-                  </button>
+                     </button>
 
+                  </div>
                 </div>
-                </div>
+
 
                 <!-- Modal Delete-->
                <div class="modal fade" id="deleteModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -160,8 +161,6 @@
                   </div>
                </div>
                </div>
-
-
                          
 <style>
 .scrollable{

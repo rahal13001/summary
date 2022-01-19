@@ -24,7 +24,7 @@
                     <form action="{{ route('user_update', $user->id) }}" method="post">
                         @method('put')
                         @csrf
-                            <div class="form-group">
+                            <div class="form-group mt-3">
                                 <label for="user">User</label>
                                 <select name="user" id="user" class="form-control input-rounded select2">
                                 <option disabled selected>Pilih User</option>
@@ -37,7 +37,7 @@
                                     <div class="text-danger mt-2 d-block">{{ $message }}</div>
                                 @enderror                                  
                             </div>
-                            <div class="form-group">
+                            <div class="form-group mt-3">
                             <label for="roles">Pilih Role</label>
                             <select name="roles[]" id="roles" class="form-control input-rounded select2" multiple>
                                 @foreach ($roles as $peran)
@@ -48,7 +48,7 @@
                                 <div class="text-danger mt-2 d-block">{{ $message }}</div>
                             @enderror
                             </div>
-                            <button type="submit" class="btn btn-info">Assign</button>
+                            <button type="submit" class="btn btn-info mt-4">Assign</button>
                             <a href="{{ route('user_create') }}" class="btn btn-danger">Batal</a>
                         </form>
 @endsection

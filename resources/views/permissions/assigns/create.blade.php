@@ -44,7 +44,7 @@
                     <div class="p-20">
                         <form action="{{ route('assign_post') }}" method="post">
                         @csrf
-                            <div class="form-group">
+                            <div class="form-group mt-4">
                                 <label for="name">Nama Role</label>
                                 <select name="name" id="name" class="form-control input-rounded select2">
                                 <option disabled selected>Pilih Role</option>
@@ -57,7 +57,7 @@
                                     <div class="text-danger mt-2 d-block">{{ $message }}</div>
                                 @enderror                                  
                             </div>
-                            <div class="form-group">
+                            <div class="form-group mt-3">
                             <label for="permission">Permission</label>
                             <select name="permission[]" id="permission" class="form-control input-rounded select2" multiple>
                                 @foreach ($permission as $hak)
@@ -68,7 +68,8 @@
                                 <div class="text-danger mt-2 d-block">{{ $message }}</div>
                             @enderror
                             </div>
-                            <button type="submit" class="btn btn-info">Assign</button>
+
+                            <button type="submit" class="btn btn-info mt-4">Assign</button>
                         </form>
                     </div>
                 </div>

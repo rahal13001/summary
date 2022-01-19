@@ -40,7 +40,7 @@
          @enderror                                  
        </div>
 
-        <div class="form-group">
+        <div class="form-group mt-3">
          <label for="pengikut">Pilih Pengikut</label>
          <select name="pengikut[]" id="pengikut" class="form-control input-rounded select2" multiple>
             @foreach ($user as $pemakai )
@@ -53,7 +53,7 @@
          @enderror                                  
        </div>
 
-       <div class="form-group">
+       <div class="form-group mt-3">
             <label for="no_st">Nomor Surat Tugas</label>
             <input type="text" name="no_st" id="no_st" class="form-control input-rounded" placeholder="Masukan Nomor Surat Tugas" value="{{ old('no_st') }}">                  
             @error('no_st')
@@ -61,7 +61,7 @@
             @enderror                                  
         </div>
 
-        <div class="form-group">
+        <div class="form-group mt-3">
             <label for="what">What</label>
             <input type="text" name="what" id="what" class="form-control input-rounded" placeholder="Masukan Judul Kegiatan" value="{{ old('what') }}">                  
             @error('what')
@@ -69,7 +69,7 @@
             @enderror                                  
         </div>
 
-    <div class="form-group">
+    <div class="form-group mt-3">
         <label for="slug">Slug</label>
         <input type="text" name="slug" id="slug" class="form-control input-rounded" placeholder="Slug Otomatis Sesuai What" value="{{ old('slug') }}" readonly>                  
         @error('slug')
@@ -77,7 +77,7 @@
         @enderror                                  
       </div>
 
-       <div class="form-group">
+       <div class="form-group mt-3">
          <label for="indicator">Pilih IKU</label>
          <select name="indicator[]" id="indicator" class="form-control input-rounded select2" multiple>
             @foreach ($indicator as $iku )
@@ -90,14 +90,14 @@
          @enderror                                  
        </div>
 
-       <div class="form-group">
+       <div class="form-group mt-3">
             <label for="where">Where</label>
             <input type="text" name="where" id="where" class="form-control input-rounded" placeholder="Masukan Lokasi/Tempat" value="{{ old('where') }}">                  
             @error('where')
             <div class="text-danger mt-2 d-block">{{ $message }}</div>
             @enderror                                  
         </div>
-        <div class="row">
+        <div class="row mt-3">
         <div class="form-group col-md-6">
             <label for="when">When</label>
             <input type="date" name="when" id="when" class="form-control input-rounded" placeholder="Masukan Tanggal Mulai" value="{{ old('when') }}">                  
@@ -115,7 +115,7 @@
         </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group mt-3">
             <label for="total_jam">Jumlah Jam</label>
             <input type="text" name="total_jam" id="total_jam" class="form-control input-rounded" placeholder="Masukan Jumlah Jam" value="{{ old('total_jam') }}" step="0.01">                  
             @error('total_jam')
@@ -123,7 +123,7 @@
             @enderror                                  
         </div>
 
-        <div class="form-group">
+        <div class="form-group mt-3">
             <label for="why">Why</label>
             <input type="text" name="why" id="why" class="form-control input-rounded" placeholder="Masukan Alasan/Dasar Kegiatan" value="{{ old('why') }}">                  
             @error('why')
@@ -131,7 +131,7 @@
             @enderror                                  
         </div>
 
-        <div class="form-group">
+        <div class="form-group mt-3">
             <label for="who">Who</label>
             <input type="text" name="who" id="who" class="form-control input-rounded" placeholder="Masukan Pihak Yang Terlibat" value="{{ old('who') }}">                  
             @error('who')
@@ -139,44 +139,43 @@
             @enderror                                  
         </div>
 
-        <div class="form-group">
+        <div class="form-group mt-3">
             <label for="how">How</label>
-            
               <input id="how" type="hidden" name="how" value="{{ old('how') }}" placeholder="Masukan Inti Kegiatan, Bukan jadwal atau rangkaian acara">
-                <trix-editor input="how"></trix-editor>
-                <small>Maksimal 700 Karakter (Termasuk Spasi)</small>              
+                <trix-editor input="how"></trix-editor>          
+                <small>Maksimal 700 Karakter (Termasuk Spasi)</small>           
             @error('how')
             <div class="text-danger mt-2 d-block">{{ $message }}</div>
             @enderror                                  
         </div>
 
-        <div class="form-group">
+        <div class="form-group mt-3">
             <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 mt-4">
             <label for="dokumentasi1">Dokumentasi 1</label>
             <input type="file" class="form-control input-rounded" name="dokumentasi1" value="{{ old('documentation1') }}">
-            <small>Ukuran Gambar Maksimal 1 MB</small>
+            <small>Ukuran Gambar Maksimal 1 MB</small> 
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-6 mt-4">
             <label for="dokumentasi2">Dokumentasi 2 (Jika Ada)</label>
             <input type="file" class="form-control input-rounded" name="dokumentasi2" value="{{ old('documentation2') }}">
             <small>Ukuran Gambar Maksimal 1 MB</small>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-6 mt-4">
             <label for="dokumentasi3">Dokumentasi 3 (Jika Ada)</label>
             <input type="file" class="form-control input-rounded" name="dokumentasi3" value="{{ old('documentation3') }}">
             <small>Ukuran Gambar Maksimal 1 MB</small>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-6 mt-4">
             <label for="lainnya">Dokumentasi Lainnya (Jika Ada)</label>
             <input type="file" class="form-control input-rounded" name="lainnya" value="{{ old('lainnya') }}">
             <small>Ukuran File Maksimal 10 MB, Dianjurkan Dalam Bentuk PDF</small>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-6 mt-4">
             <label for="st">Masukan Surat Tugas (Jika Ada)</label>
             <input type="file" class="form-control input-rounded" name="st" value="{{ old('st') }}">
             <small>Ukuran File Maksimal 3 MB, Dianjurkan Dalam Bentuk PDF</small>
@@ -184,11 +183,14 @@
             </div>
         </div>
 
-         <button type="submit" class="btn btn-info">Submit</button>
-           @can('show user')
-         <a href="{{ route('report_index') }}" class="btn btn-outline-danger mr-2 float-right">Kembali Ke 5w1H Semua</a>
+        <div class="mt-4 text-center">
+         <button type="submit" class="btn btn-info float-left">Submit</button>
+
+        @can('show user')
+         <a href="{{ route('report_index') }}" class="btn btn-outline-danger mx-2 my-2 float-right">Kembali Ke 5w1H Semua</a>
          @endcan
-         <a href="{{ route('myreport') }}" class="btn btn-outline-danger mr-2 float-right">Kembali Ke 5w1H-Ku</a>
+         <a href="{{ route('myreport') }}" class="btn btn-outline-danger float-right">Kembali Ke 5w1H-Ku</a>
+        </div>
     </form>
 
 

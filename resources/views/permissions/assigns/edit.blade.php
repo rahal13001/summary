@@ -24,9 +24,9 @@
                <form action="{{ route('assign_update', $role->id) }}" method="post">
                         @csrf
                         @method('put')
-                            <div class="form-group">
+                            <div class="form-group mt-3">
                                 <label for="name">Nama Role</label>
-                                <select name="name" id="name" class="form-control input-rounded select2">
+                                <select name="name" id="name" class="form-control input-rounded select2 mt-3">
                                 <option disabled selected >Pilih Role</option>
                                     @foreach ($roles as $peran)
                                     <option {{ $role->id == $peran->id ? 'selected' : '' }} value="{{ $peran->id }}"> {{ $peran->name }}</option>
@@ -37,9 +37,9 @@
                                     <div class="text-danger mt-2 d-block">{{ $message }}</div>
                                 @enderror                                  
                             </div>
-                            <div class="form-group">
+                            <div class="form-group mt-3">
                             <label for="permission">Permission</label>
-                            <select name="permission[]" id="permission" class="form-control input-rounded select2" multiple>
+                            <select name="permission[]" id="permission" class="form-control input-rounded select2 mt-3" multiple>
                                 @foreach ($permissions as $hak)
                                 <option {{ $role->permissions()->find($hak->id) ? 'selected' : ''}} value="{{ $hak->id }}"> {{ $hak->name }}</option>
                                 @endforeach
@@ -48,8 +48,8 @@
                                 <div class="text-danger mt-2 d-block">{{ $message }}</div>
                             @enderror
                             </div>
-                            <button type="submit" class="btn btn-info">Assign</button>
-                            <a href="{{ route('assign_create') }}" class="btn btn-danger">Batal</a>
+                            <button type="submit" class="btn btn-info mt-4">Assign</button>
+                            <a href="{{ route('assign_create') }}" class="btn btn-danger mt-4">Batal</a>
                     </form>
                         
 @endsection
