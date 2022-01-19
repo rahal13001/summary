@@ -1,0 +1,451 @@
+/* .a4 {
+    position: absolute;
+    width: 620px;
+    height: 110.75px;
+    margin: auto;
+    background: #ffffff;
+    border: 1px solid #eee;
+    padding: 30px;
+} */
+
+.kop {
+    position: absolute;
+    width: 616px;
+    height: 109.03px;
+    left: 34px;
+    top: 24px;
+}
+
+.judul {
+    position: absolute;
+    width: 46px;
+    height: 18px;
+    left: 327px;
+    top: 157px;
+
+    font-family: Arial;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 16px;
+
+    color: #000000;
+}
+
+.no_surat {
+    position: absolute;
+    width: 450px;
+    height: 15px;
+    left: 179px;
+    top: 181px;
+
+    font-family: Arial;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 13px;
+
+    color: #000000;
+}
+
+.what {
+    position: absolute;
+    width: 31.68px;
+    height: 14.38px;
+    left: 39.69px;
+    top: 200px;
+
+    font-family: Arial;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 13px;
+
+    color: #000000;
+}
+.t_what {
+    position: absolute;
+    width: 4px;
+    height: 13px;
+    left: 96px;
+    top: 200px;
+
+    font-family: Arial;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 11px;
+    line-height: 13px;
+    /* identical to box height */
+
+    color: #000000;
+}
+
+.i_what {
+    position: absolute;
+    width: 433px;
+    height: 57px;
+    left: 118px;
+    top: 200px;
+
+    font-family: Arial;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 13px;
+    text-align: justify;
+
+    color: #000000;
+}
+.penyusun {
+    position: absolute;
+    width: 53px;
+    height: 39px;
+    left: 38px;
+    top: 250px;
+
+    font-family: Arial;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 11px;
+    line-height: 13px;
+
+    color: #000000;
+}
+.t_penyusun {
+    position: absolute;
+    width: 4px;
+    height: 13px;
+    left: 96px;
+    top: 250px;
+
+    font-family: Arial;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 11px;
+    line-height: 13px;
+    /* identical to box height */
+
+    color: #000000;
+}
+.i_penyusun {
+    position: absolute;
+    width: 433px;
+    height: 50px;
+    left: 118px;
+    top: 250px;
+
+    font-family: Arial;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 11px;
+    line-height: 13px;
+    text-align: justify;
+
+    color: #000000;
+}
+
+.when {
+    position: absolute;
+    width: 30px;
+    height: 13px;
+    left: 38px;
+    top: 304px;
+
+    font-family: Arial;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 11px;
+    line-height: 13px;
+    /* identical to box height */
+
+    color: #000000;
+}
+.t_when {
+    position: absolute;
+    width: 4px;
+    height: 13px;
+    left: 96px;
+    top: 304px;
+
+    font-family: Arial;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 11px;
+    line-height: 13px;
+    /* identical to box height */
+
+    color: #000000;
+}
+
+.i_when {
+    position: absolute;
+    width: 204px;
+    height: 13px;
+    left: 118px;
+    top: 304px;
+
+    font-family: Arial;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 11px;
+    line-height: 13px;
+    /* identical to box height */
+
+    text-align: justify;
+
+    color: #000000;
+}
+.jam {
+    position: absolute;
+    width: 220px;
+    height: 13px;
+    left: 331px;
+    top: 304px;
+
+    font-family: Arial;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 11px;
+    line-height: 13px;
+    /* identical to box height */
+
+    text-align: justify;
+
+    color: #000000;
+}
+.where {
+    position: absolute;
+    width: 34px;
+    height: 13px;
+    left: 38px;
+    top: 328px;
+
+    font-family: Arial;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 11px;
+    line-height: 13px;
+    /* identical to box height */
+
+    color: #000000;
+}
+
+.t_where {
+    position: absolute;
+    width: 4px;
+    height: 13px;
+    left: 96px;
+    top: 328px;
+
+    font-family: Arial;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 11px;
+    line-height: 13px;
+    /* identical to box height */
+
+    color: #000000;
+}
+
+.i_where {
+    position: absolute;
+    width: 436px;
+    height: 40px;
+    left: 118px;
+    top: 328px;
+
+    font-family: Arial;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 11px;
+    line-height: 13px;
+    text-align: justify;
+
+    color: #000000;
+}
+
+.why {
+    position: absolute;
+    width: 24px;
+    height: 13px;
+    left: 38px;
+    top: 379px;
+
+    font-family: Arial;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 11px;
+    line-height: 13px;
+    /* identical to box height */
+
+    color: #000000;
+}
+.t_why {
+    position: absolute;
+    width: 4px;
+    height: 13px;
+    left: 96px;
+    top: 379px;
+
+    font-family: Arial;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 11px;
+    line-height: 13px;
+    /* identical to box height */
+
+    color: #000000;
+}
+.i_why {
+    position: absolute;
+    width: 439px;
+    height: 42px;
+    left: 115px;
+    top: 379px;
+
+    font-family: Arial;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 11px;
+    line-height: 13px;
+    text-align: justify;
+
+    color: #000000;
+}
+
+.who {
+    position: absolute;
+    width: 24px;
+    height: 13px;
+    left: 38px;
+    top: 430px;
+
+    font-family: Arial;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 11px;
+    line-height: 13px;
+    /* identical to box height */
+
+    color: #000000;
+}
+
+.t_who {
+    position: absolute;
+    width: 4px;
+    height: 13px;
+    left: 96px;
+    top: 430px;
+
+    font-family: Arial;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 11px;
+    line-height: 13px;
+    /* identical to box height */
+
+    color: #000000;
+}
+
+.i_who {
+    position: absolute;
+    width: 439px;
+    height: 47px;
+    left: 115px;
+    top: 430px;
+
+    font-family: Arial;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 11px;
+    line-height: 13px;
+    text-align: justify;
+
+    color: #000000;
+}
+
+.iku {
+    position: absolute;
+    width: 40px;
+    height: 13px;
+    left: 38px;
+    top: 479px;
+
+    font-family: Arial;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 11px;
+    line-height: 13px;
+    /* identical to box height */
+
+    color: #000000;
+}
+
+.t_iku {
+    position: absolute;
+    width: 4px;
+    height: 13px;
+    left: 96px;
+    top: 479px;
+
+    font-family: Arial;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 11px;
+    line-height: 13px;
+    /* identical to box height */
+
+    color: #000000;
+}
+.i_iku {
+    position: absolute;
+    width: 439px;
+    height: 13px;
+    left: 115px;
+    top: 479px;
+
+    font-family: Arial;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 11px;
+    line-height: 13px;
+    /* identical to box height */
+
+    text-align: justify;
+
+    color: #000000;
+}
+
+.how {
+    position: absolute;
+    width: 24px;
+    height: 13px;
+    left: 39px;
+    top: 501px;
+
+    font-family: Arial;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 11px;
+    line-height: 13px;
+    /* identical to box height */
+
+    color: #000000;
+}
+
+.i_how {
+    position: absolute;
+    width: 516px;
+    height: 249px;
+    left: 38px;
+    top: 521px;
+
+    font-family: Arial;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 11px;
+    line-height: 13px;
+    text-align: justify;
+
+    color: #000000;
+}
