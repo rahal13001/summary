@@ -30,7 +30,7 @@
             
             <li class="label">Pelaporan</li>
             <li>
-              <a href="{{ route('report_create') }}">
+              <a href="{{ route('myreport_create') }}">
                 <i class="ti-pencil-alt"></i> Buat 5w1H
               </a>
             </li>
