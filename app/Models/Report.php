@@ -32,7 +32,7 @@ class Report extends Model
     }
 
     public function indicators(){
-        return $this->belongsToMany(indicator::class);
+        return $this->belongsToMany(Indicator::class);
     }
 
     public function sluggable(): array

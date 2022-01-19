@@ -127,7 +127,7 @@
 
                 <a class="btn btn-warning ml-2" href="{{ route('report_edit', $report->slug)}}">Edit</a>
 
-
+               <form action="" method="post"></form>
                 <button class="btn btn-outline-danger ml-2" href="{{ route('report_index') }}">Hapus</button>
                 </div>
                 </div>
