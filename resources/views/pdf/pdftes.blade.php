@@ -7,7 +7,7 @@
     <title>Ekspor PDF 5W1H</title>
 
     
-    <link rel="stylesheet" href="css\pdftes.css">
+    <link rel="stylesheet" href="..\css\pdftes.css">
 </head>
 <body>
 
