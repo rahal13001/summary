@@ -127,10 +127,41 @@
 
                 <a class="btn btn-warning ml-2" href="{{ route('report_edit', $report->slug)}}">Edit</a>
 
-               <form action="" method="post"></form>
-                <button class="btn btn-outline-danger ml-2" href="{{ route('report_index') }}">Hapus</button>
+               
+                 <button type="button" class="btn btn-outline-danger ml-2" data-toggle="modal" data-target="#deleteModal">
+                        Hapus
+                  </button>
+
                 </div>
                 </div>
+
+                <!-- Modal Delete-->
+               <div class="modal fade" id="deleteModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+               <div class="modal-dialog">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                     <h5 class="modal-title" id="deleteModalLabel">Hapus Data</h5>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                     </button>
+                     </div>
+                     <div class="modal-body">
+                     Yakin mau menghapus data ?
+                     </div>
+                     <div class="modal-footer">
+                     <button type="button" class="btn btn-primary" data-dismiss="modal">Batal</button>
+                     <form action="{{ route('report_delete', $report->slug) }}" method="post">
+                        @method('delete')
+                        @csrf
+                        <button type="submit" class="btn btn-danger d-inline">Hapus</button>
+                     </form> 
+                     </form>
+                     </div>
+                  </div>
+               </div>
+               </div>
+
+
                          
 <style>
 .scrollable{

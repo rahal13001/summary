@@ -37,7 +37,7 @@ class IndicatorsController extends Controller
                         <li>
                             <form action="' . route('indicator_delete', $item->slug) . '" method="POST">
                                 ' . method_field('delete') . csrf_field() . '
-                                <button type="submit" class="btn btn-outline-danger d-block btn-sm col-sm-12">
+                                <button type="submit" class="btn btn-outline-danger d-block btn-sm col-sm-12" onclick = "return confirm(\'Anda yakin ingin menghapus data ?\') ">
                                     Hapus
                                 </button>
                             </form>
