@@ -116,7 +116,7 @@
 
         <div class="form-group">
             <label for="total_jam">Jumlah Jam</label>
-            <input type="text" name="total_jam" id="total_jam" class="form-control input-rounded" placeholder="Masukan Jumlah Jam" value="{{ $report->total_jam }}">                  
+            <input type="text" name="total_jam" id="total_jam" class="form-control input-rounded" placeholder="Masukan Jumlah Jam" value="{{ $report->total_jam }}" step="0.01">                  
             @error('total_jam')
             <div class="text-danger mt-2 d-block">{{ $message }}</div>
             @enderror                                  
