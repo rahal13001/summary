@@ -69,20 +69,20 @@
                                 <div class="card-body scrollable">
                                 
                                 <p class="card-title">Dokumentasi 1</p>
-                                <a href="{{asset('storage/dokumentasi/'.$report->documentation->dokumentasi1)}}" target="_blank">
-                                        <img src="{{asset('storage/dokumentasi/'.$report->documentation->dokumentasi1)}}" class="media-object" width="100%" alt="ga keluar">
+                                <a href="{{asset('dokumentasi/'.$report->documentation->dokumentasi1)}}" target="_blank">
+                                        <img src="{{asset('dokumentasi/'.$report->documentation->dokumentasi1)}}" class="media-object" width="100%" alt="ga keluar">
                                 </a>  
                                 @if ($report->documentation->dokumentasi2 !== null)
                                 <p class="mt-2 card-title">Dokumentasi 2</p>
-                                <a href="{{asset('storage/dokumentasi/'.$report->documentation->dokumentasi2)}}" target="_blank">
-                                <img src="{{ asset('storage/dokumentasi/'.$report->documentation->dokumentasi2) }}" class="media-object" width="100%" alt="ga keluar">
+                                <a href="{{asset('dokumentasi/'.$report->documentation->dokumentasi2)}}" target="_blank">
+                                <img src="{{ asset('dokumentasi/'.$report->documentation->dokumentasi2) }}" class="media-object" width="100%" alt="ga keluar">
                                 </a>
                                 @endif  
                                 
                                 @if ($report->documentation->dokumentasi3 !== null)
                                 <p class="mt-2 card-title">Dokumentasi 3</p>
-                                <a href="{{asset('storage/dokumentasi/'.$report->documentation->dokumentasi3)}}" target="_blank">
-                                <img src="{{ asset('storage/dokumentasi/'.$report->documentation->dokumentasi3) }}" class="media-object" width="100%" alt="ga keluar">
+                                <a href="{{asset('dokumentasi/'.$report->documentation->dokumentasi3)}}" target="_blank">
+                                <img src="{{ asset('dokumentasi/'.$report->documentation->dokumentasi3) }}" class="media-object" width="100%" alt="ga keluar">
                                 </a>
                                 @endif
                                 
