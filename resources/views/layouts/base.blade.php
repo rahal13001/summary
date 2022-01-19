@@ -12,7 +12,7 @@
     
     <meta name="description" content="Portal - Bootstrap 5 Admin Dashboard Template For Developers">
     <meta name="author" content="Xiaoying Riley at 3rd Wave Media">    
-    <link rel="shortcut icon" href="{{ asset('assets/images/logokkpgaruda.jpg') }}">
+    <link rel="shortcut icon" href="{{ asset('/assets/images/logokkpgaruda.jpg') }}">
 
     
     <!-- FontAwesome JS-->
