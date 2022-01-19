@@ -63,7 +63,7 @@ Route::prefix('5w1h-semua')->middleware('permission:show user')->group(function(
 });
 
 //5w1h-ku
-Route::get('/', [MyreportsController::class, 'myreport'])->name('myreport')->middleware('auth');
+Route::get('/', [MyreportsController::class, 'myreport'])->name('myreport')->middleware('auth', 'verified');
 Route::prefix('5w1h')->middleware('has.role')->group(function(){
     Route::get('/pengikut', [MyreportsController::class, 'pengikut'])->name('pengikut');
     Route::get('/tambah', [MyreportsController::class, 'create'])->name('myreport_create');
