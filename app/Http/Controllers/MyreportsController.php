@@ -65,24 +65,22 @@ class MyreportsController extends Controller
         }
                 
         if (request()->ajax()) {
-            $pengikut = Follower::where('user_id', Auth::user()->id)->get('report_id');
-                        foreach ($pengikut as $peng) {
-                        $report_id =  $peng->report_id;
-                        }
-         
-            
+            $id = Auth::user()->id;
             //Jika request from_date ada value(datanya) maka
             if (!empty($request->from_date)) {
                 //Jika tanggal awal(from_date) hingga tanggal akhir(to_date) adalah sama maka
                 if ($request->from_date === $request->to_date) {
                     //kita filter tanggalnya sesuai dengan request from_date
-                    $query = Report::query()->whereDate('when', '=', $request->from_date)->where('id', $report_id)->with(['user'])->orderBy('when', 'DESC');
+                    $query = Report::query()->whereDate('when', '=', $request->from_date)->with(['user', 'follower'])->whereHas('follower', function($target)use($id){
+                        $target->where('user_id', $id);} )->orderBy('when', 'DESC');
                 } else {
                     //kita filter dari tanggal awal ke akhir
-                    $query = Report::query()->whereBetween('when', array($request->from_date, $request->to_date))->where('id', $report_id)->with(['user'])->orderBy('when', 'DESC');
+                    $query = Report::query()->whereBetween('when', array($request->from_date, $request->to_date))->with(['user', 'follower'])->whereHas('follower', function($target)use($id){
+                        $target->where('user_id', $id);} )->orderBy('when', 'DESC');
                 }
             } else {
-                $query = Report::query()->where('id', $report_id)->with(['user'])->orderBy('when', 'DESC');
+                $query = Report::query()->with(['user', 'follower'])->whereHas('follower', function($target)use($id){
+                        $target->where('user_id', $id);} )->orderBy('when', 'DESC');
             }
             
 
@@ -227,12 +225,28 @@ class MyreportsController extends Controller
 
      public function show(Report $report, User $user){       
           
-                 
+
+        $rep_user_id = $report->user_id;
+        $user_id = Auth::user()->id;
+         
+        $ikutan = $report->follower->find($user_id);
+        if ($ikutan == null || $rep_user_id == $user_id) {
+            return abort(403, 'Wahai '.Auth::user()->name.' Laporan Ini Bukan Milikmu, Kamu Mau Apa ? -_-');
+        }
+                         
         $follower = Follower::with(['userfoll'])->where('report_id', $report->id)->get();
         return view('user.report.show', compact('follower', 'report'));
     }
 
     public function edit(Report $report){
+        
+        $rep_user_id = $report->user_id;
+        $user_id = Auth::user()->id;
+         
+        $ikutan = $report->follower->find($user_id);
+        if ($ikutan == null || $rep_user_id == $user_id) {
+            return abort(403, 'Wahai '.Auth::user()->name.' Laporan Ini Bukan Milikmu, Kamu Mau Apa ? -_-');
+        }
 
  
          $reports = Report::get();
