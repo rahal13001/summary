@@ -225,18 +225,8 @@ class MyreportsController extends Controller
         return redirect()->route('myreport')->with('status', '5W1H Berhasil Ditambahkan');
     }
 
-     public function show(Report $report, User $user){  
-
-             $pengikut = Follower::where('user_id', Auth::user()->id)->get('report_id');
-                        foreach ($pengikut as $peng) {
-                        $report_id =  $peng->report_id;
-                        }
-           
-            if (count($pengikut) !== 0) {
-                if ($report->id !== Auth::user()->id || $report->id !== $report_id) {
-                    return redirect()->back();
-                }
-            }
+     public function show(Report $report, User $user){       
+          
                  
         $follower = Follower::with(['userfoll'])->where('report_id', $report->id)->get();
         return view('user.report.show', compact('follower', 'report'));
@@ -244,16 +234,6 @@ class MyreportsController extends Controller
 
     public function edit(Report $report){
 
-          $pengikut = Follower::where('user_id', Auth::user()->id)->get('report_id');
-                        foreach ($pengikut as $peng) {
-                        $report_id =  $peng->report_id;
-                        }
-           
-            if (count($pengikut) !== 0) {
-                if ($report->id !== Auth::user()->id || $report->id !== $report_id) {
-                    return redirect()->back();
-                }
-            }
  
          $reports = Report::get();
         $user = User::orderBy('name')->get();
