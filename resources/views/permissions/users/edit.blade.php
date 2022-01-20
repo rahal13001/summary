@@ -49,6 +49,6 @@
                             @enderror
                             </div>
                             <button type="submit" class="btn btn-info mt-4">Assign</button>
-                            <a href="{{ route('user_create') }}" class="btn btn-danger">Batal</a>
+                            <a href="{{ route('user_create') }}" class="btn btn-danger mt-4 mx-2">Batal</a>
                         </form>
 @endsection

@@ -105,7 +105,7 @@ class MyreportsController extends Controller
     public function create(){
 
         $report = Report::with('user')->get();
-        $user = User::get();  
+        $user = User::orderBy('name')->get(); 
         $indicator = Indicator::where('status', 'aktif')->get();   
 
         return view('user.report.create', compact(['report', 'user', 'indicator']));
@@ -234,7 +234,7 @@ class MyreportsController extends Controller
     public function edit(Report $report){
  
          $reports = Report::get();
-         $user = User::get();
+        $user = User::orderBy('name')->get();
         //  $tags = Tag::where('report_id', $report->id)->get();   
          $users = User::where('id','!=' ,$report->user_id)->get();
          $indicator = Indicator::where('status', 'Aktif')->get();

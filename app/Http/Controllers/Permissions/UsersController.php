@@ -13,11 +13,11 @@ class UsersController extends Controller
 {
     public function create()
     {
-        $roles = Role::get();
-        $users = User::whereNotNull('email_verified_at')->get();
+        $roles = Role::orderBy('name')->get();
+        $users = User::whereNotNull('email_verified_at')->orderBy('name')->get();
 
         if (request()->ajax()) {
-            $query = User::query();
+            $query = User::query()->orderBy('name');
             return DataTables::of($query)
                 ->addColumn('aksi', function($item){
                     return '
@@ -67,8 +67,8 @@ class UsersController extends Controller
         //dibuat array mengikuti untuk mengirimkan data sebenernya sama saja seperti variabel namun lebih praktis
         return view('permissions.users.edit', [
             'user' => $user,
-            'users' => User::get(),
-            'roles' => Role::get()
+            'users' => User::orderBy('name')->get(),
+            'roles' => Role::orderBy('name')->get()
             
         ]);
 
