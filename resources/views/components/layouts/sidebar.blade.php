@@ -102,9 +102,9 @@
                   <span class="nav-link-text">Tambah 5W1H</span> </a
                 ><!--//nav-link-->
               </li>
-              @endhasanyrole
+              
 
-          @can('show user')
+          
               
               {{-- Dropdown User --}}
               
@@ -161,11 +161,13 @@
                   data-bs-parent="#menu-accordion"
                 >
                   <ul class="submenu-list list-unstyled">
+                  @can('show user')
                     <li class="submenu-item">
                       <a class="submenu-link" href="#"
                         >Lihat User</a
                       >
                     </li>
+                    @endcan
                     <li class="submenu-item">
                       <a class="submenu-link" href="{{ route('report_index') }}">5W1H Semua User</a>
                     </li>
@@ -175,9 +177,9 @@
                   </ul>
                 </div>
               </li>
-               @endcan
+               
               <!--//nav-item-->
-
+              @endhasanyrole
              
               {{-- Akhir Role --}}
 

@@ -52,14 +52,14 @@ Route::middleware('has.role')->group(function(){
 Auth::routes();
 
 //untuk 5w1h-semua
-Route::prefix('5w1h-semua')->middleware('permission:show user')->group(function(){
+Route::prefix('5w1h-semua')->middleware('has.role')->group(function(){
     Route::get('', [ReportsController::class, 'index'])->name('report_index');
     Route::get('/tambah', [ReportsController::class, 'create'])->name('report_create');
     Route::post('', [ReportsController::class, 'store'])->name('report_post');
     Route::get('{report}/show', [ReportsController::class, 'show'])->name('report_show');
-    Route::get('{report}/edit', [ReportsController::class, 'edit'])->name('report_edit');
-    Route::put('{report}', [ReportsController::class, 'update'])->name('report_update');
-    Route::delete('{report}', [ReportsController::class, 'delete'])->name('report_delete');
+    Route::get('{report}/edit', [ReportsController::class, 'edit'])->name('report_edit')->middleware('permission: show user');
+    Route::put('{report}', [ReportsController::class, 'update'])->name('report_update')->middleware('permission: show user');
+    Route::delete('{report}', [ReportsController::class, 'delete'])->name('report_delete')->middleware('permission: show user');
 });
 
 //5w1h-ku

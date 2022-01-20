@@ -118,19 +118,22 @@
                 <div class="row">
                   <div class="mt-3">
 
-                        @can('show user')
+                    
                         <a href="{{ route('report_index') }}" class="btn btn-outline-info ml-3 float-right">Kembali Ke 5w1H Semua</a>
-                        @endcan
-                        <a href="{{ route('myreport') }}" class="btn btn-outline-info ml-3 float-right">Kembali Ke 5w1H-Ku</a>
+                       
+                        <a href="{{ route('myreport') }}" class="btn btn-outline-info mx-3 float-right">Kembali Ke 5w1H-Ku</a>
 
                      <a href="{{ route('pdf', $report->slug) }}" class="btn btn-danger ml-3">Eksport pdf</a>
 
-
+                     @can('show user')
+                        
+                     
                      <a class="btn btn-warning ml-3" href="{{ route('report_edit', $report->slug)}}">Edit</a>
 
                      <button type="button" class="btn btn-outline-danger ml-3" data-toggle="modal" data-target="#deleteModal">
                         Hapus
                      </button>
+                     @endcan
 
                   </div>
                 </div>
