@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\UsersExport;
+use App\Exports\Usersaja;
 use App\Http\Controllers\Controller;
 use App\Models\Documentation;
 use App\Models\Follower;
@@ -389,7 +390,10 @@ class MyreportsController extends Controller
         $from_date = $request->from_date;
         $to_date = $request->to_date;
 
-        return Excel::download(new UsersExport($from_date, $to_date), '5w1hku.xlsx');
+      
+        
+            return Excel::download(new UsersExport($from_date, $to_date), '5w1hku.xlsx');
+      
     }
 
 }
