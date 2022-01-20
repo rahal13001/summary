@@ -159,7 +159,7 @@
                         @if (!$loop->first && !$loop->last)
                             ,
                         @endif
-                        @if ($loop->last)
+                        @if (!$loop->first && $loop->last)
                             dan 
                         @endif
 
