@@ -82,7 +82,7 @@
 
                             <div class="form-group mt-3">
                                 <label for="slug">Slug</label>
-                                <input type="text" name="slug" id="slug" class="form-control input-rounded" placeholder="Masukan Slug" value="{{ old('slug') }}">                  
+                                <input type="text" name="slug" id="slug" class="form-control input-rounded" placeholder="Masukan Slug" value="{{ old('slug') }}" readonly>                  
                                 @error('slug')
                                     <div class="text-danger mt-2 d-block">{{ $message }}</div>
                                 @enderror                                  
