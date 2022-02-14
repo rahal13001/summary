@@ -8,6 +8,7 @@ use App\Http\Controllers\Permissions\AssignController;
 use App\Http\Controllers\Permissions\PermissionsController;
 use App\Http\Controllers\Permissions\RolesController;
 use App\Http\Controllers\Permissions\UsersController;
+use App\Http\Controllers\ProfilesController;
 use App\Models\Indicator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -25,14 +26,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     // $role = Role::find(3);
-//     // $role->givePermissionTo('create post');
-//     // dd($role);
-
-//     return view('welcome');
-
-// });
+Route::get('/profile', [ProfilesController::class, 'profile']);
 
 
 // Route::get('/pdftes', function () {

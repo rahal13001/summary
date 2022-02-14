@@ -106,5 +106,6 @@
       @stack('addon-script')
       <script src="{{ asset('js/app.js') }}"></script>
       @stack('script')
+     @yield('chart')
 </body>
 </html>

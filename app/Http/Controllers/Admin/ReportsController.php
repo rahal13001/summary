@@ -16,7 +16,9 @@ use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 use Barryvdh\DomPDF\Facade as PDF;
+use Carbon\Carbon;
 use Maatwebsite\Excel\Facades\Excel;
+use PhpOffice\PhpSpreadsheet\Style\NumberFormat\DateFormatter;
 
 use function Psy\debug;
 
@@ -86,7 +88,12 @@ class ReportsController extends Controller
         ]);
       
         $data = $request->all();
-
+            
+        //mengambil bulan dan tahun
+        $date = Carbon::createFromFormat('Y-m-d', $data['when']);
+        $tahun = $date->format('Y');
+        $bulan = $date->format('M');
+            
        
        $report = New Report();
        $report->user_id = $data['user_id'];
@@ -94,6 +101,8 @@ class ReportsController extends Controller
        $report->slug = $request->slug;
        $report->where = $data['where'];
        $report->when = $data['when'];
+        $report->bulan = $bulan;
+        $report->tahun = $tahun;
        $report->who = $data['who'];
        $report->why = $data['why'];
        $report->how = $data['how'];
@@ -220,11 +229,20 @@ class ReportsController extends Controller
         ]);
        
         $reports = Report::where('id', $report->id);
-        $reported = Report::get();
+        
+        $date = Carbon::createFromFormat('Y-m-d', $request->when);
+        $tahun = $date->format('Y');
+        $bulan = $date->format('M');
+
+   
+            
+        
         $reports->update([
             'user_id' => $request->user_id,
             'what' => $request->what,
             'when' => $request->when,
+            'bulan' => $bulan,
+            'tahun' => $tahun,
             'who' => $request->who,
             'how' => $request->how,
             'where' => $request->where,

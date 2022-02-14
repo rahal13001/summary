@@ -11,6 +11,7 @@ use App\Models\Indicator;
 use App\Models\Report;
 use App\Models\Tag;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -130,13 +131,18 @@ class MyreportsController extends Controller
         ]);
       
         $data = $request->all();
+         $date = Carbon::createFromFormat('Y-m-d', $data['when']);
+        $tahun = $date->format('Y');
+        $bulan = $date->format('M');
 
-       $report = New Report();
+      $report = New Report();
        $report->user_id = $data['user_id'];
        $report->what = $data['what'];
        $report->slug = $request->slug;
        $report->where = $data['where'];
        $report->when = $data['when'];
+        $report->bulan = $bulan;
+        $report->tahun = $tahun;
        $report->who = $data['who'];
        $report->why = $data['why'];
        $report->how = $data['how'];
@@ -280,11 +286,17 @@ class MyreportsController extends Controller
         ]);
 
         $reports = Report::where('id', $report->id);
-        $reported = Report::get();
+        $date = Carbon::createFromFormat('Y-m-d', $request->when);
+        $tahun = $date->format('Y');
+        $bulan = $date->format('M');
+
+
         $reports->update([
-            'user_id' => $request->user_id,
+           'user_id' => $request->user_id,
             'what' => $request->what,
             'when' => $request->when,
+            'bulan' => $bulan,
+            'tahun' => $tahun,
             'who' => $request->who,
             'how' => $request->how,
             'where' => $request->where,

@@ -90,7 +90,7 @@ class IndicatorsController extends Controller
     public function store(Request $request, Indicator $indicator){
            $request->validate([
             'slug' => 'unique:indicators,slug',
-            'nama'=>'required',
+            'nama'=>'required|max:255',
             'tahun' => 'required|numeric',
             'status' =>'required',
             'nomor' => 'nullable'
@@ -114,9 +114,9 @@ class IndicatorsController extends Controller
     }
 
     public function update(Request $request, Indicator $indicator){
-        $request->validate([
-            'nama'=>'required',
-            'tahun' => 'required|size:4',
+           $request->validate([
+            'nama'=>'required|max:255',
+            'tahun' => 'required|numeric',
             'status' =>'required',
             'nomor' => 'nullable'
         ]);

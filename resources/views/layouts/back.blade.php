@@ -5,15 +5,50 @@
  <header class="app-header fixed-top">	 
     <x-layouts.sidebar></x-layouts.sidebar>
     <x-layouts.navigation></x-layouts.navigation>
- </header>         
- <div class="app-wrapper">
-	    <div class="app-content pt-3 p-md-3 p-lg-4">
-		    <div class="container-xl">
+ </header> 
+ 
+<div class="content-wrap">
+     <div class="main">
+        <div class="app-wrapper">
+                <div class="app-content pt-3 p-md-3 p-lg-4">
+                            {{-- <div class="container-fluid">
+                                            <div class="page-header">
+                                                <div class="page-title">
+                                                    <h6>Hello {{ Auth::user()->name }},
+                                                    <span>Selamat Datang di Menu @yield('menu')</span>
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                        </div> --}}
+
+         
+                                        <section id="main-content">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="card">
+                                                        <div class="card-body">
+                                                            <div class="user-profile">
+                                                                <div class="row">
+                                                                    <div class="col-lg-12">
+                                                                        <div class="container p-20">
+                                                                        @yield('content')
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </section>
+
+		    {{-- <div class="container-xl">
 
                  @yield('content')
 
-            </div>
-        </div>
+            </div> --}}
+                </div>
 
         <footer class="app-footer">
 		    <div class="container text-center py-3">
@@ -22,7 +57,9 @@
 		       
 		    </div>
 	    </footer><!--//app-footer-->
- </div>
+     </div>
+     </div>
+</div>
 
 
 
