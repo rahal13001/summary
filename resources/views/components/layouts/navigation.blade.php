@@ -270,8 +270,9 @@
                     href="#"
                     role="button"
                     aria-expanded="false"
-                    ><img src="/assets/images/user.png" alt="user profile"
-                  /></a>
+                    >
+                    {{-- <img src="/assets/images/user.png" alt="user profile" /> --}}
+                </a>
                   <ul
                     class="dropdown-menu"
                     aria-labelledby="user-dropdown-toggle"

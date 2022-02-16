@@ -163,9 +163,9 @@
                   <ul class="submenu-list list-unstyled">
                   @can('show user')
                     <li class="submenu-item">
-                      <a class="submenu-link" href="#"
+                      {{-- <a class="submenu-link" href="#"
                         >Lihat User</a
-                      >
+                      > --}}
                     </li>
                     @endcan
                     <li class="submenu-item">
@@ -402,8 +402,9 @@
                         />
                       </svg>
                     </span>
-                    <span class="nav-link-text">Profil</span> </a
-                  ><!--//nav-link-->
+                    {{-- <span class="nav-link-text">Profil</span> --}}
+                    </a>
+                    <!--//nav-link-->
                 </li>
                 <!--//nav-item-->
               </ul>
