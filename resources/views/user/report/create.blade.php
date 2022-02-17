@@ -4,6 +4,26 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endsection
 
+<style>
+        #counter {
+        text-align: right;
+        font-size: .9em;
+        color: #666666;
+    }
+    #progress {
+        line-height: 0;
+        height: 1px;
+        background-color: darkgreen;
+        margin-top: -1px;
+        transition: width 1s ease;
+        width: 0;
+    }
+    #progress.full {
+        background-color: darkred;
+    }
+</style>
+
+
 @push('script')
     
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
@@ -16,6 +36,69 @@
              width : "100%"
          });
 });
+    </script>
+
+    <script>
+        $(function(){
+  var limit = 1500;
+
+    var counter = $('#counter').text(limit);
+    var progress = $('#progress').hide();
+
+    function setCount (length) {
+        var adjustedLength = length - 1;
+        if (adjustedLength > 0) {
+            counter.text(adjustedLength + ' of ' + limit);
+            progress.show().width((adjustedLength / limit * 100) + '%')
+                .removeClass('full');
+            if (adjustedLength > limit) {
+                progress.width('100%').addClass('full');
+            }
+        }
+        else {
+            progress.hide();
+            counter.text(limit)
+        }
+    }
+
+
+    var elementEditor = document.querySelector("trix-editor");
+
+    var processedDocumentText;
+    document.addEventListener("trix-change", function (event) {
+        //debugger
+
+        var newDocumentText = elementEditor.editor.getDocument().toString();
+        if (!processedDocumentText) {
+            processedDocumentText = newDocumentText;
+        }
+        var length = newDocumentText.length;
+        setCount(length);
+
+        if (processedDocumentText && processedDocumentText !== newDocumentText) {
+            processedDocumentText = newDocumentText;
+
+            if (length > limit) {
+                var currentSelectedRange = elementEditor.editor.getSelectedRange();
+
+                //deselect previous
+                elementEditor.editor.setSelectedRange([0, length + 1]);
+                elementEditor.editor.deactivateAttribute('italic');
+
+                elementEditor.editor.setSelectedRange([limit, length]);
+                elementEditor.editor.activateAttribute("italic");
+
+                //restore state
+                elementEditor.editor.setSelectedRange(currentSelectedRange);
+            }
+        }
+
+        //typography, use replaceHtml.
+        // how to get current html? innerHTML?
+
+    });
+})
+
     </script>
 @endpush
 
@@ -147,8 +230,10 @@
         <div class="form-group mt-3">
             <label for="how">How</label>
               <input id="how" type="hidden" name="how" value="{{ old('how') }}" placeholder="Masukan Inti Kegiatan, Bukan jadwal atau rangkaian acara">
-                <trix-editor input="how"></trix-editor>          
-                <small>Maksimal 700 Karakter (Termasuk Spasi)</small>           
+                <trix-editor input="how"></trix-editor>
+                 <div id="progress"></div>
+                 <div id="counter"></div>             
+                <small>Maksimal 1500 Karakter (Termasuk Spasi)</small>           
             @error('how')
             <div class="text-danger mt-2 d-block">{{ $message }}</div>
             @enderror                                  
