@@ -59,6 +59,7 @@
         }
         .gbr {
             width: 100%;
+            align-content: center;
         }
 
         .page-break {
@@ -193,7 +194,13 @@
     <div class="page-break"></div>
 
     <div class="a4">
+   
     <table>
+        <tr>
+                <td class="judul">
+                    Dokumentasi
+                </td>
+        </tr>
         <tr class="gbr">
         <td>
             <img src="{{asset('dokumentasi/'.$report->documentation->dokumentasi1)}}" class="media-object" width="60%" alt="ga keluar">
