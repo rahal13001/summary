@@ -21,6 +21,11 @@
     #progress.full {
         background-color: darkred;
     }
+
+     trix-editor em {
+    font-style: normal;
+    background-color: #f38080;
+    }
 </style>
 
 
