@@ -210,6 +210,62 @@
             @enderror                                  
         </div>
 
+         <div class="form-group mt-3">
+            <label for="total_peserta">Total Peserta</label>
+            <input type="number" name="total_peserta" id="total_peserta" class="form-control input-rounded" placeholder="Masukan Total Peserta" value="{{ old('total_peserta') }}" step="0.01">                  
+            @error('total_peserta')
+            <div class="text-danger mt-2 d-block">{{ $message }}</div>
+            @enderror                                  
+        </div>
+
+        <div class="form-group mt-3">
+        Persentase Jumlah Wanita <br>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gender_wanita" id="inlineRadio0" value="0">
+            <label class="form-check-label" for="inlineRadio0">0%</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gender_wanita" id="inlineRadio1" value="10">
+            <label class="form-check-label" for="inlineRadio1">10%</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gender_wanita" id="inlineRadio2" value="20">
+            <label class="form-check-label" for="inlineRadio2">20%</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gender_wanita" id="inlineRadio3" value="30">
+            <label class="form-check-label" for="inlineRadio3">30%</label>
+        </div>
+         <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gender_wanita" id="inlineRadio4" value="40">
+            <label class="form-check-label" for="inlineRadio4">40%</label>
+        </div>
+         <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gender_wanita" id="inlineRadio5" value="50">
+            <label class="form-check-label" for="inlineRadio5">50%</label>
+        </div>
+         <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gender_wanita" id="inlineRadio6" value="60">
+            <label class="form-check-label" for="inlineRadio6">60%</label>
+        </div>
+         <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gender_wanita" id="inlineRadio7" value="70">
+            <label class="form-check-label" for="inlineRadio7">70%</label>
+        </div>
+         <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gender_wanita" id="inlineRadio8" value="80">
+            <label class="form-check-label" for="inlineRadio8">80%</label>
+        </div>
+         <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gender_wanita" id="inlineRadio9" value="90">
+            <label class="form-check-label" for="inlineRadio9">90%</label>
+        </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gender_wanita" id="inlineRadio10" value="100">
+            <label class="form-check-label" for="inlineRadio10">100%</label>
+        </div>
+    </div>
+
         <div class="form-group mt-3">
             <label for="why">Why</label>
             <input type="text" name="why" id="why" class="form-control input-rounded" placeholder="Masukan Alasan/Dasar Kegiatan" value="{{ old('why') }}">                  

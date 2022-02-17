@@ -35,7 +35,7 @@
         }
 
         .field {
-            width: 10%;
+            width: 20%;
         }
 
         .titik {
@@ -124,6 +124,14 @@
                 <td  class="point titik">:</td>
                 <td class="bold">
                    {{ $report->when }} s.d {{ $report->tanggal_selesai }}, Jumlah Jam : {{ $report->total_jam }} Jam
+                </td>
+            </tr>
+
+             <tr>
+                <td class="point field" >Total Peserta</td>
+                <td  class="point titik">:</td>
+                <td>
+                   {{ $report->total_peserta }} Orang, Persentase Wanita : {{ $report->gender_wanita }} %
                 </td>
             </tr>
 

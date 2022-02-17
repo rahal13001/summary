@@ -43,6 +43,14 @@
                   <th scope="row"> Jumlah Jam </th>
                   <td scope="col"> {{ $report->total_jam }}</td>
                </tr>
+                 <tr>
+                  <th scope="row"> Jumlah Peserta </th>
+                  <td scope="col"> {{ $report->total_peserta }}</td>
+               </tr>
+                 <tr>
+                  <th scope="row"> Persentase Jumlah Wanita </th>
+                  <td scope="col"> {{ $report->gender_wanita }} %</td>
+               </tr>
                <tr>
                    <th scope="row"> Who </th>
                    <td scope="col"> {{ $report->who }}</td>

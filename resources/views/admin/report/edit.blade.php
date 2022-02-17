@@ -214,6 +214,14 @@
         </div>
     </div>
 
+     <div class="form-group mt-3">
+            <label for="total_peserta">Total Peserta</label>
+            <input type="number" name="total_peserta" id="total_peserta" class="form-control input-rounded" placeholder="Masukan Total Peserta" value="{{ $report->total_peserta }}" step="0.01">                  
+            @error('total_peserta')
+            <div class="text-danger mt-2 d-block">{{ $message }}</div>
+            @enderror                                  
+        </div>
+
         <div class="form-group mt-3">
             <label for="total_jam">Jumlah Jam</label>
             <input type="text" name="total_jam" id="total_jam" class="form-control input-rounded" placeholder="Masukan Jumlah Jam" value="{{ $report->total_jam }}" step="0.01">                  
@@ -221,6 +229,54 @@
             <div class="text-danger mt-2 d-block">{{ $message }}</div>
             @enderror                                  
         </div>
+
+        <div class="form-group mt-3">
+        Persentase Jumlah Wanita <br>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gender_wanita" id="inlineRadio0" value="0" {{ ($report->gender_wanita=="0")? "checked" : "" }}>
+            <label class="form-check-label" for="inlineRadio0">0%</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gender_wanita" id="inlineRadio1" value="10" {{ ($report->gender_wanita=="10")? "checked" : "" }}>
+            <label class="form-check-label" for="inlineRadio1">10%</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gender_wanita" id="inlineRadio2" value="20" {{ ($report->gender_wanita=="20")? "checked" : "" }}>
+            <label class="form-check-label" for="inlineRadio2">20%</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gender_wanita" id="inlineRadio3" value="30" {{ ($report->gender_wanita=="30")? "checked" : "" }}>
+            <label class="form-check-label" for="inlineRadio3">30%</label>
+        </div>
+         <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gender_wanita" id="inlineRadio4" value="40" {{ ($report->gender_wanita=="40")? "checked" : "" }}>
+            <label class="form-check-label" for="inlineRadio4">40%</label>
+        </div>
+         <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gender_wanita" id="inlineRadio5" value="50" {{ ($report->gender_wanita=="50")? "checked" : "" }}>
+            <label class="form-check-label" for="inlineRadio5">50%</label>
+        </div>
+         <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gender_wanita" id="inlineRadio6" value="60" {{ ($report->gender_wanita=="60")? "checked" : "" }}>
+            <label class="form-check-label" for="inlineRadio6">60%</label>
+        </div>
+         <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gender_wanita" id="inlineRadio7" value="70" {{ ($report->gender_wanita=="70")? "checked" : "" }}>
+            <label class="form-check-label" for="inlineRadio7">70%</label>
+        </div>
+         <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gender_wanita" id="inlineRadio8" value="80" {{ ($report->gender_wanita=="80")? "checked" : "" }}>
+            <label class="form-check-label" for="inlineRadio8">80%</label>
+        </div>
+         <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gender_wanita" id="inlineRadio9" value="90" {{ ($report->gender_wanita=="90")? "checked" : "" }}>
+            <label class="form-check-label" for="inlineRadio9">90%</label>
+        </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gender_wanita" id="inlineRadio10" value="100" {{ ($report->gender_wanita=="100")? "checked" : "" }}>
+            <label class="form-check-label" for="inlineRadio10">100%</label>
+        </div>
+    </div>
 
         <div class="form-group mt-3">
             <label for="why">Why</label>

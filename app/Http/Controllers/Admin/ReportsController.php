@@ -84,7 +84,9 @@ class ReportsController extends Controller
              'dokumentasi2' => 'nullable|image|max:1024',
              'dokumentasi3' => 'nullable|image|max:1024',
              'lainnya' => 'nullable|file|max:10240',
-             'st' => 'nullable|file|max:3072'
+             'st' => 'nullable|file|max:3072',
+             'gender_wanita'=>'required',
+             'total_peserta' => 'required|numeric'
         ]);
       
         $data = $request->all();
@@ -109,6 +111,8 @@ class ReportsController extends Controller
        $report->tanggal_selesai = $data['tanggal_selesai'];
        $report->total_jam = $data['total_jam'];
        $report->no_st = $data['no_st'];
+       $report->gender_wanita = $data['gender_wanita'];
+       $report->total_peserta = $data['total_peserta'];
         $report->save();
         
 
@@ -225,7 +229,9 @@ class ReportsController extends Controller
              'dokumentasi2' => 'nullable|image|max:1024',
              'dokumentasi3' => 'nullable|image|max:1024',
              'lainnya' => 'nullable|file|max:10240',
-             'st' => 'nullable|file|max:3072'
+             'st' => 'nullable|file|max:3072',
+             'gender_wanita' => 'required',
+             'total_peserta' => 'total_peserta'
         ]);
        
         $reports = Report::where('id', $report->id);
@@ -249,7 +255,9 @@ class ReportsController extends Controller
             'total_jam' => $request->total_jam,
             'tanggal_selesai' => $request->tanggal_selesai,
             'slug' => $request->slug,
-            'no_st' => $request->no_st
+            'no_st' => $request->no_st,
+            'gender_wanita' => $request->gender_wanita,
+            'total_peserta' => $request->total_peserta
         ]);
 
                     if ($request->indicator == true) {
