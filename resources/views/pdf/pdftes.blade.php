@@ -202,21 +202,23 @@
                     Dokumentasi
                 </td>
         </tr>
-        <tr class="gbr">
-        <td>
+        <tr>
+        <td class="gbr">
             <img src="{{asset('dokumentasi/'.$report->documentation->dokumentasi1)}}" class="media-object" width="60%" alt="ga keluar">
         </td>
         </tr>
         @if ($report->documentation->dokumentasi2 !== null)       
-            <tr class="gbr">
-                <td>
+            <tr>
+                <td class="gbr">
                     <img src="{{asset('dokumentasi/'.$report->documentation->dokumentasi2)}}" class="media-object" width="60%" alt="ga keluar">
                 </td>
             </tr>
         @endif
         @if ($report->documentation->dokumentasi3 !== null)  
         <tr>
+            <td class="gbr">
             <img src="{{asset('dokumentasi/'.$report->documentation->dokumentasi3)}}" class="media-object" width="60%" alt="ga keluar">
+            </td>
         </tr>
         @endif
     </table>
