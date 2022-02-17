@@ -196,19 +196,19 @@
     <table>
         <tr class="gbr">
         <td>
-            <img src="{{asset('dokumentasi/'.$report->documentation->dokumentasi1)}}" class="media-object" width="100%" alt="ga keluar">
+            <img src="{{asset('dokumentasi/'.$report->documentation->dokumentasi1)}}" class="media-object" width="30%" alt="ga keluar">
         </td>
         </tr>
         @if ($report->documentation->dokumentasi2 !== null)       
             <tr class="gbr">
                 <td>
-                    <img src="{{asset('dokumentasi/'.$report->documentation->dokumentasi2)}}" class="media-object" width="100%" alt="ga keluar">
+                    <img src="{{asset('dokumentasi/'.$report->documentation->dokumentasi2)}}" class="media-object" width="30%" alt="ga keluar">
                 </td>
             </tr>
         @endif
         @if ($report->documentation->dokumentasi3 !== null)  
         <tr>
-            <img src="{{asset('dokumentasi/'.$report->documentation->dokumentasi3)}}" class="media-object" width="100%" alt="ga keluar">
+            <img src="{{asset('dokumentasi/'.$report->documentation->dokumentasi3)}}" class="media-object" width="30%" alt="ga keluar">
         </tr>
         @endif
     </table>
