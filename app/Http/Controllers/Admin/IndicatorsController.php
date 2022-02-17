@@ -92,8 +92,8 @@ class IndicatorsController extends Controller
             'slug' => 'unique:indicators,slug',
             'nama'=>'required|max:255',
             'tahun' => 'required|numeric',
-            'status' =>'required',
-            'nomor' => 'nullable'
+            'status' =>'required'
+            
         ]);
         
         $indicator = $request->all();
@@ -117,8 +117,8 @@ class IndicatorsController extends Controller
            $request->validate([
             'nama'=>'required|max:255',
             'tahun' => 'required|numeric',
-            'status' =>'required',
-            'nomor' => 'nullable'
+            'status' =>'required'
+            
         ]);
 
         $data = $request->all();
