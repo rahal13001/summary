@@ -59,7 +59,7 @@
         }
         .gbr {
             width: 100%;
-            align-content: center;
+            text-align: center;
         }
 
         .page-break {
