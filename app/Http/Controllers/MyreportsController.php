@@ -117,7 +117,7 @@ class MyreportsController extends Controller
              'what' => 'required|max:250',
              'slug' => 'unique:reports,slug',
              'when' => 'required|date',
-             'who' => 'required|max:250',
+             'who' => 'required|max:500',
              'why' => 'required|max:250',
              'how' => 'required|max:700',
              'tanggal_selesai' => 'required|date|after_or_equal:when',
@@ -232,13 +232,13 @@ class MyreportsController extends Controller
      public function show(Report $report, User $user){       
           
 
-        $rep_user_id = $report->user_id;
-        $user_id = Auth::user()->id;
+        // $rep_user_id = $report->user_id;
+        // $user_id = Auth::user()->id;
          
-        $ikutan = $report->follower->find($user_id);
-        if ($ikutan == null || $rep_user_id == $user_id) {
-            return abort(403, Auth::user()->name.' Mo Apa Ko ! Mending Ko Balik atau sa hajar -_-');
-        }
+        // $ikutan = $report->follower->find($user_id);
+        // if ($ikutan == null || $rep_user_id == $user_id) {
+        //     return abort(403, Auth::user()->name.' Mo Apa Ko ! Mending Ko Balik atau sa hajar -_-');
+        // }
                          
         $follower = Follower::with(['userfoll'])->where('report_id', $report->id)->get();
         return view('user.report.show', compact('follower', 'report'));
@@ -246,13 +246,13 @@ class MyreportsController extends Controller
 
     public function edit(Report $report){
         
-        $rep_user_id = $report->user_id;
-        $user_id = Auth::user()->id;
+        // $rep_user_id = $report->user_id;
+        // $user_id = Auth::user()->id;
          
-        $ikutan = $report->follower->find($user_id);
-        if ($ikutan == null || $rep_user_id == $user_id) {
-            return abort(403, Auth::user()->name.' Mo Apa Ko ! Mending Ko Balik atau sa hajar -_-');
-        }
+        // $ikutan = $report->follower->find($user_id);
+        // if ($ikutan == null || $rep_user_id == $user_id) {
+        //     return abort(403, Auth::user()->name.' Mo Apa Ko ! Mending Ko Balik atau sa hajar -_-');
+        // }
 
  
          $reports = Report::get();
@@ -272,7 +272,7 @@ class MyreportsController extends Controller
              'user_id' => 'required',
              'what' => 'required|max:250',
              'when' => 'required|date',
-             'who' => 'required|max:250',
+             'who' => 'required|max:500',
              'why' => 'required|max:250',
              'how' => 'required|max:700',
              'tanggal_selesai' => 'required|date|after_or_equal:when',

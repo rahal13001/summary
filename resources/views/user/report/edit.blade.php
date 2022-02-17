@@ -142,9 +142,23 @@
             @enderror                                  
         </div>
 
+         {{-- <div class="form-group mt-3">
+            <label for="who">Who</label>
+              <input id="who" type="hidden" name="who" value="{{ $report->who }}" placeholder="Masukan Pihak Yang Terlibat">
+                <trix-editor input="who"></trix-editor>          
+                <small>Maksimal 500 Karakter (Termasuk Spasi)</small>           
+            @error('who')
+            <div class="text-danger mt-2 d-block">{{ $message }}</div>
+            @enderror                                  
+        </div> --}}
+
         <div class="form-group mt-3">
             <label for="who">Who</label>
-            <input type="text" name="who" id="who" class="form-control input-rounded" placeholder="Masukan Pihak Yang Terlibat" value="{{ $report->who }}">                  
+            <div class="form-floating">
+            <textarea class="form-control" placeholder="Masukan Pihak Yang Terlibat" id="floatingTextarea" name="who" >{{ $report->who }}</textarea>
+              <label for="floatingTextarea">Masukan Pihak Yang Terlibat</label>
+            </div>
+                <small>Maksimal 500 Karakter (Termasuk Spasi)</small>           
             @error('who')
             <div class="text-danger mt-2 d-block">{{ $message }}</div>
             @enderror                                  

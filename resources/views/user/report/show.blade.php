@@ -45,7 +45,7 @@
                </tr>
                <tr>
                    <th scope="row"> Who </th>
-                   <td scope="col"> {{ $report->who }}</td>
+                   <td scope="col"> {!! $report->who !!}</td>
                 </tr>
                <tr>
                    <th scope="row"> Why </th>
