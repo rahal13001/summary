@@ -2,10 +2,10 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\Report;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 
 class OurReportMiddleware
 {
@@ -16,19 +16,32 @@ class OurReportMiddleware
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Report $report, Request $request, Closure $next)
+    public function handle(Request $request, Closure $next)
     {
+            // $roles = Role::find(Auth::user()->id);
 
-        dd($report->id);
+            // dd(Auth::user()->roles);
+            $aut = Auth::user()->roles;
+            foreach ($aut as $role1) {
+                
+                    if ($role1->id !== 1 || $role1->id !== 2) {
 
-        $rep_user_id = $report->user_id;
-        $user_id = Auth::user()->id;
-         
-        $ikutan = $report->follower->find($user_id);
-        if ($ikutan == null || $rep_user_id == $user_id) {
-            return abort(403, 'Ini Bukan Milikmu, Kamu Mau Apa ?');
-        } else {
-            return $next($request);
-        }
+                        $rep = $request->report->user_id;
+                        $user = Auth::user()->id;       
+                        $cek = $request->report->follower->find($user);
+                        
+                        if (is_null($cek) && $user !== $rep) {
+                            return abort(403, 'Balik Sudah, Ini Bukan Ko Punya -_-');
+                        } else {
+                            return $next($request);
+                        }
+                    }
+                    return $next($request);
+
+            }
+            
+        
+
     }
+    
 }
