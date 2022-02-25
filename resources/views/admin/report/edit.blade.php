@@ -145,7 +145,7 @@
          <label for="pengikut">Pilih Pengikut</label>
          <select name="pengikut[]" id="pengikut" class="form-control input-rounded select2" multiple>
                 @foreach ($users as $fol )
-                    <option {{ $users->find($fol->id) ? 'selected' : ''}} value="{{ $fol->id }}"> {{ $fol->name }}</option>
+                    <option {{ $report->follower->find($fol) ? 'selected' : ''}} value="{{ $fol->id }}"> {{ $fol->name }}</option>
                 @endforeach            
             </select>                   
          @error('pengikut')

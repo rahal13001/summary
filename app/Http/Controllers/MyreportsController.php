@@ -244,8 +244,8 @@ class MyreportsController extends Controller
           
 
  
-         $reports = Report::get();
-        $user = User::orderBy('name')->get();
+        $reports = Report::get();
+         $user = User::orderBy('name')->get();
         //  $tags = Tag::where('report_id', $report->id)->get();   
          $users = User::where('id','!=' ,$report->user_id)->get();
          $indicator = Indicator::where('status', 'Aktif')->get();

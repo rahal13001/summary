@@ -65,7 +65,7 @@ Route::prefix('5w1h')->middleware('has.role')->group(function(){
     Route::get('{report}/edit', [MyreportsController::class, 'edit'])->name('myreport_edit')->middleware('our.report');
     Route::put('{report}', [MyreportsController::class, 'update'])->name('myreport_update');
     Route::get('{report}/show', [MyreportsController::class, 'show'])->name('myreport_show');
-    Route::delete('{report}', [MyreportsController::class, 'delete'])->name('myreport_delete')->middleware('our.report');
+    Route::delete('{report}', [MyreportsController::class, 'delete'])->name('myreport_delete');
 });
 
 //membuat slug

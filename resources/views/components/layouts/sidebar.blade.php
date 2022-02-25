@@ -12,7 +12,7 @@
             <a class="app-logo" href="#"
               dissable><img
                 class="logo-icon me-2"
-                src="/assets/images/logokkpgaruda.jpg"
+                src="/assets/images/logoweb.png"
                 alt="logo"
               /><span class="logo-text">SUMMARY</span></a
             >
