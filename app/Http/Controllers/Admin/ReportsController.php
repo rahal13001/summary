@@ -371,13 +371,6 @@ class ReportsController extends Controller
 
     public function delete(Report $report){
 
-        $rep = $report->user_id;
-        $user = Auth::user()->id;        
-        $cek = $report->follower->find($user);
-        
-        if (is_null($cek) && $user !== $rep) {
-           return abort(403, Auth::user()->name.' Mo Apa Ko ! Mending Ko Balik -_-');
-        }
 
         Storage::disk('public')->delete(['lainnya/' . $report->documentation->dokumentasi1]);
         Storage::disk('public')->delete(['lainnya/' . $report->documentation->dokumentasi2]);
