@@ -228,9 +228,9 @@ class ReportsController extends Controller
     public function update(Report $report, Request $request){
 
         
-          $request->validate([
+             
+       $request->validate([
              'user_id' => 'required',
-             'slug' =>'nullable',
              'what' => 'required|max:250',
              'when' => 'required|date',
              'who' => 'required|max:500',
@@ -238,14 +238,14 @@ class ReportsController extends Controller
              'how' => 'required|max:2000',
              'tanggal_selesai' => 'required|date|after_or_equal:when',
              'total_jam' => 'required|numeric',
-             'no_st' => 'nullable|max:150',
+             'no_st' => 'required|max:150',
              'dokumentasi1' => 'nullable|image|max:1024',
              'dokumentasi2' => 'nullable|image|max:1024',
              'dokumentasi3' => 'nullable|image|max:1024',
              'lainnya' => 'nullable|file|max:10240',
              'st' => 'nullable|file|max:3072',
              'gender_wanita' => 'required',
-             'total_peserta' => 'total_peserta'
+             'total_peserta' => 'required|numeric'
         ]);
        
         $reports = Report::where('id', $report->id);
