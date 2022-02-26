@@ -23,21 +23,17 @@ class OurReportMiddleware
             // dd(Auth::user()->roles);
             $aut = Auth::user()->roles;
             foreach ($aut as $role1) {
-                
-                    if ($role1->id !== 1 || $role1->id !== 2) {
-
+            
                         $rep = $request->report->user_id;
                         $user = Auth::user()->id;       
                         $cek = $request->report->follower->find($user);
                         
-                        if (is_null($cek) || $user !== $rep) {
+                        if (is_null($cek) && $user !== $rep) {
                             return abort(403, 'Balik Sudah, Ini Bukan Ko Punya -_-');
                         } else {
                             return $next($request);
                         }
-                    }
-                    return $next($request);
-
+                  
             }
             
         
