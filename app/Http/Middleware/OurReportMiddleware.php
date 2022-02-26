@@ -30,7 +30,7 @@ class OurReportMiddleware
                         $user = Auth::user()->id;       
                         $cek = $request->report->follower->find($user);
                         
-                        if (is_null($cek) && $user !== $rep) {
+                        if (is_null($cek) || $user !== $rep) {
                             return abort(403, 'Balik Sudah, Ini Bukan Ko Punya -_-');
                         } else {
                             return $next($request);
