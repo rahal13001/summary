@@ -136,11 +136,11 @@
                      @can('show user')
                         
                      
-                     <a class="btn btn-warning ml-3" href="{{ route('report_edit', $report->slug)}}">Edit</a>
+                        <a class="btn btn-warning ml-3" href="{{ route('report_edit', $report->slug)}}">Edit</a>
 
-                     <button type="button" class="btn btn-outline-danger ml-3" data-toggle="modal" data-target="#deleteModal">
-                        Hapus
-                     </button>
+                        <button type="button" class="btn btn-outline-danger ml-3" data-toggle="modal" data-target="#deleteModal">
+                           Hapus
+                        </button>
                      @endcan
 
                   </div>

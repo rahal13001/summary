@@ -51,9 +51,12 @@ Route::prefix('5w1h-semua')->middleware('has.role')->group(function(){
     Route::get('/tambah', [ReportsController::class, 'create'])->name('report_create');
     Route::post('', [ReportsController::class, 'store'])->name('report_post');
     Route::get('{report}/show', [ReportsController::class, 'show'])->name('report_show');
-    Route::get('{report}/edit', [ReportsController::class, 'edit'])->name('report_edit')->middleware('permission: show user');
-    Route::put('{report}', [ReportsController::class, 'update'])->name('report_update')->middleware('permission: show user');
-    Route::delete('{report}', [ReportsController::class, 'delete'])->name('report_delete')->middleware('permission: show user');
+
+    Route::group(['middleware' => ['permission:show user']], function () {
+        Route::get('{report}/edit', [ReportsController::class, 'edit'])->name('report_edit');
+        Route::put('{report}', [ReportsController::class, 'update'])->name('report_update');
+        Route::delete('{report}', [ReportsController::class, 'delete'])->name('report_delete');
+    });
 });
 
 //5w1h-ku
@@ -62,7 +65,7 @@ Route::prefix('5w1h')->middleware('has.role')->group(function(){
     Route::get('/pengikut', [MyreportsController::class, 'pengikut'])->name('pengikut');
     Route::get('/tambah', [MyreportsController::class, 'create'])->name('myreport_create');
     Route::post('', [MyreportsController::class, 'store'])->name('myreport_post');
-    Route::get('{report}/edit', [MyreportsController::class, 'edit'])->name('myreport_edit');
+    Route::get('{report}/edit', [MyreportsController::class, 'edit'])->name('myreport_edit')->middleware('our.report');
     Route::put('{report}', [MyreportsController::class, 'update'])->name('myreport_update');
     Route::get('{report}/show', [MyreportsController::class, 'show'])->name('myreport_show');
     Route::delete('{report}', [MyreportsController::class, 'delete'])->name('myreport_delete');
