@@ -280,7 +280,7 @@
             <textarea class="form-control" placeholder="Masukan Pihak Yang Terlibat" id="floatingTextarea" name="who" value="{{ old('who') }}" ></textarea>
               <label for="floatingTextarea">Masukan Pihak Yang Terlibat</label>
             </div>
-                <small>Maksimal 500 Karakter (Termasuk Spasi)</small>           
+                <small>Maksimal 1500 Karakter (Termasuk Spasi)</small>           
             @error('who')
             <div class="text-danger mt-2 d-block">{{ $message }}</div>
             @enderror                                  

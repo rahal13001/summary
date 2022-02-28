@@ -269,7 +269,7 @@ class ReportsController extends Controller
              'user_id' => 'required',
              'what' => 'required|max:250',
              'when' => 'required|date',
-             'who' => 'required|max:500',
+             'who' => 'required|max:1500',
              'why' => 'required|max:250',
              'how' => 'required|max:2000',
              'tanggal_selesai' => 'required|date|after_or_equal:when',
