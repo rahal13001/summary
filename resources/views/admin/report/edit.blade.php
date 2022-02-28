@@ -342,8 +342,8 @@
                 <div class="col-md-6">
                     <label for="lainnya">Dokumentasi Lainnya (Jika Ada)</label><br>
                     @if ($report->documentation->lainnya !== null)
-                        <a href="#" target="_blank" rel="noopener noreferrer" class="badge badge-info">Cek Dokumentasi</a>
-                    @endif
+                                <a class="btn btn-info mt-3" href="{{ route('view_pdf',$report) }}" target="_blank"> Cek Surat Tugas</a>
+                        @endif
                     <input type="file" class="form-control input-rounded" name="lainnya" value="{{ $report->documentation->lainnya }}">
                     <small>Ukuran File Maksimal 10 MB, Dianjurkan Dalam Bentuk PDF</small>
                 </div>
@@ -352,9 +352,9 @@
             <div class="row mt-4">
                 <div class="col-md-6">
                     <label for="st">Surat Tugas (Jika Ada)</label><br>
-                    @if ($report->documentation->st !== null)
-                        <a href="#" target="_blank" rel="noopener noreferrer" class="badge badge-info">Cek Dokumentasi</a>
-                    @endif
+                     @if ($report->documentation->st !== null)
+                                <a class="btn btn-info mt-3" href="{{ route('view_st',$report) }}" target="_blank"> Cek Surat Tugas</a>
+                        @endif
                     <input type="file" class="form-control input-rounded" name="st" value="{{ $report->documentation->lainnya }}">
                     <small>Ukuran File Maksimal 3 MB, Dianjurkan Dalam Bentuk PDF</small>
                 </div>

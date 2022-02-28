@@ -163,9 +163,8 @@
                   <ul class="submenu-list list-unstyled">
                   @can('show user')
                     <li class="submenu-item">
-                      {{-- <a class="submenu-link" href="#"
-                        >Lihat User</a
-                      > --}}
+                      <a class="submenu-link" href="{{ route('report_humas') }}"
+                        >5W1H berdasar tanggal buat</a>
                     </li>
                     @endcan
                     <li class="submenu-item">

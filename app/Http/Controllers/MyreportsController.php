@@ -31,13 +31,13 @@ class MyreportsController extends Controller
                 //Jika tanggal awal(from_date) hingga tanggal akhir(to_date) adalah sama maka
                 if ($request->from_date === $request->to_date) {
                     //kita filter tanggalnya sesuai dengan request from_date
-                    $query = Report::query()->whereDate('when', '=', $request->from_date)->where('user_id', Auth::user()->id)->with(['user'])->orderBy('when', 'DESC');
+                    $query = Report::query()->whereDate('when', '=', $request->from_date)->where('user_id', Auth::user()->id)->with(['user']);
                 } else {
                     //kita filter dari tanggal awal ke akhir
-                    $query = Report::query()->whereBetween('when', array($request->from_date, $request->to_date))->where('user_id', Auth::user()->id)->with(['user'])->with(['user'])->orderBy('when', 'DESC');
+                    $query = Report::query()->whereBetween('when', array($request->from_date, $request->to_date))->where('user_id', Auth::user()->id)->with(['user']);
                 }
             } else {
-                $query = Report::query()->where('user_id', Auth::user()->id)->with(['user'])->orderBy('when', 'DESC');
+                $query = Report::query()->where('user_id', Auth::user()->id)->with(['user']);
             }
             
 
@@ -73,15 +73,15 @@ class MyreportsController extends Controller
                 if ($request->from_date === $request->to_date) {
                     //kita filter tanggalnya sesuai dengan request from_date
                     $query = Report::query()->whereDate('when', '=', $request->from_date)->with(['user', 'follower'])->whereHas('follower', function($target)use($id){
-                        $target->where('user_id', $id);} )->orderBy('when', 'DESC');
+                        $target->where('user_id', $id);} );
                 } else {
                     //kita filter dari tanggal awal ke akhir
                     $query = Report::query()->whereBetween('when', array($request->from_date, $request->to_date))->with(['user', 'follower'])->whereHas('follower', function($target)use($id){
-                        $target->where('user_id', $id);} )->orderBy('when', 'DESC');
+                        $target->where('user_id', $id);} );
                 }
             } else {
                 $query = Report::query()->with(['user', 'follower'])->whereHas('follower', function($target)use($id){
-                        $target->where('user_id', $id);} )->orderBy('when', 'DESC');
+                        $target->where('user_id', $id);} );
             }
             
 
@@ -366,7 +366,7 @@ class MyreportsController extends Controller
             Storage::disk('public')->delete(['lainnya/' . $report->documentation->lainnya]);
             
         } else {
-            $lainnya2 = null;
+            $lainnya2 = $report->documentation->lainnya;
         }
 
 
@@ -375,11 +375,12 @@ class MyreportsController extends Controller
             $st = $request->file('st');
             $st2 = date('Y-m-d') ."_". $request->slug. "_" . $st->getClientOriginalName();
             $st->storeAs('st', $st2, 'public');
-
-            Storage::disk('public')->delete(['st/' . $report->documentation->lainnya]);
+            
+            Storage::disk('public')->delete(['st/' . $report->documentation->st]);
             
         } else {
-            $st2 = null;
+            $st2 = $report->documentation->st;
+            
         }
 
          $documentation = Documentation::where('report_id', $report->id);
@@ -387,8 +388,8 @@ class MyreportsController extends Controller
              'dokumentasi1'=>$dokumentasi1_2,
              'dokumentasi2'=>$dokumentasi2_2,
              'dokumentasi3'=>$dokumentasi3_2,
-             'lainnya'=>$request->lainnya2,
-             'st'=>$request->st2
+             'lainnya'=>$lainnya2,
+             'st'=>$st2
          ]);
 
          return redirect()->route('myreport')->with('status', 'Data 5W1H Berhasil Diedit');
@@ -396,9 +397,10 @@ class MyreportsController extends Controller
 
     public function delete(Report $report){
 
-        Storage::disk('public')->delete(['lainnya/' . $report->documentation->dokumentasi1]);
-        Storage::disk('public')->delete(['lainnya/' . $report->documentation->dokumentasi2]);
-        Storage::disk('public')->delete(['lainnya/' . $report->documentation->dokumentasi3]);
+        Storage::disk('public')->delete(['dokumentasi/' . $report->documentation->dokumentasi1]);
+        Storage::disk('public')->delete(['dokumentasi/' . $report->documentation->dokumentasi2]);
+        Storage::disk('public')->delete(['dokumentasi/' . $report->documentation->dokumentasi3]);
+        Storage::disk('public')->delete(['st/' . $report->documentation->st]);
         Storage::disk('public')->delete(['lainnya/' . $report->documentation->lainnya]);
         
         Report::where('id', $report->id)->delete();

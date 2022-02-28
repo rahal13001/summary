@@ -35,13 +35,13 @@ class ReportsController extends Controller
                 //Jika tanggal awal(from_date) hingga tanggal akhir(to_date) adalah sama maka
                 if ($request->from_date === $request->to_date) {
                     //kita filter tanggalnya sesuai dengan request from_date
-                    $query = Report::query()->whereDate('when', '=', $request->from_date)->with(['user'])->orderBy('when', 'DESC');
+                    $query = Report::query()->whereDate('when', '=', $request->from_date)->with(['user']);
                 } else {
                     //kita filter dari tanggal awal ke akhir
-                    $query = Report::query()->whereBetween('when', array($request->from_date, $request->to_date))->with(['user'])->orderBy('when', 'DESC');
+                    $query = Report::query()->whereBetween('when', array($request->from_date, $request->to_date))->with(['user']);
                 }
             } else {
-                $query = Report::query()->with(['user'])->orderBy('when', 'DESC');
+                $query = Report::query()->with(['user']);
             }
             
 
@@ -58,6 +58,43 @@ class ReportsController extends Controller
         }
         return view('admin.report.index');
     }
+
+      public function humas(Request $request){
+            
+         if (request()->ajax()) {
+
+            //Jika request from_date ada value(datanya) maka
+            if (!empty($request->from_date)) {
+                //Jika tanggal awal(from_date) hingga tanggal akhir(to_date) adalah sama maka
+                if ($request->from_date === $request->to_date) {
+                    //kita filter tanggalnya sesuai dengan request from_date
+                    $query = Report::query()->whereDate('reports.created_at', '=', $request->from_date)->with(['user']);
+                } else {
+                    //kita filter dari tanggal awal ke akhir
+                    $query = Report::query()->whereBetween('reports.created_at', array($request->from_date, $request->to_date))->with(['user']);
+                }
+            } else {
+                $query = Report::query()->with(['user']);
+            }
+            
+
+            return DataTables::of($query)
+            ->addColumn('aksi', function ($report) {
+                    return '
+            <a href = "' . route('report_show', $report->slug) . '"
+            class = "btn btn-info text-center">
+                Detail </a>
+            
+            ';
+                })->rawColumns(['aksi', 'indicator'])
+                  ->editColumn('reports.created_at', function ($user) {
+                        return $user->created_at ? with(new Carbon($user->created_at))->format('d/m/Y') : '';
+                    })
+                ->make(true);
+        }
+        return view('admin.report.humas');
+    }
+
     public function create(){
 
         $report = Report::with('user')->get();
@@ -226,9 +263,8 @@ class ReportsController extends Controller
     }
 
     public function update(Report $report, Request $request){
-
-        
-             
+       
+      
        $request->validate([
              'user_id' => 'required',
              'what' => 'required|max:250',
@@ -247,18 +283,15 @@ class ReportsController extends Controller
              'gender_wanita' => 'required',
              'total_peserta' => 'required|numeric'
         ]);
-       
+
         $reports = Report::where('id', $report->id);
-        
         $date = Carbon::createFromFormat('Y-m-d', $request->when);
         $tahun = $date->format('Y');
         $bulan = $date->format('M');
 
-   
-            
-        
+
         $reports->update([
-            'user_id' => $request->user_id,
+           'user_id' => $request->user_id,
             'what' => $request->what,
             'when' => $request->when,
             'bulan' => $bulan,
@@ -270,11 +303,11 @@ class ReportsController extends Controller
             'tanggal_selesai' => $request->tanggal_selesai,
             'slug' => $request->slug,
             'no_st' => $request->no_st,
-            'gender_wanita' => $request->gender_wanita,
+            'gender_wanita' => $report->gender_wanita,
             'total_peserta' => $request->total_peserta
         ]);
 
-                    if ($request->indicator == true) {
+                        if ($request->indicator == true) {
                         $indicators = Indicator::get();
                         foreach ($indicators as $ind) {
                             $id = $report->indicators->find($ind);
@@ -341,7 +374,7 @@ class ReportsController extends Controller
             Storage::disk('public')->delete(['lainnya/' . $report->documentation->lainnya]);
             
         } else {
-            $lainnya2 = null;
+            $lainnya2 = $report->documentation->lainnya;
         }
 
 
@@ -350,11 +383,12 @@ class ReportsController extends Controller
             $st = $request->file('st');
             $st2 = date('Y-m-d') ."_". $request->slug. "_" . $st->getClientOriginalName();
             $st->storeAs('st', $st2, 'public');
-
-            Storage::disk('public')->delete(['st/' . $report->documentation->lainnya]);
+            
+            Storage::disk('public')->delete(['st/' . $report->documentation->st]);
             
         } else {
-            $st2 = null;
+            $st2 = $report->documentation->st;
+            
         }
 
          $documentation = Documentation::where('report_id', $report->id);
@@ -362,19 +396,19 @@ class ReportsController extends Controller
              'dokumentasi1'=>$dokumentasi1_2,
              'dokumentasi2'=>$dokumentasi2_2,
              'dokumentasi3'=>$dokumentasi3_2,
-             'lainnya'=>$request->lainnya2,
-             'st'=>$request->st2
+             'lainnya'=>$lainnya2,
+             'st'=>$st2
          ]);
 
          return redirect()->route('report_index')->with('status', 'Data 5W1H Berhasil Diedit');
-    }   
+    }
 
     public function delete(Report $report){
 
-
-        Storage::disk('public')->delete(['lainnya/' . $report->documentation->dokumentasi1]);
-        Storage::disk('public')->delete(['lainnya/' . $report->documentation->dokumentasi2]);
-        Storage::disk('public')->delete(['lainnya/' . $report->documentation->dokumentasi3]);
+        Storage::disk('public')->delete(['dokumentasi/' . $report->documentation->dokumentasi1]);
+        Storage::disk('public')->delete(['dokumentasi/' . $report->documentation->dokumentasi2]);
+        Storage::disk('public')->delete(['dokumentasi/' . $report->documentation->dokumentasi3]);
+        Storage::disk('public')->delete(['st/' . $report->documentation->st]);
         Storage::disk('public')->delete(['lainnya/' . $report->documentation->lainnya]);
         
         Report::where('id', $report->id)->delete();

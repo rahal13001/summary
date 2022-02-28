@@ -48,6 +48,7 @@ Auth::routes();
 //untuk 5w1h-semua
 Route::prefix('5w1h-semua')->middleware('has.role')->group(function(){
     Route::get('', [ReportsController::class, 'index'])->name('report_index');
+    Route::get('/humas', [ReportsController::class, 'humas'])->name('report_humas');
     Route::get('/tambah', [ReportsController::class, 'create'])->name('report_create');
     Route::post('', [ReportsController::class, 'store'])->name('report_post');
     Route::get('{report}/show', [ReportsController::class, 'show'])->name('report_show');

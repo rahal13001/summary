@@ -3,38 +3,17 @@
 @section('menu', 'Dashboard 5W1H')
 
 @section('content')
-
-@php
-use Spatie\Permission\Models\Role;
-$role = Role::get();
-@endphp
-
-
     
             @if (session('status'))
             <div class="alert alert-success alert-dismissible fade show">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 {{ session ('status') }}
             </div>
-
-            @elseif (session('ikut'))
-            <div class="alert alert-warning alert-dismissible fade show">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                {{ session ('ikut') }}
-            </div>
             @endif
-            
-            @if (count(Auth::user()->roles) == 0)
-                <h1>Anda Belum Memiliki Hak Akses, Silahkan Hubungi Admin Untuk Memperoleh Hak Akses. Terimakasih.</h1>
-            @endif
-
-          
-
-            @hasanyrole($role)
 
              <div class="row">
                 <div class="col-sm-2">
-                    <a href="{{ route('myreport_create') }}" class="btn btn-primary mt-2">
+                    <a href="{{ route('report_create') }}" class="btn btn-primary mt-2">
                         Tambah Data
                     </a>
                 </div>
@@ -42,7 +21,7 @@ $role = Role::get();
                 <div class="col-sm-10">     
                     <!-- MULAI DATE RANGE PICKER -->
                 
-                <form action="{{ route('user_excel') }}" method="GET">
+                <form action="{{ route('admin_excel') }}" method="GET">
                     @csrf
                     <div class="row input-daterange mb-3">
                         <div class="col-md-2 mt-2">
@@ -69,7 +48,7 @@ $role = Role::get();
                         <thead>
                             <tr>
                                 <th>#</th>
-                                 <th>Tanggal</th>
+                                 <th>Tanggal Buat</th>
                                  <th>Judul</th>
                                  <th>Penyusun</th>
                                  <th>Aksi</th>
@@ -81,9 +60,6 @@ $role = Role::get();
                    </table>
                 </div>
 
-
-
-@endhasanyrole
 
 @endsection
 
@@ -137,6 +113,7 @@ $role = Role::get();
                 type: 'GET',
                 data:{from_date:from_date, to_date:to_date}
             },
+            
             columns: [
                     
                     { data:'id',
@@ -145,7 +122,7 @@ $role = Role::get();
                      return meta.row + meta.settings._iDisplayStart + 1;
                       } },
                     
-                    {data: 'when', name : 'when'},
+                    {data: 'reports.created_at', name : 'reports.created_at'},
                     {data: 'what', name : 'what'},
                     {data: 'user.name', name : 'user.name'},
                     {
@@ -154,7 +131,9 @@ $role = Role::get();
                         orderable : false,
                         searchable : false,
                         width : '15%'
-                    },
+                    }
+
+                    
             ]
         });
         }
