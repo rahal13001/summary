@@ -111,10 +111,10 @@
 
 @section('content')
 
-    @if ($errors->any())
+   @if ($errors->any())
         <div class="alert alert-danger alert-dismissible fade show">
              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-             Edit Data Gagal !!!
+             Edit Data Gagal !!! <i class="bi bi-emoji-frown"></i>
             <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -127,7 +127,7 @@
     <form action="{{ route('myreport_update', $report) }}" method="post" enctype="multipart/form-data">
        @csrf
        @method('put')
-       <div class="form-group">
+      <div class="form-group">
          <label for="user_id">Nama Penyusun</label>
          <select name="user_id" id="user_id" class="form-control input-rounded select2">
             <option disabled selected>Isikan Nama Pembuat</option>
@@ -141,7 +141,7 @@
          @enderror                                  
        </div>
 
-          <div class="form-group mt-3">
+        <div class="form-group mt-3">
          <label for="pengikut">Pilih Pengikut</label>
          <select name="pengikut[]" id="pengikut" class="form-control input-rounded select2" multiple>
                 @foreach ($users as $fol )
@@ -164,6 +164,8 @@
         <div class="form-group mt-3">
             <label for="what">What</label>
             <input type="text" name="what" id="what" class="form-control input-rounded" placeholder="Masukan Judul Kegiatan" value="{{$report->what}}">                  
+               <small id="jumlah_what">0</small>
+                <small> / 250 (Termasuk Spasi)</small>
             @error('what')
             <div class="text-danger mt-2 d-block">{{ $message }}</div>
             @enderror                                  
@@ -192,6 +194,8 @@
        <div class="form-group mt-3">
             <label for="where">Where</label>
             <input type="text" name="where" id="where" class="form-control input-rounded" placeholder="Masukan Lokasi/Tempat" value="{{ $report->where }}">                  
+             <small id="jumlah_where">0</small>
+            <small> / 250 (Termasuk Spasi)</small>
             @error('where')
             <div class="text-danger mt-2 d-block">{{ $message }}</div>
             @enderror                                  
@@ -214,18 +218,18 @@
         </div>
     </div>
 
-        <div class="form-group mt-3">
-            <label for="total_jam">Jumlah Jam</label>
-            <input type="text" name="total_jam" id="total_jam" class="form-control input-rounded" placeholder="Masukan Jumlah Jam" value="{{ $report->total_jam }}" step="0.01">                  
-            @error('total_jam')
+     <div class="form-group mt-3">
+            <label for="total_peserta">Total Peserta</label>
+            <input type="number" name="total_peserta" id="total_peserta" class="form-control input-rounded" placeholder="Masukan Total Peserta" value="{{ $report->total_peserta }}" step="0.01">                  
+            @error('total_peserta')
             <div class="text-danger mt-2 d-block">{{ $message }}</div>
             @enderror                                  
         </div>
 
-           <div class="form-group mt-3">
-            <label for="total_peserta">Total Peserta</label>
-            <input type="number" name="total_peserta" id="total_peserta" class="form-control input-rounded" placeholder="Masukan Total Peserta" value="{{ $report->total_peserta }}" step="0.01">                  
-            @error('total_peserta')
+        <div class="form-group mt-3">
+            <label for="total_jam">Jumlah Jam</label>
+            <input type="text" name="total_jam" id="total_jam" class="form-control input-rounded" placeholder="Masukan Jumlah Jam" value="{{ $report->total_jam }}" step="0.01">                  
+            @error('total_jam')
             <div class="text-danger mt-2 d-block">{{ $message }}</div>
             @enderror                                  
         </div>
@@ -281,18 +285,21 @@
         <div class="form-group mt-3">
             <label for="why">Why</label>
             <input type="text" name="why" id="why" class="form-control input-rounded" placeholder="Masukan Alasan/Dasar Kegiatan" value="{{ $report->why}}">                  
+               <small id="jumlah_why">0</small>
+            <small> / 250 (Termasuk Spasi)</small>
             @error('why')
             <div class="text-danger mt-2 d-block">{{ $message }}</div>
             @enderror                                  
         </div>
 
-        <div class="form-group mt-3">
+       <div class="form-group mt-3">
             <label for="who">Who</label>
             <div class="form-floating">
-            <textarea class="form-control" placeholder="Masukan Pihak Yang Terlibat" id="floatingTextarea" name="who" >{{ $report->who }}</textarea>
+            <textarea class="form-control" placeholder="Masukan Pihak Yang Terlibat" id="textwho" name="who" >{{ $report->who }}</textarea>
               <label for="floatingTextarea">Masukan Pihak Yang Terlibat</label>
             </div>
-                <small>Maksimal 1500 Karakter (Termasuk Spasi)</small>           
+                <small id="jumlah_who">0</small>
+                <small id="max_who">/ 1500 Karakter (Termasuk Spasi)</small>         
             @error('who')
             <div class="text-danger mt-2 d-block">{{ $message }}</div>
             @enderror                                  
@@ -341,7 +348,7 @@
 
                 <div class="col-md-6">
                     <label for="lainnya">Dokumentasi Lainnya (Jika Ada)</label><br>
-                  @if ($report->documentation->lainnya !== null)
+                    @if ($report->documentation->lainnya !== null)
                                 <a class="btn btn-info mt-3" href="{{ route('view_pdf',$report) }}" target="_blank"> Cek Surat Tugas</a>
                         @endif
                     <input type="file" class="form-control input-rounded" name="lainnya" value="{{ $report->documentation->lainnya }}">
@@ -352,7 +359,7 @@
             <div class="row mt-4">
                 <div class="col-md-6">
                     <label for="st">Surat Tugas (Jika Ada)</label><br>
-                       @if ($report->documentation->st !== null)
+                     @if ($report->documentation->st !== null)
                                 <a class="btn btn-info mt-3" href="{{ route('view_st',$report) }}" target="_blank"> Cek Surat Tugas</a>
                         @endif
                     <input type="file" class="form-control input-rounded" name="st" value="{{ $report->documentation->lainnya }}">
@@ -389,5 +396,45 @@
                                     .then(response => response.json())
                                     .then(data => slug.value = data.slug)
                                 });
+</script>
+
+<script>
+    //hitung who
+    var myWho = document.getElementById('textwho');
+    var wordWho = document.getElementById('jumlah_who');
+
+    myWho.addEventListener("keyup", function(){
+        var characterswho = myWho.value.split('');
+        wordWho.innerText = characterswho.length;
+    });
+
+    //hitung why
+    var myWhy = document.getElementById('why');
+    var wordWhy = document.getElementById('jumlah_why');
+
+    myWhy.addEventListener("keyup", function(){
+        var charwhy = myWhy.value.split('');
+        wordWhy.innerText = charwhy.length;
+    });
+
+    //hitung where
+    var myWhere = document.getElementById('where');
+    var wordWhere = document.getElementById('jumlah_where');
+
+    myWhere.addEventListener("keyup", function(){
+        var char_where = myWhere.value.split('');
+        wordWhere.innerText = char_where.length;
+    });
+
+   //hitung what
+    var myWhat = document.getElementById('what');
+    var wordWhat = document.getElementById('jumlah_what');
+
+    myWhat.addEventListener("keyup", function(){
+        var char_what = myWhat.value.split('');
+        wordWhat.innerText = char_what.length;
+    });
+
+
 </script>
 @endsection

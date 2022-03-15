@@ -7,12 +7,13 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use Maatwebsite\Excel\Concerns\WithColumnWidths;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithStyles;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-class AdminsExport implements FromQuery, WithHeadings, WithStyles, ShouldAutoSize, WithMapping
+class AdminsExport implements FromQuery, WithHeadings, WithStyles, ShouldAutoSize, WithMapping, WithColumnWidths
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -61,7 +62,14 @@ class AdminsExport implements FromQuery, WithHeadings, WithStyles, ShouldAutoSiz
             'indicator' => array(),
             $query->why,
             $query->where,
-            $query->who,            
+            $query->who,
+            $query->how,
+            'http://summary.timurbersinar.com/dokumentasi/'.$query->documentation->dokumentasi1,
+            'http://summary.timurbersinar.com/dokumentasi/'.$query->documentation->dokumentasi2,
+            'http://summary.timurbersinar.com/dokumentasi/'.$query->documentation->dokumentasi3,
+            'http://summary.timurbersinar.com/lihat_lainnya/'.$query->documentation->lainnya,
+            'http://summary.timurbersinar.com/lihat_st/'.$query->documentation->st,
+            'http://summary.timurbersinar.com/pdf/'.$query->slug            
         ];
           foreach ($query->indicators as $iku) {
           $isi['indicator'][]=
@@ -86,7 +94,14 @@ class AdminsExport implements FromQuery, WithHeadings, WithStyles, ShouldAutoSiz
             'Nomor IKU',
             'Why',
             'Where',
-            'Who'
+            'Who',
+            'How',
+            'Dokumentasi 1',
+            'Dokumentasi 2',
+            'Dokumentasi 3',
+            'Lainnya',
+            'ST',
+            '5W1H'
             
         ];
     }
@@ -95,6 +110,43 @@ class AdminsExport implements FromQuery, WithHeadings, WithStyles, ShouldAutoSiz
         return [
             // Style the first row as bold text.
             1    => ['font' => ['bold' => true]]
+        ];
+    }
+
+     public function columnWidths(): array
+    {
+        return [
+            //what
+            'A' => 45,
+            //when
+            // 'B' => 12,
+            //penyusun
+            'C' => 12,
+            //pengikut
+            // 'D' => 10,
+            //nomor iku
+            'E' => 30,
+            //why
+            'F' => 35,
+            //where
+            'G' => 35,
+            //who
+            'H' => 55,
+            //how
+            'I' => 55,
+            //dokumentasi 1
+            'J' => 25,
+            //dokumentasi 2
+            'K' => 25,
+            //dokumentasi 3
+            'L' => 25,
+            //lainnya
+            'M' => 25,
+            //st
+            'N' => 25,
+            //5w1h
+            'O' => 25,
+
         ];
     }
 

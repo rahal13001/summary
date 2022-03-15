@@ -111,6 +111,17 @@
 
 @section('content')
 
+        @if ($errors->any())
+                <div class="alert alert-danger alert-dismissible fade show">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    Tambah Data Gagal !!! <i class="bi bi-emoji-frown"></i>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                             <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+        @endif
 
     <form action="{{ route('report_post') }}" method="post" enctype="multipart/form-data">
        @csrf
@@ -152,6 +163,8 @@
         <div class="form-group mt-3">
             <label for="what">What</label>
             <input type="text" name="what" id="what" class="form-control input-rounded" placeholder="Masukan Judul Kegiatan" value="{{ old('what') }}">                  
+            <small id="jumlah_what">0</small>
+            <small> / 250 (Termasuk Spasi)</small>
             @error('what')
             <div class="text-danger mt-2 d-block">{{ $message }}</div>
             @enderror                                  
@@ -181,6 +194,8 @@
        <div class="form-group mt-3">
             <label for="where">Where</label>
             <input type="text" name="where" id="where" class="form-control input-rounded" placeholder="Masukan Lokasi/Tempat" value="{{ old('where') }}">                  
+            <small id="jumlah_where">0</small>
+            <small> / 250 (Termasuk Spasi)</small>
             @error('where')
             <div class="text-danger mt-2 d-block">{{ $message }}</div>
             @enderror                                  
@@ -270,6 +285,8 @@
         <div class="form-group mt-3">
             <label for="why">Why</label>
             <input type="text" name="why" id="why" class="form-control input-rounded" placeholder="Masukan Alasan/Dasar Kegiatan" value="{{ old('why') }}">                  
+            <small id="jumlah_why">0</small>
+            <small> / 250 (Termasuk Spasi)</small>
             @error('why')
             <div class="text-danger mt-2 d-block">{{ $message }}</div>
             @enderror                                  
@@ -278,10 +295,13 @@
         <div class="form-group mt-3">
             <label for="who">Who</label>
             <div class="form-floating">
-            <textarea class="form-control" placeholder="Masukan Pihak Yang Terlibat" id="floatingTextarea" name="who" value="{{ old('who') }}" ></textarea>
-              <label for="floatingTextarea">Masukan Pihak Yang Terlibat</label>
+            <textarea class="form-control" placeholder="Masukan Pihak Yang Terlibat" id="textwho" name="who" value="{{ old('who') }}" ></textarea>
+              <label for="who">Masukan Pihak Yang Terlibat</label>
             </div>
-                <small>Maksimal 1500 Karakter (Termasuk Spasi)</small>           
+            <div id="countwho">
+                <small id="jumlah_who">0</small>
+                <small id="max_who">/ 1500 Karakter (Termasuk Spasi)</small>
+            </div>      
             @error('who')
             <div class="text-danger mt-2 d-block">{{ $message }}</div>
             @enderror                                  
@@ -362,6 +382,44 @@
                                     .then(data => slug.value = data.slug)
                                 });
                         
+</script>
+<script>
+    //hitung who
+    var myWho = document.getElementById('textwho');
+    var wordWho = document.getElementById('jumlah_who');
+
+    myWho.addEventListener("keyup", function(){
+        var characterswho = myWho.value.split('');
+        wordWho.innerText = characterswho.length;
+    });
+
+    //hitung why
+    var myWhy = document.getElementById('why');
+    var wordWhy = document.getElementById('jumlah_why');
+
+    myWhy.addEventListener("keyup", function(){
+        var charwhy = myWhy.value.split('');
+        wordWhy.innerText = charwhy.length;
+    });
+
+    //hitung where
+    var myWhere = document.getElementById('where');
+    var wordWhere = document.getElementById('jumlah_where');
+
+    myWhere.addEventListener("keyup", function(){
+        var char_where = myWhere.value.split('');
+        wordWhere.innerText = char_where.length;
+    });
+
+    //hitung what
+    var myWhat = document.getElementById('what');
+    var wordWhat = document.getElementById('jumlah_what');
+
+    myWhat.addEventListener("keyup", function(){
+        var char_what = myWhat.value.split('');
+        wordWhat.innerText = char_what.length;
+    });
+
 </script>
 
 @endsection
