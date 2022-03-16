@@ -77,6 +77,30 @@ class UsersExport implements FromQuery, WithHeadings, WithStyles, ShouldAutoSize
     public function map($query): array
     {
       
+       if ($query->documentation->dokumentasi2 === NULL) {
+            $dokumentasi2 = '';
+        }else {
+            $dokumentasi2 = 'http://summary.timurbersinar.com/dokumentasi/'.$query->documentation->dokumentasi2;
+        }
+
+          if ($query->documentation->dokumentasi3 === NULL) {
+            $dokumentasi3 = '';
+        }else {
+            $dokumentasi3 = 'http://summary.timurbersinar.com/dokumentasi/'.$query->documentation->dokumentasi3;
+        }
+
+          if ($query->documentation->lainnya === NULL) {
+            $lainnya = '';
+        }else {
+            $lainnya = 'http://summary.timurbersinar.com/lihat_lainnya/'.$query->documentation->lainnya;
+        }
+
+          if ($query->documentation->st === NULL) {
+            $st = '';
+        }else {
+            $st = 'http://summary.timurbersinar.com/lihat_st/'.$query->documentation->st;
+        }
+      
         $isi = [
             $query->what,
             $query->when,
@@ -86,13 +110,13 @@ class UsersExport implements FromQuery, WithHeadings, WithStyles, ShouldAutoSize
             $query->why,
             $query->where,
             $query->who,
-             $query->how,
+            $query->how,
             'http://summary.timurbersinar.com/dokumentasi/'.$query->documentation->dokumentasi1,
-            'http://summary.timurbersinar.com/dokumentasi/'.$query->documentation->dokumentasi2,
-            'http://summary.timurbersinar.com/dokumentasi/'.$query->documentation->dokumentasi3,
-            'http://summary.timurbersinar.com/lihat_lainnya/'.$query->documentation->lainnya,
-            'http://summary.timurbersinar.com/lihat_st/'.$query->documentation->st,
-            'http://summary.timurbersinar.com/pdf/'.$query->slug                 
+            $dokumentasi2,
+            $dokumentasi3,
+            $lainnya,
+            $st,
+            'http://summary.timurbersinar.com/pdf/'.$query->slug                  
         ];
           foreach ($query->indicators as $iku) {
           $isi['indicator'][]=
