@@ -3,7 +3,7 @@
 
     @section('body') 
  <header class="app-header fixed-top">	 
-    <x-layouts.sidebar></x-layouts.sidebar>
+    {{-- <x-layouts.sidebar></x-layouts.sidebar> --}}
     <x-layouts.navigation></x-layouts.navigation>
  </header> 
  
