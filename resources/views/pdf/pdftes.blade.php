@@ -32,6 +32,7 @@
             height: 20px;
             font-size: 15px;
             vertical-align: top;
+        
         }
 
         .field {
@@ -65,6 +66,11 @@
 
         .page-break {
             page-break-after: always;
+            page-break-before: auto;
+        }
+        .page-break-how {
+            /* page-break-after: auto; */
+            page-break-inside: auto;
         }
 
         .bold {
@@ -72,9 +78,9 @@
         }
 
 
-        .page-break {
+        /* .page-break {
             page-break-after: always;
-        }
+        } */
     </style>
 
     <div class="a4">
@@ -179,11 +185,13 @@
                     @endforeach
                 </td>
             </tr>
-
-            <tr>
+        </table>
+        <div class="page-break-how"></div>
+        <table style="table-layout: fixed">
+            <tr style="width: 100% ">
                 <td colspan="3" class="point">How</td>
             </tr>
-             <tr>
+             <tr style="width: 100% ">
                 <td colspan="3">
                     {!! $report->how !!}
                 </td>
