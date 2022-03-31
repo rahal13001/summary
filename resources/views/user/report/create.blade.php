@@ -44,7 +44,7 @@
 
     <script>
         $(function(){
-  var limit = 1500;
+  var limit = 5000;
 
     var counter = $('#counter').text(limit);
     var progress = $('#progress').hide();
@@ -312,7 +312,7 @@
                 <trix-editor input="how"></trix-editor> 
                  <div id="progress"></div>
                  <div id="counter"></div>         
-                <small>Maksimal 1500 Karakter (Termasuk Spasi)</small>
+                <small>Maksimal 5000 Karakter (Termasuk Spasi)</small>
             @error('how')
             <div class="text-danger mt-2 d-block">{{ $message }}</div>
             @enderror                                  
