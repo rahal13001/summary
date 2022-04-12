@@ -103,12 +103,12 @@ class IndicatorsExport implements FromQuery, WithHeadings, WithStyles, ShouldAut
         }
        
 
-        $isi = [
+         $isi = [
             $query->what,
             $query->when,
             $query->user->name,
-            implode(", ", $pengikutnya),
-            implode(", ", $ikunya),
+            'pengikut'=>array(),
+            'indicator'=>array(),
             $query->why,
             $query->where,
             $query->penyelenggara,
@@ -121,8 +121,17 @@ class IndicatorsExport implements FromQuery, WithHeadings, WithStyles, ShouldAut
             $st,
             'http://summary.timurbersinar.com/pdf/'.$query->slug            
         ];
-       
-        
+
+        foreach ($query->indicators as $iku) {
+          $isi['indicator'][]=
+                $iku->nomor;
+        }
+         foreach ($query->follower as $data) {
+            
+                $isi['pengikut'][] =
+                $data->name;  
+        }
+
         return $isi;
     }
     

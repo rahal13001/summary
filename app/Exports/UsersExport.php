@@ -109,12 +109,12 @@ class UsersExport implements FromQuery, WithHeadings, WithStyles, ShouldAutoSize
                 $pengikutnya[] = $data->name;  
         }
       
-        $isi = [
+         $isi = [
             $query->what,
             $query->when,
             $query->user->name,
-           implode(", ", $pengikutnya),
-            implode(", ", $ikunya),
+            'pengikut'=>array(),
+            'indicator'=>array(),
             $query->why,
             $query->where,
             $query->penyelenggara,
@@ -125,9 +125,19 @@ class UsersExport implements FromQuery, WithHeadings, WithStyles, ShouldAutoSize
             $dokumentasi3,
             $lainnya,
             $st,
-            'http://summary.timurbersinar.com/pdf/'.$query->slug                  
+            'http://summary.timurbersinar.com/pdf/'.$query->slug            
         ];
-        
+
+        foreach ($query->indicators as $iku) {
+          $isi['indicator'][]=
+                $iku->nomor;
+        }
+         foreach ($query->follower as $data) {
+            
+                $isi['pengikut'][] =
+                $data->name;  
+        }
+
         return $isi;
     }
     
