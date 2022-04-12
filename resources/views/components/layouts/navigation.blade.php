@@ -336,7 +336,7 @@
                 <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
 
                 @hasanyrole($role)
-                <a class="nav-link active" href="{{ url('/') }}">
+                <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="{{ url('/') }}">
                   <span class="nav-icon">
                     <svg
                       width="1em"
@@ -362,7 +362,7 @@
               <!--//nav-item-->
               <li class="nav-item">
                 <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                <a class="nav-link" href="{{ route('pengikut') }}">
+                <a class="nav-link {{ Request::is('5w1h/pengikut') ? 'active' : '' }}" href="{{ route('pengikut') }}">
                   <span class="nav-icon">
                     <svg
                       width="1em"
@@ -387,7 +387,7 @@
               <!--//nav-item-->
               <li class="nav-item">
                 <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                <a class="nav-link" href="{{ route('myreport_create') }}">
+                <a class="nav-link {{ Request::is('5w1h/tambah') ? 'active' : '' }}" href="{{ route('myreport_create') }}">
                   <span class="nav-icon">
                     <svg
                       width="1em"
@@ -423,7 +423,7 @@
               <li class="nav-item has-submenu">
                 <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
                 <a
-                  class="nav-link submenu-toggle"
+                  class="nav-link submenu-toggle {{ Request::is('5w1h-semua*') ? 'active' : '' }} {{ Request::is('humas') ? 'active' : '' }}"
                   href="#"
                   data-bs-toggle="collapse"
                   data-bs-target="#submenu-1"
@@ -474,12 +474,12 @@
                   <ul class="submenu-list list-unstyled">
                   @can('show user')
                     <li class="submenu-item">
-                      <a class="submenu-link" href="{{ route('report_humas') }}"
+                      <a class="submenu-link {{ Request::is('humas') ? 'active' : '' }}" href="{{ route('report_humas') }}"
                         >5W1H berdasar tanggal buat</a>
                     </li>
                     @endcan
                     <li class="submenu-item">
-                      <a class="submenu-link" href="{{ route('report_index') }}">5W1H Semua User</a>
+                      <a class="submenu-link {{ Request::is('5w1h-semua*') ? 'active' : '' }}" href="{{ route('report_index') }}">5W1H Semua User</a>
                     </li>
                     {{-- <li class="submenu-item">
                       <a class="submenu-link" href="settings.html">Settings</a>
@@ -498,7 +498,7 @@
             @can('create category')  
               <li class="nav-item">
                 <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                <a class="nav-link" href="{{ route('indicator_create') }}">
+                <a class="nav-link {{ Request::is('IKU') ? 'active' : '' }}" href="{{ route('indicator_create') }}">
                   <span class="nav-icon">
                     <svg
                       width="1em"
@@ -553,7 +553,7 @@
               <li class="nav-item has-submenu">
                 <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
                 <a
-                  class="nav-link submenu-toggle"
+                  class="nav-link submenu-toggle {{ Request::is('role-and-permission*') ? 'active' : '' }}"
                   href=""
                   data-bs-toggle="collapse"
                   data-bs-target="#submenu-2"
@@ -581,7 +581,7 @@
                   </span>
           
 
-                  <span class="nav-link-text">Role And Permission</span>
+                  <span class="nav-link-text ">Role And Permission</span>
                   <span class="submenu-arrow">
                     <svg
                       width="1em"
@@ -606,18 +606,18 @@
                 >
                   <ul class="submenu-list list-unstyled">
                     <li class="submenu-item">
-                      <a class="submenu-link" href="{{ route('role_index') }}">Role</a>
+                      <a class="submenu-link {{ Request::is('role-and-permissions/role*') ? 'active' : '' }}" href="{{ route('role_index') }}">Role</a>
                     </li>
                     <li class="submenu-item">
-                      <a class="submenu-link" href="{{ route('permission_index') }}">Permission</a>
+                      <a class="submenu-link {{ Request::is('role-and-permissions/permission*') ? 'active' : '' }}" href="{{ route('permission_index') }}">Permission</a>
                     </li>
                     <li class="submenu-item">
-                      <a class="submenu-link" href="{{ route('assign_create') }}"
+                      <a class="submenu-link {{ Request::is('role-and-permissions/assign*') ? 'active' : '' }}" href="{{ route('assign_create') }}"
                         >Pemberian Akses Role</a
                       >
                     </li>
                     <li class="submenu-item">
-                      <a class="submenu-link" href="{{ route('user_create') }}">Pemberian Akses User</a>
+                      <a class="submenu-link {{ Request::is('role-and-permissions/user*') ? 'active' : '' }}" href="{{ route('user_create') }}">Pemberian Akses User</a>
                     </li>
                   </ul>
                 </div>
@@ -634,7 +634,7 @@
               <ul class="app-menu footer-menu list-unstyled">
                 <li class="nav-item">
                   <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                  <a class="nav-link" href="{{ route('password_edit') }}">
+                  <a class="nav-link {{ Request::is('ubahpassword') ? 'active' : '' }}" href="{{ route('password_edit') }}">
                     <span class="nav-icon">
                       <svg
                         width="1em"

@@ -52,6 +52,10 @@
                   <td scope="col"> {{ $report->gender_wanita }} %</td>
                </tr>
                <tr>
+                   <th scope="row"> Penyelenggara </th>
+                   <td scope="col"> {{ $report->penyelenggara }}</td>
+                </tr>
+               <tr>
                    <th scope="row"> Who </th>
                    <td scope="col"> {{ $report->who }}</td>
                 </tr>

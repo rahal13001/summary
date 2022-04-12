@@ -124,7 +124,8 @@ class ReportsController extends Controller
              'lainnya' => 'nullable|file|max:10240',
              'st' => 'nullable|file|max:3072',
              'gender_wanita'=>'required',
-             'total_peserta' => 'required|numeric'
+             'total_peserta' => 'required|numeric',
+             'penyelenggara' => 'required|max:250'
         ]);
       
         $data = $request->all();
@@ -151,6 +152,7 @@ class ReportsController extends Controller
        $report->no_st = $data['no_st'];
        $report->gender_wanita = $data['gender_wanita'];
        $report->total_peserta = $data['total_peserta'];
+       $report->penyelenggara = $data['penyelenggara'];
         $report->save();
         
 
@@ -283,7 +285,8 @@ class ReportsController extends Controller
              'lainnya' => 'nullable|file|max:10240',
              'st' => 'nullable|file|max:3072',
              'gender_wanita' => 'required',
-             'total_peserta' => 'required|numeric'
+             'total_peserta' => 'required|numeric',
+             'penyelenggara' => 'required|max:250'
         ]);
 
         $reports = Report::where('id', $report->id);
@@ -305,8 +308,9 @@ class ReportsController extends Controller
             'tanggal_selesai' => $request->tanggal_selesai,
             'slug' => $request->slug,
             'no_st' => $request->no_st,
-            'gender_wanita' => $report->gender_wanita,
-            'total_peserta' => $request->total_peserta
+            'gender_wanita' => $request->gender_wanita,
+            'total_peserta' => $request->total_peserta,
+            'penyelenggara' => $request->penyelenggara
         ]);
 
                         if ($request->indicator == true) {

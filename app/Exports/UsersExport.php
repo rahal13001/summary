@@ -100,17 +100,26 @@ class UsersExport implements FromQuery, WithHeadings, WithStyles, ShouldAutoSize
         }else {
             $st = 'http://summary.timurbersinar.com/lihat_st/'.$query->documentation->st;
         }
+
+            foreach ($query->indicators as $iku) {
+           $ikunya[] = $iku->nomor;
+        }
+          foreach ($query->follower as $data) {
+            
+                $pengikutnya[] = $data->name;  
+        }
       
         $isi = [
             $query->what,
             $query->when,
             $query->user->name,
-            'pengikut' => array(),
-            'indicator' => array(),
+           implode(", ", $pengikutnya),
+            implode(", ", $ikunya),
             $query->why,
             $query->where,
+            $query->penyelenggara,
             $query->who,
-            $query->how,
+            strip_tags($query->how),
             'http://summary.timurbersinar.com/dokumentasi/'.$query->documentation->dokumentasi1,
             $dokumentasi2,
             $dokumentasi3,
@@ -118,15 +127,6 @@ class UsersExport implements FromQuery, WithHeadings, WithStyles, ShouldAutoSize
             $st,
             'http://summary.timurbersinar.com/pdf/'.$query->slug                  
         ];
-          foreach ($query->indicators as $iku) {
-          $isi['indicator'][]=
-                $iku->nomor;
-        }
-         foreach ($query->follower as $data) {
-            
-                $isi['pengikut'][] =
-                $data->name;  
-        }
         
         return $isi;
     }
@@ -141,6 +141,7 @@ class UsersExport implements FromQuery, WithHeadings, WithStyles, ShouldAutoSize
             'Nomor IKU',
             'Why',
             'Where',
+            'Penyelenggara',
             'Who',
             'How',
             'Dokumentasi 1',
@@ -148,7 +149,8 @@ class UsersExport implements FromQuery, WithHeadings, WithStyles, ShouldAutoSize
             'Dokumentasi 3',
             'Lainnya',
             'ST',
-            '5W1H'
+            '5W1H',
+            
             
         ];
     }
@@ -166,33 +168,35 @@ class UsersExport implements FromQuery, WithHeadings, WithStyles, ShouldAutoSize
             //what
             'A' => 45,
             //when
-            // 'B' => 12,
+             'B' => 12,
             //penyusun
             'C' => 12,
             //pengikut
-            // 'D' => 10,
+            'D' => 25,
             //nomor iku
             'E' => 30,
             //why
             'F' => 35,
-            //where
+            //Penyelenggara
             'G' => 35,
+            //where
+            'H' => 35,
             //who
-            'H' => 55,
-            //how
             'I' => 55,
+            //how
+            'J' => 55,
             //dokumentasi 1
-            'J' => 25,
-            //dokumentasi 2
             'K' => 25,
-            //dokumentasi 3
+            //dokumentasi 2
             'L' => 25,
-            //lainnya
+            //dokumentasi 3
             'M' => 25,
-            //st
+            //lainnya
             'N' => 25,
-            //5w1h
+            //st
             'O' => 25,
+            //5w1h
+            'P' => 25,
 
         ];
     }

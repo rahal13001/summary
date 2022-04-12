@@ -292,6 +292,16 @@
         </div>
 
         <div class="form-group mt-3">
+            <label for="penyelenggara">Penyelenggara</label>
+            <input type="text" name="penyelenggara" id="penyelenggara" class="form-control input-rounded" placeholder="Masukan Penyelenggara" value="{{ old('penyelenggara') }}">                  
+            <small id="jumlah_penyelenggara">0</small>
+            <small> / 250 (Termasuk Spasi)</small>
+            @error('penyelenggara')
+            <div class="text-danger mt-2 d-block">{{ $message }}</div>
+            @enderror                                  
+        </div>
+
+        <div class="form-group mt-3">
             <label for="who">Who</label>
             <div class="form-floating">
             <textarea class="form-control" placeholder="Masukan Pihak Yang Terlibat" id="textwho" name="who" value="{{ old('who') }}" ></textarea>
@@ -419,6 +429,15 @@
     myWhat.addEventListener("keyup", function(){
         var char_what = myWhat.value.split('');
         wordWhat.innerText = char_what.length;
+    });
+
+     //hitung penyelenggara
+    var myPenyelenggara = document.getElementById('penyelenggara');
+    var wordPenyelenggara = document.getElementById('jumlah_penyelenggara');
+
+    myPenyelenggara.addEventListener("keyup", function(){
+        var char_penyelenggara = myPenyelenggara.value.split('');
+        wordPenyelenggara.innerText = char_penyelenggara.length;
     });
 </script>
 @endsection

@@ -130,7 +130,8 @@ class MyreportsController extends Controller
              'lainnya' => 'nullable|file|max:10240',
              'st' => 'nullable|file|max:3072',
              'gender_wanita' => 'required',
-             'total_peserta' => 'required|numeric'
+             'total_peserta' => 'required|numeric',
+             'penyelenggara' => 'required|max:250'
         ]);
       
         $data = $request->all();
@@ -154,6 +155,7 @@ class MyreportsController extends Controller
        $report->no_st = $data['no_st'];
        $report->gender_wanita = $data['gender_wanita'];
        $report->total_peserta = $data['total_peserta'];
+       $report->penyelenggara = $data['penyelenggara'];
         $report->save();
         
 
@@ -275,7 +277,8 @@ class MyreportsController extends Controller
              'lainnya' => 'nullable|file|max:10240',
              'st' => 'nullable|file|max:3072',
              'gender_wanita' => 'required',
-             'total_peserta' => 'required|numeric'
+             'total_peserta' => 'required|numeric',
+             'penyelenggara' => 'required|max:250'
         ]);
 
         $reports = Report::where('id', $report->id);
@@ -298,7 +301,8 @@ class MyreportsController extends Controller
             'slug' => $request->slug,
             'no_st' => $request->no_st,
             'gender_wanita' => $report->gender_wanita,
-            'total_peserta' => $request->total_peserta
+            'total_peserta' => $request->total_peserta,
+            'penyelenggara' => $request->penyelenggara
         ]);
 
                         if ($request->indicator == true) {
