@@ -78,23 +78,23 @@ class AdminsExport implements FromQuery, WithHeadings, WithStyles, ShouldAutoSiz
             $st = 'http://summary.timurbersinar.com/lihat_st/'.$query->documentation->st;
         }
 
-        foreach ($query->indicators as $iku) {
-           $ikunya[] = $iku->nomor;
-        }
-        $ikuini = implode(", ", $ikunya);
+        // foreach ($query->indicators as $iku) {
+        //    $ikunya[] = $iku->nomor;
+        // }
+        // $ikuini = implode(", ", $ikunya);
 
-          foreach ($query->follower as $data) {
-            $pengikutnya['ini'][] = $data->name;  
-        }
-        $pengikutini = implode(", ", $pengikutnya['ini']);
+        //   foreach ($query->follower as $data) {
+        //     $pengikutnya['ini'][] = $data->name;  
+        // }
+        // $pengikutini = implode(", ", $pengikutnya['ini']);
        
 
         $isi = [
             $query->what,
             $query->when,
             $query->user->name,
-            $ikuini,
-           $pengikutini,
+            'pengikut'=>array(),
+            'indicator'=>array(),
             $query->why,
             $query->where,
             $query->penyelenggara,
@@ -107,6 +107,16 @@ class AdminsExport implements FromQuery, WithHeadings, WithStyles, ShouldAutoSiz
             $st,
             'http://summary.timurbersinar.com/pdf/'.$query->slug            
         ];
+
+        foreach ($query->indicators as $iku) {
+          $isi['indicator'][]=
+                $iku->nomor;
+        }
+         foreach ($query->follower as $data) {
+            
+                $isi['pengikut'][] =
+                $data->name;  
+        }
 
         return $isi;
     }
