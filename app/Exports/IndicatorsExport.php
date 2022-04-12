@@ -96,6 +96,7 @@ class IndicatorsExport implements FromQuery, WithHeadings, WithStyles, ShouldAut
         foreach ($query->indicators as $iku) {
            $ikunya[] = $iku->nomor;
         }
+
           foreach ($query->follower as $data) {
             
                 $pengikutnya[] = $data->name;  
