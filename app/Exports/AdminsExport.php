@@ -84,9 +84,9 @@ class AdminsExport implements FromQuery, WithHeadings, WithStyles, ShouldAutoSiz
         $ikuini = implode(", ", $ikunya);
 
           foreach ($query->follower as $data) {
-            $pengikutnya[] = $data->name;  
+            $pengikutnya['ini'][] = $data->name;  
         }
-        $pengikutini = implode(", ", $pengikutnya);
+        $pengikutini = implode(", ", $pengikutnya['ini']);
        
 
         $isi = [
