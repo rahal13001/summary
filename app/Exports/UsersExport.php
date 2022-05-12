@@ -125,7 +125,8 @@ class UsersExport implements FromQuery, WithHeadings, WithStyles, ShouldAutoSize
             $dokumentasi3,
             $lainnya,
             $st,
-            'http://summary.timurbersinar.com/pdf/'.$query->slug            
+            'http://summary.timurbersinar.com/pdf/'.$query->slug,
+            $query->user->created_at            
         ];
 
         foreach ($query->indicators as $iku) {
@@ -160,7 +161,7 @@ class UsersExport implements FromQuery, WithHeadings, WithStyles, ShouldAutoSize
             'Lainnya',
             'ST',
             '5W1H',
-            
+            'Tanggal Upload'
             
         ];
     }
@@ -207,6 +208,7 @@ class UsersExport implements FromQuery, WithHeadings, WithStyles, ShouldAutoSize
             'O' => 25,
             //5w1h
             'P' => 25,
+            'Q' => 25
 
         ];
     }

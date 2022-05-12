@@ -136,6 +136,14 @@
             </tr>
 
              <tr>
+                <td class="point field" >Tanggal Upload</td>
+                <td  class="point titik">:</td>
+                <td>
+                   {{ $report->created_at }}
+                </td>
+            </tr>
+
+             <tr>
                 <td class="point field" >Total Peserta</td>
                 <td  class="point titik">:</td>
                 <td>
@@ -185,6 +193,7 @@
                     @endforeach
                 </td>
             </tr>
+            
         </table>
         <div class="page-break-how"></div>
         <table style="table-layout: fixed">

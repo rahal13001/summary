@@ -119,7 +119,8 @@ class IndicatorsExport implements FromQuery, WithHeadings, WithStyles, ShouldAut
             $dokumentasi3,
             $lainnya,
             $st,
-            'http://summary.timurbersinar.com/pdf/'.$query->slug            
+            'http://summary.timurbersinar.com/pdf/'.$query->slug,
+            $query->user->created_at            
         ];
 
         foreach ($query->indicators as $iku) {
@@ -154,6 +155,7 @@ class IndicatorsExport implements FromQuery, WithHeadings, WithStyles, ShouldAut
             'Lainnya',
             'ST',
             '5W1H',
+            'Tanggal Upload'
             
         ];
     }
@@ -200,6 +202,7 @@ class IndicatorsExport implements FromQuery, WithHeadings, WithStyles, ShouldAut
             'O' => 25,
             //5w1h
             'P' => 25,
+            'Q' => 25
 
         ];
     }
