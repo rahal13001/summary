@@ -21,7 +21,7 @@
        @csrf
        @method('patch')
       
-       <div class="form-group">
+       <div class="form-group mt-3">
             <label for="old_password">Password Baru</label>
             <input type="password" name="old_password" id="old_password" class="form-control input-rounded" placeholder="Masukan Password Lama Anda">                  
             @error('old_password')
@@ -29,7 +29,7 @@
             @enderror                                  
         </div>
 
-        <div class="form-group">
+        <div class="form-group mt-3">
             <label for="password">Password Baru</label>
             <input type="password" name="password" id="password" class="form-control input-rounded" placeholder="Masukan Password Baru" value="{{ old('password') }}">                  
             @error('password')
@@ -37,7 +37,7 @@
             @enderror                                  
         </div>
 
-        <div class="form-group">
+        <div class="form-group mt-3">
             <label for="password_confirmation">Konfirmasi Password Baru</label>
             <input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-rounded" placeholder="Masukan Password Baru" value="{{ old('password_confirmation') }}">                  
             @error('password_confirmation')
@@ -45,12 +45,13 @@
             @enderror                                  
         </div>
 
-
+        <div class="mt-4">
          <button type="submit" class="btn btn-info">Submit</button>
            @can('show user')
          <a href="{{ route('report_index') }}" class="btn btn-outline-danger mr-2 float-right">Kembali Ke 5w1H Semua</a>
          @endcan
          <a href="{{ route('myreport') }}" class="btn btn-outline-danger mr-2 float-right">Kembali Ke 5w1H-Ku</a>
+         </div>
     </form>
 
 @endsection

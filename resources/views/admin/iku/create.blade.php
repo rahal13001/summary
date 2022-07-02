@@ -72,7 +72,7 @@
                    <div class="p-20">
                         <form action="{{ route('indicator_post') }}" method="post">
                         @csrf
-                            <div class="form-group">
+                            <div class="form-group mt-4">
                                 <label for="nama">Nama IKU</label>
                                 <input type="text" name="nama" id="nama" class="form-control input-rounded" placeholder="Masukan Nama IKU" value="{{ old('nama') }}">                  
                                 @error('nama')
@@ -80,15 +80,15 @@
                                 @enderror                                  
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group mt-3">
                                 <label for="slug">Slug</label>
-                                <input type="text" name="slug" id="slug" class="form-control input-rounded" placeholder="Masukan Slug" value="{{ old('slug') }}">                  
+                                <input type="text" name="slug" id="slug" class="form-control input-rounded" placeholder="Masukan Slug" value="{{ old('slug') }}" readonly>                  
                                 @error('slug')
                                     <div class="text-danger mt-2 d-block">{{ $message }}</div>
                                 @enderror                                  
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group mt-3">
                                 <label for="nomor">Nomor IKU</label>
                                 <input type="number" name="nomor" id="nomor" class="form-control input-rounded" placeholder="Masukan Nomor IKU" value="{{ old('nomor') }}">
                                 @error('nomor')
@@ -96,7 +96,7 @@
                                 @enderror
                             </div>
 
-                             <div class="form-group">
+                             <div class="form-group mt-3">
                                 <label for="tahun">Tahun</label>
                                 <input type="number" name="tahun" id="tahun" class="form-control input-rounded" placeholder="Masukan Tahun" value="{{ old('tahun') }}">                  
                                 @error('tahun')
@@ -104,7 +104,7 @@
                                 @enderror                                  
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group mt-3">
                                 <label for="status">Status</label>
                                 <select name="status" id="status" class="form-control input-rounded select2">
                                     <option disabled selected>Pilih Status</option>
@@ -116,7 +116,9 @@
                                 @enderror                                  
                             </div>
 
+                            <div class="mt-4">
                             <button type="submit" class="btn btn-info">Submit</button>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -127,7 +129,7 @@
                  @elseif ($errors->any() !== null)  
                     <div class="tab-pane p-20" id="profile2" role="tabpanel">
                 @endif
-                    <div class="table table-responsive">
+                    <div class="table table-responsive mt-4">
                         <table class="table table-hover w-100" id="crudTable" >
                             <thead>
                                 <tr>

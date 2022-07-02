@@ -8,6 +8,7 @@ use App\Http\Controllers\Permissions\AssignController;
 use App\Http\Controllers\Permissions\PermissionsController;
 use App\Http\Controllers\Permissions\RolesController;
 use App\Http\Controllers\Permissions\UsersController;
+use App\Http\Controllers\ProfilesController;
 use App\Models\Indicator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -25,14 +26,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     // $role = Role::find(3);
-//     // $role->givePermissionTo('create post');
-//     // dd($role);
-
-//     return view('welcome');
-
-// });
+Route::get('/profile', [ProfilesController::class, 'profile']);
 
 
 // Route::get('/pdftes', function () {
@@ -52,15 +46,20 @@ Route::middleware('has.role')->group(function(){
 Auth::routes();
 
 //untuk 5w1h-semua
-Route::prefix('5w1h-semua')->middleware('permission:show user')->group(function(){
+Route::prefix('5w1h-semua')->middleware('has.role')->group(function(){
     Route::get('', [ReportsController::class, 'index'])->name('report_index');
     Route::get('/tambah', [ReportsController::class, 'create'])->name('report_create');
     Route::post('', [ReportsController::class, 'store'])->name('report_post');
     Route::get('{report}/show', [ReportsController::class, 'show'])->name('report_show');
-    Route::get('{report}/edit', [ReportsController::class, 'edit'])->name('report_edit');
-    Route::put('{report}', [ReportsController::class, 'update'])->name('report_update');
-    Route::delete('{report}', [ReportsController::class, 'delete'])->name('report_delete');
+
+    Route::group(['middleware' => ['permission:show user']], function () {
+        Route::get('{report}/edit', [ReportsController::class, 'edit'])->name('report_edit');
+        Route::put('{report}', [ReportsController::class, 'update'])->name('report_update');
+        Route::delete('{report}', [ReportsController::class, 'delete'])->name('report_delete');
+    });
 });
+//humas
+Route::get('/humas', [ReportsController::class, 'humas'])->name('report_humas');
 
 //5w1h-ku
 Route::get('/', [MyreportsController::class, 'myreport'])->name('myreport')->middleware('auth', 'verified');

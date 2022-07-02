@@ -21,19 +21,20 @@ class PermissionsController extends Controller
             return DataTables::of($query)
                 ->addColumn('aksi', function ($item) {
                     return '
-
+                      <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                     <a href = "' . route('permission_edit', $item->id) . '"
-                    class = "btn btn-warning float-left">
-                        Edit </a>
+                    class = "btn btn-link float-left">
+                       <i class="bi bi-pencil-fill"></i></a>
+                       
                      <form action="' . route('permission_delete', $item->id) . '" method="POST">
                                 ' . method_field('delete') . csrf_field() . '
-                              <button type="submit" class="btn btn-danger" onclick = "return confirm(\'Anda yakin ingin menghapus data ?\') ">
-                                Hapus
+                              <button type="submit" class="btn btn-link" onclick = "return confirm(\'Anda yakin ingin menghapus data ?\') ">
+                               <i class="bi bi-trash-fill"></i>
                             </button>
                             </form>
                         </div>
-                    </div>
-                </div>';
+                    
+                ';
                 })->rawColumns(['aksi'])
                 ->make();
         }
