@@ -135,7 +135,7 @@
                         @endcan
                         <a href="{{ route('myreport') }}" class="btn btn-outline-info ml-3 float-right">Kembali Ke 5w1H-Ku</a>
 
-                     <a href="{{ route('pdf', $report->slug) }}" class="btn btn-danger ml-3">Eksport pdf</a>
+                     <a href="{{ route('pdf', $report->slug) }}" class="btn btn-danger ml-3" target="_blank">5W1H Kegiatan</a>
 
 
                      <a class="btn btn-warning ml-3" href="{{ route('myreport_edit', $report->slug)}}">Edit</a>

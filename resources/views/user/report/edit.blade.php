@@ -45,7 +45,7 @@
 
     <script>
         $(function(){
-  var limit = 2500;
+  var limit = 10000;
 
     var counter = $('#counter').text(limit);
     var progress = $('#progress').hide();
@@ -309,7 +309,7 @@
               <label for="floatingTextarea">Masukan Pihak Yang Terlibat</label>
             </div>
                 <small id="jumlah_who">0</small>
-                <small id="max_who">/ 1500 Karakter (Termasuk Spasi)</small>         
+                <small id="max_who">/ 3000 Karakter (Termasuk Spasi)</small>         
             @error('who')
             <div class="text-danger mt-2 d-block">{{ $message }}</div>
             @enderror                                  
@@ -321,7 +321,7 @@
                 <trix-editor input="how"></trix-editor>
                  <div id="progress"></div>
                  <div id="counter"></div>   
-               <small>Maksimal 2500 Karakter (Termasuk Spasi)</small>                 
+               <small>Maksimal 10.000 Karakter (Termasuk Spasi)</small>                 
             @error('how')
             <div class="text-danger mt-2 d-block">{{ $message }}</div>
             @enderror                                  

@@ -44,7 +44,7 @@
 
     <script>
         $(function(){
-  var limit = 2500;
+  var limit = 10000;
 
     var counter = $('#counter').text(limit);
     var progress = $('#progress').hide();
@@ -304,12 +304,12 @@
         <div class="form-group mt-3">
             <label for="who">Who</label>
             <div class="form-floating">
-            <textarea class="form-control" placeholder="Masukan Pihak Yang Terlibat" id="textwho" name="who" value="{{ old('who') }}" ></textarea>
+            <textarea class="form-control" placeholder="Masukan Pihak Yang Terlibat" id="textwho" name="who">{{Request::old('who')}}</textarea>
               <label for="who">Masukan Pihak Yang Terlibat</label>
             </div>
             <div id="countwho">
                 <small id="jumlah_who">0</small>
-                <small id="max_who">/ 1500 Karakter (Termasuk Spasi)</small>
+                <small id="max_who">/ 3000 Karakter (Termasuk Spasi)</small>
             </div>      
             @error('who')
             <div class="text-danger mt-2 d-block">{{ $message }}</div>
@@ -322,7 +322,7 @@
                 <trix-editor input="how"></trix-editor> 
                  <div id="progress"></div>
                  <div id="counter"></div>         
-                <small>Maksimal 2500 Karakter (Termasuk Spasi)</small>
+                <small>Maksimal 10.00 Karakter (Termasuk Spasi)</small>
             @error('how')
             <div class="text-danger mt-2 d-block">{{ $message }}</div>
             @enderror                                  
