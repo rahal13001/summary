@@ -34,7 +34,7 @@
                                 @enderror                                  
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group mt-3">
                                 <label for="slug">Slug</label>
                                 <input type="text" name="slug" id="slug" class="form-control input-rounded" placeholder="Masukan Slug" value="{{ $indicator->slug }}" readonly>                  
                                 @error('slug')
@@ -42,7 +42,7 @@
                                 @enderror                                  
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group mt-3">
                                 <label for="nomor">Nomor IKU</label>
                                 <input type="number" name="nomor" id="nomor" class="form-control input-rounded" placeholder="Masukan Nomor IKU" value="{{ $indicator->nomor }}">
                                 @error('nomor')
@@ -50,7 +50,7 @@
                                 @enderror
                             </div>
 
-                             <div class="form-group">
+                             <div class="form-group mt-3">
                                 <label for="tahun">Tahun</label>
                                 <input type="number" name="tahun" id="tahun" class="form-control input-rounded" placeholder="Masukan Tahun" value="{{ $indicator->tahun }}">                  
                                 @error('tahun')
@@ -58,7 +58,7 @@
                                 @enderror                                  
                             </div>
                           
-                            <div class="form-group">
+                            <div class="form-group mt-3">
                                 <label for="status">Status</label>
                                 <select name="status" id="status" class="form-control input-rounded select2">
                                      <option disabled selected>Pilih Status</option>
@@ -75,9 +75,10 @@
                                     <div class="text-danger mt-2 d-block">{{ $message }}</div>
                                 @enderror                                  
                             </div>
-
-                            <button type="submit" class="btn btn-info">Submit</button>
-                            <a href="{{ route('indicator_create') }}" class="btn btn-danger">Batal</a>
+                            <div class="mt-4">
+                            <button type="submit" class="btn btn-info mr-2">Submit</button>
+                            <a href="{{ route('indicator_create') }}" class="btn btn-danger mx-2">Batal</a>
+                            </div>
                         </form>
 
                         <script>

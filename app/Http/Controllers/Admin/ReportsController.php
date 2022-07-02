@@ -15,8 +15,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
-use Barryvdh\DomPDF\Facade as PDF;
+// use Barryvdh\DomPDF\Facade as PDF;
+use Carbon\Carbon;
 use Maatwebsite\Excel\Facades\Excel;
+use PhpOffice\PhpSpreadsheet\Style\NumberFormat\DateFormatter;
+use Barryvdh\Snappy\Facades\SnappyPdf as PDF;
 
 use function Psy\debug;
 
@@ -33,13 +36,13 @@ class ReportsController extends Controller
                 //Jika tanggal awal(from_date) hingga tanggal akhir(to_date) adalah sama maka
                 if ($request->from_date === $request->to_date) {
                     //kita filter tanggalnya sesuai dengan request from_date
-                    $query = Report::query()->whereDate('when', '=', $request->from_date)->with(['user'])->orderBy('when', 'DESC');
+                    $query = Report::query()->whereDate('when', '=', $request->from_date)->with(['user']);
                 } else {
                     //kita filter dari tanggal awal ke akhir
-                    $query = Report::query()->whereBetween('when', array($request->from_date, $request->to_date))->with(['user'])->orderBy('when', 'DESC');
+                    $query = Report::query()->whereBetween('when', array($request->from_date, $request->to_date))->with(['user']);
                 }
             } else {
-                $query = Report::query()->with(['user'])->orderBy('when', 'DESC');
+                $query = Report::query()->with(['user']);
             }
             
 
@@ -56,10 +59,47 @@ class ReportsController extends Controller
         }
         return view('admin.report.index');
     }
+
+      public function humas(Request $request){
+            
+         if (request()->ajax()) {
+
+            //Jika request from_date ada value(datanya) maka
+            if (!empty($request->from_date)) {
+                //Jika tanggal awal(from_date) hingga tanggal akhir(to_date) adalah sama maka
+                if ($request->from_date === $request->to_date) {
+                    //kita filter tanggalnya sesuai dengan request from_date
+                    $query = Report::query()->whereDate('reports.created_at', '=', $request->from_date)->with(['user']);
+                } else {
+                    //kita filter dari tanggal awal ke akhir
+                    $query = Report::query()->whereBetween('reports.created_at', array($request->from_date, $request->to_date))->with(['user']);
+                }
+            } else {
+                $query = Report::query()->with(['user']);
+            }
+            
+
+            return DataTables::of($query)
+            ->addColumn('aksi', function ($report) {
+                    return '
+            <a href = "' . route('report_show', $report->slug) . '"
+            class = "btn btn-info text-center">
+                Detail </a>
+            
+            ';
+                })->rawColumns(['aksi', 'indicator'])
+                  ->editColumn('reports.created_at', function ($user) {
+                        return $user->created_at ? with(new Carbon($user->created_at))->format('d/m/Y') : '';
+                    })
+                ->make(true);
+        }
+        return view('admin.report.humas');
+    }
+
     public function create(){
 
         $report = Report::with('user')->get();
-        $user = User::get();  
+        $user = User::orderBy('name')->get();
         $indicator = Indicator::where('status', 'aktif')->get();   
 
         return view('admin.report.create', compact(['report', 'user', 'indicator']));
@@ -72,21 +112,30 @@ class ReportsController extends Controller
              'what' => 'required|max:250',
              'slug' => 'unique:reports,slug',
              'when' => 'required|date',
-             'who' => 'required|max:250',
+             'where' => 'required',
+             'who' => 'required|max:3500',
              'why' => 'required|max:250',
-             'how' => 'required|max:700',
+             'how' => 'required|max:12000',
              'tanggal_selesai' => 'required|date|after_or_equal:when',
              'total_jam' => 'required|numeric',
-             'no_st' => 'required|max:150',
+             'no_st' => 'max:150',
              'dokumentasi1' => 'required|image|max:1024',
              'dokumentasi2' => 'nullable|image|max:1024',
              'dokumentasi3' => 'nullable|image|max:1024',
              'lainnya' => 'nullable|file|max:10240',
-             'st' => 'nullable|file|max:3072'
+             'st' => 'nullable|file|max:3072',
+             'gender_wanita'=>'required',
+             'total_peserta' => 'required|numeric',
+             'penyelenggara' => 'required|max:250'
         ]);
       
         $data = $request->all();
-
+            
+        //mengambil bulan dan tahun
+        $date = Carbon::createFromFormat('Y-m-d', $data['when']);
+        $tahun = $date->format('Y');
+        $bulan = $date->format('M');
+            
        
        $report = New Report();
        $report->user_id = $data['user_id'];
@@ -94,12 +143,17 @@ class ReportsController extends Controller
        $report->slug = $request->slug;
        $report->where = $data['where'];
        $report->when = $data['when'];
+        $report->bulan = $bulan;
+        $report->tahun = $tahun;
        $report->who = $data['who'];
        $report->why = $data['why'];
        $report->how = $data['how'];
        $report->tanggal_selesai = $data['tanggal_selesai'];
        $report->total_jam = $data['total_jam'];
        $report->no_st = $data['no_st'];
+       $report->gender_wanita = $data['gender_wanita'];
+       $report->total_peserta = $data['total_peserta'];
+       $report->penyelenggara = $data['penyelenggara'];
         $report->save();
         
 
@@ -181,15 +235,29 @@ class ReportsController extends Controller
     }
 
     public function show(Report $report, User $user){  
-                 
+         
+        $rep = $report->user_id;
+        $user = Auth::user()->id;        
+        $cek = $report->follower->find($user);
+
+        
+
         $follower = Follower::with(['userfoll'])->where('report_id', $report->id)->get();
         return view('admin.report.show', compact('follower', 'report'));
     }
 
     public function edit(Report $report){
+
+        // $rep = $report->user_id;
+        // $user = Auth::user()->id;        
+        // $cek = $report->follower->find($user);
+        
+        // if (is_null($cek) && $user !== $rep) {
+        //    return abort(403, Auth::user()->name.' Mo Apa Ko ! Mending Ko Balik -_-');
+        // }
  
          $reports = Report::get();
-         $user = User::get();
+         $user = User::orderBy('name')->get();
         //  $tags = Tag::where('report_id', $report->id)->get();   
          $users = User::where('id','!=' ,$report->user_id)->get();
          $indicator = Indicator::where('status', 'Aktif')->get();
@@ -199,42 +267,54 @@ class ReportsController extends Controller
     }
 
     public function update(Report $report, Request $request){
-
-        
-          $request->validate([
+       
+      
+       $request->validate([
              'user_id' => 'required',
-             'slug' =>'nullable',
              'what' => 'required|max:250',
              'when' => 'required|date',
-             'who' => 'required|max:250',
+             'where' => 'required',
+             'who' => 'required|max:3500',
              'why' => 'required|max:250',
-             'how' => 'required|max:700',
+             'how' => 'required|max:12000',
              'tanggal_selesai' => 'required|date|after_or_equal:when',
              'total_jam' => 'required|numeric',
-             'no_st' => 'nullable|max:150',
+             'no_st' => 'max:150',
              'dokumentasi1' => 'nullable|image|max:1024',
              'dokumentasi2' => 'nullable|image|max:1024',
              'dokumentasi3' => 'nullable|image|max:1024',
              'lainnya' => 'nullable|file|max:10240',
-             'st' => 'nullable|file|max:3072'
+             'st' => 'nullable|file|max:3072',
+             'gender_wanita' => 'required',
+             'total_peserta' => 'required|numeric',
+             'penyelenggara' => 'required|max:250'
         ]);
-       
+
         $reports = Report::where('id', $report->id);
-        $reported = Report::get();
+        $date = Carbon::createFromFormat('Y-m-d', $request->when);
+        $tahun = $date->format('Y');
+        $bulan = $date->format('M');
+
+
         $reports->update([
-            'user_id' => $request->user_id,
+           'user_id' => $request->user_id,
             'what' => $request->what,
             'when' => $request->when,
+            'bulan' => $bulan,
+            'tahun' => $tahun,
             'who' => $request->who,
             'how' => $request->how,
             'where' => $request->where,
             'total_jam' => $request->total_jam,
             'tanggal_selesai' => $request->tanggal_selesai,
             'slug' => $request->slug,
-            'no_st' => $request->no_st
+            'no_st' => $request->no_st,
+            'gender_wanita' => $request->gender_wanita,
+            'total_peserta' => $request->total_peserta,
+            'penyelenggara' => $request->penyelenggara
         ]);
 
-                    if ($request->indicator == true) {
+                        if ($request->indicator == true) {
                         $indicators = Indicator::get();
                         foreach ($indicators as $ind) {
                             $id = $report->indicators->find($ind);
@@ -301,7 +381,7 @@ class ReportsController extends Controller
             Storage::disk('public')->delete(['lainnya/' . $report->documentation->lainnya]);
             
         } else {
-            $lainnya2 = null;
+            $lainnya2 = $report->documentation->lainnya;
         }
 
 
@@ -310,11 +390,12 @@ class ReportsController extends Controller
             $st = $request->file('st');
             $st2 = date('Y-m-d') ."_". $request->slug. "_" . $st->getClientOriginalName();
             $st->storeAs('st', $st2, 'public');
-
-            Storage::disk('public')->delete(['st/' . $report->documentation->lainnya]);
+            
+            Storage::disk('public')->delete(['st/' . $report->documentation->st]);
             
         } else {
-            $st2 = null;
+            $st2 = $report->documentation->st;
+            
         }
 
          $documentation = Documentation::where('report_id', $report->id);
@@ -322,18 +403,19 @@ class ReportsController extends Controller
              'dokumentasi1'=>$dokumentasi1_2,
              'dokumentasi2'=>$dokumentasi2_2,
              'dokumentasi3'=>$dokumentasi3_2,
-             'lainnya'=>$request->lainnya2,
-             'st'=>$request->st2
+             'lainnya'=>$lainnya2,
+             'st'=>$st2
          ]);
 
          return redirect()->route('report_index')->with('status', 'Data 5W1H Berhasil Diedit');
-    }   
+    }
 
     public function delete(Report $report){
 
-        Storage::disk('public')->delete(['lainnya/' . $report->documentation->dokumentasi1]);
-        Storage::disk('public')->delete(['lainnya/' . $report->documentation->dokumentasi2]);
-        Storage::disk('public')->delete(['lainnya/' . $report->documentation->dokumentasi3]);
+        Storage::disk('public')->delete(['dokumentasi/' . $report->documentation->dokumentasi1]);
+        Storage::disk('public')->delete(['dokumentasi/' . $report->documentation->dokumentasi2]);
+        Storage::disk('public')->delete(['dokumentasi/' . $report->documentation->dokumentasi3]);
+        Storage::disk('public')->delete(['st/' . $report->documentation->st]);
         Storage::disk('public')->delete(['lainnya/' . $report->documentation->lainnya]);
         
         Report::where('id', $report->id)->delete();
@@ -351,8 +433,22 @@ class ReportsController extends Controller
 
     public function export_pdf(Report $report){
         $follower = Follower::with(['userfoll'])->where('report_id', $report->id)->get();
-        $pdf = PDF::loadView('pdf.pdftes', compact('report', 'follower'))->setPaper('a4');
-        return $pdf->download($report->when.'_'.$report->slug.'.pdf');
+        $pdf = PDF::loadView('pdf.snappypdf', compact('report', 'follower'))->setPaper('a4');
+
+         //Aktifkan Local File Access supaya bisa pakai file external ( cth File .CSS )
+        $pdf->setOptions([
+            'enable-local-file-access' => true,
+            'margin-top' => 15,
+            'margin-bottom' => 20,
+            'margin-left' => 20,
+            'margin-right' => 15
+        ]);
+
+           // Stream untuk menampilkan tampilan PDF pada browser
+        return $pdf->stream($report->when.'_'.$report->slug.'.pdf');
+
+        // $pdf = PDF::loadView('pdf.pdftes', compact('report', 'follower'))->setPaper('a4');
+        // return $pdf->download($report->when.'_'.$report->slug.'.pdf');
     }
 
      public function exportexcel(Request $request){

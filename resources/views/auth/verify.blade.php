@@ -31,6 +31,18 @@
                         @csrf
                         <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('Klik Disini Untuk Mendapatkan Link') }}</button>.
                     </form>
+                        <div class="mt-3 text-center">
+
+                        <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();" class="text-right mt-4">
+                                       <i class="bi bi-power"></i> {{ __('Logout') }}
+                            
+                            
+                          </a>
+                           <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                        </div>
                 </div>
             </div>
         </div>

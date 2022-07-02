@@ -32,10 +32,11 @@
             height: 20px;
             font-size: 15px;
             vertical-align: top;
+        
         }
 
         .field {
-            width: 10%;
+            width: 20%;
         }
 
         .titik {
@@ -59,10 +60,17 @@
         }
         .gbr {
             width: 100%;
+            text-align: center;
+            vertical-align:middle;
         }
 
         .page-break {
             page-break-after: always;
+            page-break-before: auto;
+        }
+        .page-break-how {
+            /* page-break-after: auto; */
+            page-break-inside: auto;
         }
 
         .bold {
@@ -70,9 +78,9 @@
         }
 
 
-        .page-break {
+        /* .page-break {
             page-break-after: always;
-        }
+        } */
     </style>
 
     <div class="a4">
@@ -128,6 +136,22 @@
             </tr>
 
              <tr>
+                <td class="point field" >Tanggal Upload</td>
+                <td  class="point titik">:</td>
+                <td>
+                   {{ $report->created_at }}
+                </td>
+            </tr>
+
+             <tr>
+                <td class="point field" >Total Peserta</td>
+                <td  class="point titik">:</td>
+                <td>
+                   {{ $report->total_peserta }} Orang, Persentase Wanita : {{ $report->gender_wanita }} %
+                </td>
+            </tr>
+
+             <tr>
                 <td class="point field" >Where</td>
                 <td  class="point titik">:</td>
                 <td>
@@ -159,7 +183,7 @@
                         @if (!$loop->first && !$loop->last)
                             ,
                         @endif
-                        @if ($loop->last)
+                        @if (!$loop->first && $loop->last)
                             dan 
                         @endif
 
@@ -169,11 +193,14 @@
                     @endforeach
                 </td>
             </tr>
-
-            <tr>
+            
+        </table>
+        <div class="page-break-how"></div>
+        <table style="table-layout: fixed">
+            <tr style="width: 100% ">
                 <td colspan="3" class="point">How</td>
             </tr>
-             <tr>
+             <tr style="width: 100% ">
                 <td colspan="3">
                     {!! $report->how !!}
                 </td>
@@ -185,22 +212,30 @@
     <div class="page-break"></div>
 
     <div class="a4">
+   
     <table>
-        <tr class="gbr">
-        <td>
-            <img src="{{asset('dokumentasi/'.$report->documentation->dokumentasi1)}}" class="media-object" width="100%" alt="ga keluar">
+        <tr>
+                <td class="judul">
+                    Dokumentasi
+                </td>
+        </tr>
+        <tr>
+        <td class="gbr">
+            <img src="{{asset('dokumentasi/'.$report->documentation->dokumentasi1)}}" class="media-object" width="60%" alt="ga keluar">
         </td>
         </tr>
         @if ($report->documentation->dokumentasi2 !== null)       
-            <tr class="gbr">
-                <td>
-                    <img src="{{asset('dokumentasi/'.$report->documentation->dokumentasi2)}}" class="media-object" width="100%" alt="ga keluar">
+            <tr>
+                <td class="gbr">
+                    <img src="{{asset('dokumentasi/'.$report->documentation->dokumentasi2)}}" class="media-object" width="60%" alt="ga keluar">
                 </td>
             </tr>
         @endif
         @if ($report->documentation->dokumentasi3 !== null)  
         <tr>
-            <img src="{{asset('dokumentasi/'.$report->documentation->dokumentasi3)}}" class="media-object" width="100%" alt="ga keluar">
+            <td class="gbr">
+            <img src="{{asset('dokumentasi/'.$report->documentation->dokumentasi3)}}" class="media-object" width="60%" alt="ga keluar">
+            </td>
         </tr>
         @endif
     </table>

@@ -11,6 +11,17 @@
                     {{ session ('status') }}
                 </div>
             @endif
+              @if ($errors->any())
+                <div class="alert alert-danger alert-dismissible fade show">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    Login Gagal !!!
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>Email atau Password Tidak Sesuai</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
@@ -23,13 +34,13 @@
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
-                                @error('email')
+                                {{-- @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror
+                                @enderror --}}
                             </div>
                         </div>
 
@@ -72,7 +83,7 @@
                                 @endif
                                 <div class="mx-auto tex-center d-block mt-3">
                                   @if (Route::has('register'))
-                                    <li class="nav-item">
+                                    <li class="nav-item" style="list-style-type:none;">
                                         <a class="btn btn-link" href="{{ route('register') }}">{{ __('Anda Belum Memiliki Akun ? Klik Disini') }}</a>
                                     </li>
                                  @endif

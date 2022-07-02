@@ -13,11 +13,11 @@ class UsersController extends Controller
 {
     public function create()
     {
-        $roles = Role::get();
-        $users = User::whereNotNull('email_verified_at')->get();
+        $roles = Role::orderBy('name')->get();
+        $users = User::whereNotNull('email_verified_at')->orderBy('name')->get();
 
         if (request()->ajax()) {
-            $query = User::query();
+            $query = User::query()->orderBy('name');
             return DataTables::of($query)
                 ->addColumn('aksi', function($item){
                     return '
@@ -25,14 +25,15 @@ class UsersController extends Controller
                     ';
                 })->addColumn('sync', function ($item) {
                     return '
-                    <div class="text-right">
+                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                    
                     <a href = "' . route('user_edit', $item->id) . '"
-                    class = "btn btn-warning float-left">
-                        Edit </a>
+                    class = "btn btn-link float-left">
+                         <i class="bi bi-pencil-fill"></i></a>
                      <form action="' . route('user_delete', $item->id) . '" method="POST">
                                 ' . method_field('assign_delete') . csrf_field() . '
-                                <button type="submit" class="btn btn-danger" onclick = "return confirm(\'Anda yakin ingin menghapus data ?\') ">
-                                    Hapus
+                                <button type="submit" class="btn btn-link" onclick = "return confirm(\'Anda yakin ingin menghapus data ?\') ">
+                                    <i class="bi bi-trash-fill"></i>
                                 </button>
                             </form></div>';
                 })->rawColumns(['aksi', 'sync'])
@@ -66,8 +67,8 @@ class UsersController extends Controller
         //dibuat array mengikuti untuk mengirimkan data sebenernya sama saja seperti variabel namun lebih praktis
         return view('permissions.users.edit', [
             'user' => $user,
-            'users' => User::get(),
-            'roles' => Role::get()
+            'users' => User::orderBy('name')->get(),
+            'roles' => Role::orderBy('name')->get()
             
         ]);
 
