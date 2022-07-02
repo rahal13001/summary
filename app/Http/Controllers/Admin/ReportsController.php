@@ -445,7 +445,7 @@ class ReportsController extends Controller
         ]);
 
            // Stream untuk menampilkan tampilan PDF pada browser
-        return $pdf->stream($report->when.'_'.$report->slug.'.pdf');
+        return $pdf->download($report->when.'_'.$report->slug.'.pdf');
 
         // $pdf = PDF::loadView('pdf.pdftes', compact('report', 'follower'))->setPaper('a4');
         // return $pdf->download($report->when.'_'.$report->slug.'.pdf');
