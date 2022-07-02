@@ -69,20 +69,20 @@
                                 <div class="card-body scrollable">
                                 
                                 <p class="card-title">Dokumentasi 1</p>
-                                <a href="{{asset('storage/dokumentasi/'.$report->documentation->dokumentasi1)}}" target="_blank">
-                                        <img src="{{asset('storage/dokumentasi/'.$report->documentation->dokumentasi1)}}" class="media-object" width="100%" alt="ga keluar">
+                                <a href="{{asset('dokumentasi/'.$report->documentation->dokumentasi1)}}" target="_blank">
+                                        <img src="{{asset('dokumentasi/'.$report->documentation->dokumentasi1)}}" class="media-object" width="100%" alt="ga keluar">
                                 </a>  
                                 @if ($report->documentation->dokumentasi2 !== null)
                                 <p class="mt-2 card-title">Dokumentasi 2</p>
-                                <a href="{{asset('storage/dokumentasi/'.$report->documentation->dokumentasi2)}}" target="_blank">
-                                <img src="{{ asset('storage/dokumentasi/'.$report->documentation->dokumentasi2) }}" class="media-object" width="100%" alt="ga keluar">
+                                <a href="{{asset('dokumentasi/'.$report->documentation->dokumentasi2)}}" target="_blank">
+                                <img src="{{ asset('dokumentasi/'.$report->documentation->dokumentasi2) }}" class="media-object" width="100%" alt="ga keluar">
                                 </a>
                                 @endif  
                                 
                                 @if ($report->documentation->dokumentasi3 !== null)
                                 <p class="mt-2 card-title">Dokumentasi 3</p>
-                                <a href="{{asset('storage/dokumentasi/'.$report->documentation->dokumentasi3)}}" target="_blank">
-                                <img src="{{ asset('storage/dokumentasi/'.$report->documentation->dokumentasi3) }}" class="media-object" width="100%" alt="ga keluar">
+                                <a href="{{asset('dokumentasi/'.$report->documentation->dokumentasi3)}}" target="_blank">
+                                <img src="{{ asset('dokumentasi/'.$report->documentation->dokumentasi3) }}" class="media-object" width="100%" alt="ga keluar">
                                 </a>
                                 @endif
                                 
@@ -115,22 +115,51 @@
                  </div>
                 </div>
                 <div class="row">
-                <div class="mt-3">
+                  <div class="mt-3">
 
-                  @can('show user')
-                  <a href="{{ route('report_index') }}" class="btn btn-outline-info ml-2 float-right">Kembali Ke 5w1H Semua</a>
-                  @endcan
-                  <a href="{{ route('myreport') }}" class="btn btn-outline-info ml-2 float-right">Kembali Ke 5w1H-Ku</a>
+                        @can('show user')
+                        <a href="{{ route('report_index') }}" class="btn btn-outline-info ml-2 float-right">Kembali Ke 5w1H Semua</a>
+                        @endcan
+                        <a href="{{ route('myreport') }}" class="btn btn-outline-info ml-2 float-right">Kembali Ke 5w1H-Ku</a>
 
-                <a href="{{ route('pdf', $report->slug) }}" class="btn btn-danger ml-2">Eksport pdf</a>
-
-
-                <a class="btn btn-warning ml-2" href="{{ route('myreport_edit', $report->slug)}}">Edit</a>
+                     <a href="{{ route('pdf', $report->slug) }}" class="btn btn-danger ml-2">Eksport pdf</a>
 
 
-                <button class="btn btn-outline-danger ml-2" href="{{ route('myreport_delete', $report->slug) }}">Hapus</button>
+                     <a class="btn btn-warning ml-2" href="{{ route('myreport_edit', $report->slug)}}">Edit</a>
+
+                     <button type="button" class="btn btn-outline-danger ml-2" data-toggle="modal" data-target="#deleteModal">
+                        Hapus
+                     </button>
+
+                  </div>
                 </div>
-                </div>
+
+
+                <!-- Modal Delete-->
+               <div class="modal fade" id="deleteModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+               <div class="modal-dialog">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                     <h5 class="modal-title" id="deleteModalLabel">Hapus Data</h5>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                     </button>
+                     </div>
+                     <div class="modal-body">
+                     Yakin mau menghapus data ?
+                     </div>
+                     <div class="modal-footer">
+                     <button type="button" class="btn btn-primary" data-dismiss="modal">Batal</button>
+                     <form action="{{ route('myreport_delete', $report->slug) }}" method="post">
+                        @method('delete')
+                        @csrf
+                        <button type="submit" class="btn btn-danger d-inline">Hapus</button>
+                     </form> 
+                     </form>
+                     </div>
+                  </div>
+               </div>
+               </div>
                          
 <style>
 .scrollable{

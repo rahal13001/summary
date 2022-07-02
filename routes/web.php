@@ -59,7 +59,7 @@ Route::prefix('5w1h-semua')->middleware('permission:show user')->group(function(
     Route::get('{report}/show', [ReportsController::class, 'show'])->name('report_show');
     Route::get('{report}/edit', [ReportsController::class, 'edit'])->name('report_edit');
     Route::put('{report}', [ReportsController::class, 'update'])->name('report_update');
-    Route::delete('{report}', [ReportsController::class, 'destroy'])->name('report_delete');
+    Route::delete('{report}', [ReportsController::class, 'delete'])->name('report_delete');
 });
 
 //5w1h-ku
@@ -70,8 +70,8 @@ Route::prefix('5w1h')->middleware('has.role')->group(function(){
     Route::post('', [MyreportsController::class, 'store'])->name('myreport_post');
     Route::get('{report}/edit', [MyreportsController::class, 'edit'])->name('myreport_edit');
     Route::put('{report}', [MyreportsController::class, 'update'])->name('myreport_update');
-    Route::delete('{report}', [MyreportsController::class, 'destroy'])->name('myreport_delete');
     Route::get('{report}/show', [MyreportsController::class, 'show'])->name('myreport_show');
+    Route::delete('{report}', [MyreportsController::class, 'delete'])->name('myreport_delete');
 });
 
 //membuat slug

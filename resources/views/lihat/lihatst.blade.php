@@ -1,1 +1,1 @@
-<iframe src ="{{ asset('storage/st/'.$lainnya) }}" width="100%" height="100%"></iframe>
+<iframe src ="{{ asset('st/'.$lainnya) }}" width="100%" height="100%"></iframe>

@@ -7,15 +7,73 @@
     <title>Ekspor PDF 5W1H</title>
 
     
-    <link rel="stylesheet" href="{{ asset('css\pdftes.css') }}">
+    {{-- <link rel="stylesheet" href="css\pdftes.css"> --}}
 </head>
 <body>
 
     <style>
-    .page-break {
-        page-break-after: always;
-    }
-</style>
+        .a4 {
+            position: absolute;
+            width: 620px;
+            height: 110.75px;
+            margin: auto;
+            background: #ffffff;
+            /* border: 1px solid #eee; */
+            padding: 30px;
+        }
+        table {
+            width: 100%;
+        }
+        table,
+        th,
+        td {
+            /* border: 1px solid black; */
+            text-align: justify;
+            height: 20px;
+            font-size: 15px;
+            vertical-align: top;
+        }
+
+        .field {
+            width: 10%;
+        }
+
+        .titik {
+            width: 5%;
+        }
+
+        .no_st {
+            text-align: center;
+            height: 30px;
+        }
+
+        .point {
+            font-weight: bold;
+            vertical-align: top;
+        }
+
+        .judul {
+            font-weight: bold;
+            font-size: 18px;
+            text-align: center;
+        }
+        .gbr {
+            width: 100%;
+        }
+
+        .page-break {
+            page-break-after: always;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+
+        .page-break {
+            page-break-after: always;
+        }
+    </style>
 
     <div class="a4">
         <table>
@@ -130,19 +188,19 @@
     <table>
         <tr class="gbr">
         <td>
-            <img src="{{asset('storage/dokumentasi/'.$report->documentation->dokumentasi1)}}" class="media-object" width="100%" alt="ga keluar">
+            <img src="{{asset('dokumentasi/'.$report->documentation->dokumentasi1)}}" class="media-object" width="100%" alt="ga keluar">
         </td>
         </tr>
         @if ($report->documentation->dokumentasi2 !== null)       
             <tr class="gbr">
                 <td>
-                    <img src="{{asset('storage/dokumentasi/'.$report->documentation->dokumentasi2)}}" class="media-object" width="100%" alt="ga keluar">
+                    <img src="{{asset('dokumentasi/'.$report->documentation->dokumentasi2)}}" class="media-object" width="100%" alt="ga keluar">
                 </td>
             </tr>
         @endif
         @if ($report->documentation->dokumentasi3 !== null)  
         <tr>
-            <img src="{{asset('storage/dokumentasi/'.$report->documentation->dokumentasi3)}}" class="media-object" width="100%" alt="ga keluar">
+            <img src="{{asset('dokumentasi/'.$report->documentation->dokumentasi3)}}" class="media-object" width="100%" alt="ga keluar">
         </tr>
         @endif
     </table>

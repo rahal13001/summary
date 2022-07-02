@@ -27,9 +27,9 @@ class PermissionsController extends Controller
                         Edit </a>
                      <form action="' . route('permission_delete', $item->id) . '" method="POST">
                                 ' . method_field('delete') . csrf_field() . '
-                                <button type="submit" class="btn btn-danger">
-                                    Hapus
-                                </button>
+                              <button type="submit" class="btn btn-danger" onclick = "return confirm(\'Anda yakin ingin menghapus data ?\') ">
+                                Hapus
+                            </button>
                             </form>
                         </div>
                     </div>

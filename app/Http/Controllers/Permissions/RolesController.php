@@ -27,7 +27,7 @@ class RolesController extends Controller
                         Edit </a>
                      <form action="' . route('role_delete', $item->id) . '" method="POST">
                                 ' . method_field('delete') . csrf_field() . '
-                                <button type="submit" class="btn btn-danger">
+                                <button type="submit" class="btn btn-danger" onclick = "return confirm(\'Anda yakin ingin menghapus data ?\') ">
                                     Hapus
                                 </button>
                             </form>

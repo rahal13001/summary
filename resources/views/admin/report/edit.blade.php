@@ -152,7 +152,7 @@
             <div class="row">
             <div class="col-md-6">
             <label for="dokumentasi1">Dokumentasi 1</label><br>
-            <img src="{{ asset('storage/dokumentasi/'.$report->documentation->dokumentasi1) }}" width="50%" alt="ga ada" class="mb-2">
+            <img src="{{ asset('dokumentasi/'.$report->documentation->dokumentasi1) }}" width="50%" alt="ga ada" class="mb-2">
             <input type="file" class="form-control input-rounded" name="dokumentasi1" value="{{ $report->documentation->dokumentasi1 }}">
             <small>Ukuran Gambar Maksimal 1 MB</small>
             </div>
@@ -160,7 +160,7 @@
             <div class="col-md-6">
             <label for="dokumentasi2">Dokumentasi 2 (Jika Ada)</label>
             @if ($report->documentation->dokumentasi2 !== null)
-                <img src="{{ asset('storage/dokumentasi/'.$report->documentation->dokumentasi2) }}" width="50%" alt="ga ada" class="mb-2">
+                <img src="{{ asset('dokumentasi/'.$report->documentation->dokumentasi2) }}" width="50%" alt="ga ada" class="mb-2">
             @endif
             <input type="file" class="form-control input-rounded" name="dokumentasi2" value="{{ $report->documentation->dokumentasi2 }}">
             <small>Ukuran Gambar Maksimal 1 MB</small>
@@ -169,7 +169,7 @@
             <div class="col-md-6">
             <label for="dokumentasi3">Dokumentasi 3 (Jika Ada)</label><br>
             @if ($report->documentation->dokumentasi3 !== null)
-                <img src="{{ asset('storage/dokumentasi/'.$report->documentation->dokumentasi2) }}" width="50%" alt="ga ada" class="mb-2">
+                <img src="{{ asset('dokumentasi/'.$report->documentation->dokumentasi2) }}" width="50%" alt="ga ada" class="mb-2">
             @endif
             <input type="file" class="form-control input-rounded" name="dokumentasi3" value="{{ $report->documentation->dokumentasi3 }}">
             <small>Ukuran Gambar Maksimal 1 MB</small>
