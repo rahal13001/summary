@@ -16,7 +16,7 @@
 </head>
 
 <style>
-   p{
+   body{
     font-family: 'Roboto', sans-serif;
     text-align: justify;
    }
@@ -166,7 +166,8 @@
                    <p class="fs-6 fw-bold">How :</p> 
                 </div>
                 <div class="col col-sm">
-                   <p class="fs-6">{!! $report->how !!}</p></div>
+                   <p class="fs-6 how">{!! $report->how !!}</p>
+                </div>
             </div>
 
             <div class="container mt-5">
