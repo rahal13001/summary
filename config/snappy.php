@@ -35,7 +35,7 @@ return [
     
      'pdf' => [
         'enabled' => true,
-        'binary'  => base_path('summarylpsplsorong/vendor/h4cc/wkhtmltopdf-amd64/bin'),
+        'binary'  => 'summarylpsplsorong/vendor/h4cc/wkhtmltopdf-amd64/bin',
         'timeout' => false,
         'options' => [],
         'env'     => [],
@@ -43,7 +43,7 @@ return [
     
     'image' => [
         'enabled' => true,
-        'binary'  => base_path('summarylpsplsorong/vendor/h4cc/wkhtmltoimage-amd64/bin'),
+        'binary'  => 'summarylpsplsorong/vendor/h4cc/wkhtmltoimage-amd64/bin',
         'timeout' => false,
         'options' => [],
         'env'     => [],
