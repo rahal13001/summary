@@ -261,13 +261,13 @@
                 <tr class="">
                     @if ($report->documentation->st !== null)      
                         <td scope="row" class="text-center">
-                            <img src="data:image/png;base64, {!! $q_report !!}">
+                            <img src="data:image/png;base64, {!! $q_st !!}">
                         </td>
                     @endif
 
                     @if ($report->documentation->lainnya !== null )  
                         <td class="text-center">
-                        <img src="data:image/png;base64, {!! $q_report !!}">
+                        <img src="data:image/png;base64, {!! $q_lainnya !!}">
                         </td>
                     @endif
 
