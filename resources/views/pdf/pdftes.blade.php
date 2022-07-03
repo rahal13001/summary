@@ -243,8 +243,8 @@
         @endif
     </table>
     
-        
-     <table class="table borderless">
+    
+     <table class="table borderless" style="margin-top: 20px">
             <thead>
                 <tr class="">
                     @if ($report->documentation->st !== null)
