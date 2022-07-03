@@ -15,11 +15,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
-// use Barryvdh\DomPDF\Facade as PDF;
+use Barryvdh\DomPDF\Facade as PDF;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Facades\Excel;
 use PhpOffice\PhpSpreadsheet\Style\NumberFormat\DateFormatter;
-use Barryvdh\Snappy\Facades\SnappyPdf as PDF;
+// use Barryvdh\Snappy\Facades\SnappyPdf as PDF;
 
 use function Psy\debug;
 
@@ -433,22 +433,22 @@ class ReportsController extends Controller
 
     public function export_pdf(Report $report){
         $follower = Follower::with(['userfoll'])->where('report_id', $report->id)->get();
-        $pdf = PDF::loadView('pdf.snappypdf', compact('report', 'follower'))->setPaper('a4');
+        // $pdf = PDF::loadView('pdf.pdftes', compact('report', 'follower'))->setPaper('a4');
 
-         //Aktifkan Local File Access supaya bisa pakai file external ( cth File .CSS )
-        $pdf->setOptions([
-            'enable-local-file-access' => true,
-            'margin-top' => 15,
-            'margin-bottom' => 20,
-            'margin-left' => 20,
-            'margin-right' => 15
-        ]);
+        //  //Aktifkan Local File Access supaya bisa pakai file external ( cth File .CSS )
+        // $pdf->setOptions([
+        //     'enable-local-file-access' => true,
+        //     'margin-top' => 15,
+        //     'margin-bottom' => 20,
+        //     'margin-left' => 20,
+        //     'margin-right' => 15
+        // ]);
 
            // Stream untuk menampilkan tampilan PDF pada browser
-        return $pdf->stream($report->when.'_'.$report->slug.'.pdf');
-
-        // $pdf = PDF::loadView('pdf.pdftes', compact('report', 'follower'))->setPaper('a4');
         // return $pdf->download($report->when.'_'.$report->slug.'.pdf');
+
+        $pdf = PDF::loadView('pdf.pdftes', compact('report', 'follower'))->setPaper('a4');
+        return $pdf->download($report->when.'_'.$report->slug.'.pdf');
     }
 
      public function exportexcel(Request $request){

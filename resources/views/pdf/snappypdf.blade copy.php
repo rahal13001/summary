@@ -41,25 +41,16 @@
 </style>
 
 <body>
-
-         <table>
-            <tr>
-                <td colspan="3" class="no_st">
-                    <img src="{{ asset('img/KOP.jpg') }}" alt="KOP Surat" class="gbr">
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3" class="judul">
-                    5W1H
-                </td>
-            </tr>
-            @if ($report->no_st !== null)
-                <tr>
-                <td colspan="3" class="no_st">Nomor Surat Tugas : {{ $report->no_st }}<br></td> 
-                </tr>    
-            @endif
-         </table>
-    
+    <div class="page">
+       <div class="container">
+            <div class="row">
+                <img src="{{ asset('img/KOP.jpg') }}" alt="KOP Surat" class="img-fluid">
+            </div> 
+            <div class="row text-center mt-3">
+                <h2 class="fw-bolder">5W1H</h2>
+                <h6>Nomor Surat Tugas : {{ $report->no_st }}</h6>
+            </div>
+        </div>
 
 
 
