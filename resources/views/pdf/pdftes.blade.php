@@ -244,7 +244,7 @@
     </table>
     
     
-     <table class="table borderless" style="margin-top: 20px">
+     <table class="table borderless" style="margin-top: 40px">
             <thead>
                 <tr class="">
                     @if ($report->documentation->st !== null)
