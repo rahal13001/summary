@@ -243,8 +243,8 @@
         @endif
     </table>
     
-    
-     <table class="table borderless" style="margin-top: 40px">
+    <div class="container" style="margin-top: 20px">
+     <table class="table borderless">
             <thead>
                 <tr class="">
                     @if ($report->documentation->st !== null)
@@ -278,7 +278,7 @@
                 </tr>
             </tbody>
            </table>
-   
+   </div>
     </div>
     
 </body>
