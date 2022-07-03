@@ -38,11 +38,16 @@
     .borderless td, .borderless th {
     border: none;
 }
+  .gbr {
+            width: 100%;
+            text-align: center;
+            vertical-align:middle;
+        }
 </style>
 
 <body>
 
-         <table>
+       <table>
             <tr>
                 <td colspan="3" class="no_st">
                     <img src="{{ asset('img/KOP.jpg') }}" alt="KOP Surat" class="gbr">
@@ -58,13 +63,8 @@
                 <td colspan="3" class="no_st">Nomor Surat Tugas : {{ $report->no_st }}<br></td> 
                 </tr>    
             @endif
-         </table>
-    
+        </table>
 
-
-
-    <div class="container">
-       
         <div class="container">
             <div class="row mt-3">
                 <div class="col col-sm">

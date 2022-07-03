@@ -77,19 +77,13 @@
             font-weight: bold;
         }
 
-        .no_table{
-            margin-top: 10px;
-            margin-left: 2px;
-            text-align: justify;
-        }
-
 
         /* .page-break {
             page-break-after: always;
         } */
     </style>
 
-    <div>
+    <div class="a4">
         <table>
             <tr>
                 <td colspan="3" class="no_st">
@@ -106,9 +100,7 @@
                 <td colspan="3" class="no_st">Nomor Surat Tugas : {{ $report->no_st }}<br></td> 
                 </tr>    
             @endif
-        </table>
 
-        <table>
             <tr class="point">
                 <td  class="field">What</td>
                 <td class="titik">:</td>
@@ -173,12 +165,20 @@
                 <td>
                     {{ $report->why }}
                 </td>
-            </tr>           
-        </table>
-        
-             <div class="container no_table">
-                  <span style="font-weight: bold"> IKU : </span> <br>
-                     @foreach ($report->indicators as $iku)
+            </tr>
+
+             <tr>
+                <td class="point field" >Who</td>
+                <td  class="point titik">:</td>
+                <td>
+                    {{ $report->who }}
+                </td>
+            </tr>
+            <tr>
+                <td class="point field" >No Iku</td>
+                <td  class="point titik">:</td>
+                <td>
+                    @foreach ($report->indicators as $iku)
                         
                         @if (!$loop->first && !$loop->last)
                             ,
@@ -187,30 +187,27 @@
                             dan 
                         @endif
 
-                        (IKU : {{ $iku->nomor }}) {{ $iku->nama }}
+                        {{ $iku->nomor }}
 
                       
                     @endforeach
-            </div>
-   
-             <div class="container no_table">
-                  <span style="font-weight: bold"> Who : </span> <br> {{  $report->who }}
-            </div>
-        
+                </td>
+            </tr>
+            
+        </table>
         <div class="page-break-how"></div>
-            <div class="container no_table">
-                  <span style="font-weight: bold"> How : </span> {!! $report->how !!}
-            </div>
+        <table style="table-layout: fixed">
+            <tr style="width: 100% ">
+                <td colspan="3" class="point">How</td>
+            </tr>
+             <tr style="width: 100% ">
+                <td colspan="3">
+                    {!! $report->how !!}
+                </td>
+            </tr>
 
-              {{-- <div class="container mt-5">
-                <div class="row">
-                    <div class="col">
-                        <h6 style="font-family: 'Roboto', sans-serif;">Scan untuk melihat dokumen</h6>
-                        <img src="data:image/png;base64, {!! $q_report !!}">
-                    </div>
-                </div>
-            </div> --}}
 
+        </table>
     </div>
     <div class="page-break"></div>
 
@@ -242,43 +239,6 @@
         </tr>
         @endif
     </table>
-    
-        
-     <table class="table borderless">
-            <thead>
-                <tr class="">
-                    @if ($report->documentation->st !== null)
-                        <th>Surat Tugas</th>
-                    @endif
-
-                    @if ($report->documentation->lainnya !== null )  
-                        <th>Dokumentasi Lainnya</th>
-                    @endif
-                    <th>Cek 5W1H Online</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="">
-                    @if ($report->documentation->st !== null)      
-                        <td scope="row" class="text-center">
-                            <img src="data:image/png;base64, {!! $q_report !!}">
-                        </td>
-                    @endif
-
-                    @if ($report->documentation->lainnya !== null )  
-                        <td class="text-center">
-                        <img src="data:image/png;base64, {!! $q_report !!}">
-                        </td>
-                    @endif
-
-                    <td class="text-center">
-                        <img src="data:image/png;base64, {!! $q_report !!}">
-                    </td>
-                   
-                </tr>
-            </tbody>
-           </table>
-   
     </div>
     
 </body>

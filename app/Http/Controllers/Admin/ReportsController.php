@@ -2,26 +2,27 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Exports\AdminsExport;
-use App\Http\Controllers\Controller;
-use App\Models\Documentation;
-use App\Models\Follower;
-use App\Models\Indicator;
-use App\Models\Report;
+use Carbon\Carbon;
 use App\Models\Tag;
 use App\Models\User;
+use App\Models\Report;
+use function Psy\debug;
+use App\Models\Follower;
+use App\Models\Indicator;
 use Illuminate\Http\Request;
+use App\Exports\AdminsExport;
+use App\Models\Documentation;
+use Barryvdh\DomPDF\Facade as PDF;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
-use \Cviebrock\EloquentSluggable\Services\SlugService;
-use Barryvdh\DomPDF\Facade as PDF;
-use Carbon\Carbon;
-use Maatwebsite\Excel\Facades\Excel;
-use PhpOffice\PhpSpreadsheet\Style\NumberFormat\DateFormatter;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 // use Barryvdh\Snappy\Facades\SnappyPdf as PDF;
 
-use function Psy\debug;
+use \Cviebrock\EloquentSluggable\Services\SlugService;
+use PhpOffice\PhpSpreadsheet\Style\NumberFormat\DateFormatter;
 
 class ReportsController extends Controller
 {
@@ -433,9 +434,9 @@ class ReportsController extends Controller
 
     public function export_pdf(Report $report){
         $follower = Follower::with(['userfoll'])->where('report_id', $report->id)->get();
-        // $pdf = PDF::loadView('pdf.pdftes', compact('report', 'follower'))->setPaper('a4');
+        // $pdf = PDF::loadView('pdf.snappypdf', compact('report', 'follower'))->setPaper('a4');
 
-        //  //Aktifkan Local File Access supaya bisa pakai file external ( cth File .CSS )
+         //Aktifkan Local File Access supaya bisa pakai file external ( cth File .CSS )
         // $pdf->setOptions([
         //     'enable-local-file-access' => true,
         //     'margin-top' => 15,
@@ -444,11 +445,15 @@ class ReportsController extends Controller
         //     'margin-right' => 15
         // ]);
 
-           // Stream untuk menampilkan tampilan PDF pada browser
+        //    Stream untuk menampilkan tampilan PDF pada browser
         // return $pdf->download($report->when.'_'.$report->slug.'.pdf');
 
-        $pdf = PDF::loadView('pdf.pdftes', compact('report', 'follower'))->setPaper('a4');
-        return $pdf->download($report->when.'_'.$report->slug.'.pdf');
+        $q_report = base64_encode(QrCode::size(100)->generate('http://summary.timurbersinar.com/pdf/'.$report->slug));
+        $q_lainnya = base64_encode(QrCode::size(100)->generate('http://summary.timurbersinar.com/lihat_lainnya/'.$report->documentation->lainnya));
+        $q_st = base64_encode(QrCode::size(100)->generate('http://summary.timurbersinar.com/lihat_st/'.$report->documentation->lainnya));
+
+        $pdf = PDF::loadView('pdf.pdftes', compact('report', 'follower', 'q_report', 'q_lainnya', 'q_st'))->setPaper('a4');
+        return $pdf->stream($report->when.'_'.$report->slug.'.pdf');
     }
 
      public function exportexcel(Request $request){
