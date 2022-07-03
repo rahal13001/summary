@@ -450,7 +450,7 @@ class ReportsController extends Controller
 
         $q_report = base64_encode(QrCode::size(100)->generate('http://summary.timurbersinar.com/pdf/'.$report->slug));
         $q_lainnya = base64_encode(QrCode::size(100)->generate('http://summary.timurbersinar.com/lihat_lainnya/'.$report->documentation->lainnya));
-        $q_st = base64_encode(QrCode::size(100)->generate('http://summary.timurbersinar.com/lihat_st/'.$report->documentation->lainnya));
+        $q_st = base64_encode(QrCode::size(100)->generate('http://summary.timurbersinar.com/lihat_st/'.$report->documentation->st));
 
         $pdf = PDF::loadView('pdf.pdftes', compact('report', 'follower', 'q_report', 'q_lainnya', 'q_st'))->setPaper('a4');
         return $pdf->stream($report->when.'_'.$report->slug.'.pdf');
