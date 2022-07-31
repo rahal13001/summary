@@ -101,7 +101,14 @@
                                 @endif
                                 
                                 @if ($report->documentation->lainnya !== null)
-                                <a class="btn btn-info mt-3" href="{{ route('view_pdf',$report) }}" target="_blank"> Cek Dokumentasi Lainnya</a>
+                                 @if (pathinfo($report->documentation->lainnya, PATHINFO_EXTENSION) == 'png' || 
+                                    pathinfo($report->documentation->lainnya, PATHINFO_EXTENSION) == 'jpg' ||
+                                    pathinfo($report->documentation->lainnya, PATHINFO_EXTENSION) == 'jpeg'
+                                    )
+                                       <img src="{{ asset('lainnya/'.$report->documentation->lainnya) }}" width="50%" alt="ga ada" class="mb-2">
+                                    @else
+                                       <a class="btn btn-info mt-3" href="{{ route('view_pdf',$report) }}" target="_blank"> Cek Dokumentasi Lainnya</a>
+                                    @endif
                                 @endif
 
                                  @if ($report->documentation->st !== null)
