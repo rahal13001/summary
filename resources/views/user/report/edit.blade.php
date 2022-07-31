@@ -373,7 +373,7 @@
                                 pathinfo($report->documentation->lainnya, PATHINFO_EXTENSION) == 'jpg' ||
                                 pathinfo($report->documentation->lainnya, PATHINFO_EXTENSION) == 'jpeg'
                                 )
-                            <img src="{{ asset('lainnya/'.$report->documentation->lainnya) }}" width="50%" alt="ga ada" class="mb-2 img-previewlainnya">
+                            <img src="{{ asset('lainnya/'.$report->documentation->lainnya) }}" width="50%" alt="ga ada" class="mb-2 img-previewlainnya d-block">
                         @else
                             <a class="btn btn-info mt-3" href="{{ route('view_pdf',$report) }}" target="_blank" id="button_lainnya"> Cek Dokumentasi Lainnya</a>
                             <img width="50%" class="mb-2 img-previewlainnya">
@@ -524,7 +524,7 @@
         const tombol = document.getElementById("button_lainnya");
 
         if(tombol){
-             tombol.style.visibility = 'hidden';
+             tombol.style.display = 'none';
         }
 
         imgPreview.style.display = 'block';

@@ -526,7 +526,7 @@
         const tombol = document.getElementById("button_lainnya");
 
         if(tombol){
-             tombol.style.visibility = 'hidden';
+             tombol.style.display = 'none';
         }
 
         imgPreview.style.display = 'block';
