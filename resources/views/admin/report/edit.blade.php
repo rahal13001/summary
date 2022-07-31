@@ -332,17 +332,23 @@
             <div class="row">
                 <div class="col-md-6">
                     <label for="dokumentasi1">Dokumentasi 1</label><br>
-                    <img src="{{ asset('dokumentasi/'.$report->documentation->dokumentasi1) }}" width="50%" alt="ga ada" class="mb-2">
-                    <input type="file" class="form-control input-rounded" name="dokumentasi1" value="{{ $report->documentation->dokumentasi1 }}">
+                     @if ($report->documentation->dokumentasi1 !== null)
+                    <img src="{{ asset('dokumentasi/'.$report->documentation->dokumentasi1) }}" width="50%" alt="ga ada" class="mb-2 img-preview1">
+                    @else
+                    <img width="50%" class="mb-2 img-preview1">
+                    @endif
+                    <input type="file" class="form-control input-rounded" name="dokumentasi1" value="{{ $report->documentation->dokumentasi1 }}" id="dok1" onchange="previewImage1()">
                     <small>Ukuran Gambar Maksimal 1 MB</small>
                 </div>
 
                 <div class="col-md-6">
                     <label for="dokumentasi2">Dokumentasi 2 (Jika Ada)</label>
                     @if ($report->documentation->dokumentasi2 !== null)
-                        <img src="{{ asset('dokumentasi/'.$report->documentation->dokumentasi2) }}" width="50%" alt="ga ada" class="mb-2">
+                        <img src="{{ asset('dokumentasi/'.$report->documentation->dokumentasi2) }}" width="50%" alt="ga ada" class="mb-2 img-preview2">
+                    @else
+                        <img width="50%" class="mb-2 img-preview2">
                     @endif
-                    <input type="file" class="form-control input-rounded" name="dokumentasi2" value="{{ $report->documentation->dokumentasi2 }}">
+                    <input type="file" class="form-control input-rounded" name="dokumentasi2" value="{{ $report->documentation->dokumentasi2 }}" id="dok2" onchange="previewImage2()">
                     <small>Ukuran Gambar Maksimal 1 MB</small>
                 </div>
             </div>
@@ -350,10 +356,14 @@
             <div class="row mt-4">
                 <div class="col-md-6">
                     <label for="dokumentasi3">Dokumentasi 3 (Jika Ada)</label><br>
+                    
                     @if ($report->documentation->dokumentasi3 !== null)
-                        <img src="{{ asset('dokumentasi/'.$report->documentation->dokumentasi3) }}" width="50%" alt="ga ada" class="mb-2">
+                        <img src="{{ asset('dokumentasi/'.$report->documentation->dokumentasi3) }}" width="50%" alt="ga ada" class="mb-2 img-preview3">
+                    @else
+                        <img width="50%" class="mb-2 img-preview3">
                     @endif
-                    <input type="file" class="form-control input-rounded" name="dokumentasi3" value="{{ $report->documentation->dokumentasi3 }}">
+
+                    <input type="file" class="form-control input-rounded" name="dokumentasi3" value="{{ $report->documentation->dokumentasi3 }}" id="dok3" onchange="previewImage3()">
                         <small>Ukuran Gambar Maksimal 1 MB</small>
                 </div>
 
@@ -364,12 +374,16 @@
                                 pathinfo($report->documentation->lainnya, PATHINFO_EXTENSION) == 'jpg' ||
                                 pathinfo($report->documentation->lainnya, PATHINFO_EXTENSION) == 'jpeg'
                                 )
-                            <img src="{{ asset('lainnya/'.$report->documentation->lainnya) }}" width="50%" alt="ga ada" class="mb-2">
+                            <img src="{{ asset('lainnya/'.$report->documentation->lainnya) }}" width="50%" alt="ga ada" class="mb-2 img-previewlainnya">
                         @else
+                            <img width="50%" class="mb-2 img-previewlainnya">
                             <a class="btn btn-info mt-3" href="{{ route('view_pdf',$report) }}" target="_blank"> Cek Dokumentasi Lainnya</a>
                         @endif
+                    @else
+                        <img width="50%" class="mb-2 img-previewlainnya">
                     @endif
-                    <input type="file" class="form-control input-rounded" name="lainnya" value="{{ $report->documentation->lainnya }}">
+                        
+                    <input type="file" class="form-control input-rounded" name="lainnya" value="{{ $report->documentation->lainnya }}" id="lainnya" onchange="previewImageLainnya()">
                     <small>Ukuran File Maksimal 10 MB</small>
                 </div>
             </div>
@@ -462,6 +476,64 @@
         wordPenyelenggara.innerText = char_penyelenggara.length;
     });
 
+    
+
+     function previewImage1(){
+        const image = document.getElementById('dok1');
+        const imgPreview = document.querySelector('.img-preview1');
+
+        imgPreview.style.display = 'block';
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(image.files[0]);
+
+        oFReader.onload = function(oFREvent){
+            imgPreview.src = oFREvent.target.result;
+        }
+
+    }
+
+    function previewImage2(){
+        const image = document.getElementById('dok2');
+        const imgPreview = document.querySelector('.img-preview2');
+
+        imgPreview.style.display = 'block';
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(image.files[0]);
+
+        oFReader.onload = function(oFREvent){
+            imgPreview.src = oFREvent.target.result;
+        }
+
+    }
+
+    function previewImage3(){
+        const image = document.getElementById('dok3');
+        const imgPreview = document.querySelector('.img-preview3');
+
+        imgPreview.style.display = 'block';
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(image.files[0]);
+
+        oFReader.onload = function(oFREvent){
+            imgPreview.src = oFREvent.target.result;
+        }
+
+    }
+
+       function previewImageLainnya(){
+        const image = document.getElementById('lainnya');
+        const imgPreview = document.querySelector('.img-previewlainnya');
+
+        imgPreview.style.display = 'block';
+        imgPreview.setAttribute("alt", "File Terpasang")
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(image.files[0]);
+
+        oFReader.onload = function(oFREvent){
+            imgPreview.src = oFREvent.target.result;
+        }
+
+    }
 
 </script>
 @endsection

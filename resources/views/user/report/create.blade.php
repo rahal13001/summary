@@ -332,26 +332,30 @@
             <div class="row">
             <div class="col-md-6 mt-4">
             <label for="dokumentasi1">Dokumentasi 1</label>
-            <input type="file" class="form-control input-rounded" name="dokumentasi1" value="{{ old('documentation1') }}">
+            <img width="50%" class="mb-2 img-preview1">
+            <input type="file" class="form-control input-rounded" name="dokumentasi1" value="{{ old('documentation1') }}" id = "dok1" onchange="previewImage1()">
             <small>Ukuran Gambar Maksimal 1 MB</small> 
             </div>
 
             <div class="col-md-6 mt-4">
             <label for="dokumentasi2">Dokumentasi 2 (Jika Ada)</label>
-            <input type="file" class="form-control input-rounded" name="dokumentasi2" value="{{ old('documentation2') }}">
+            <img width="50%" class="mb-2 img-preview2">
+            <input type="file" class="form-control input-rounded" name="dokumentasi2" value="{{ old('documentation2') }}" id = "dok2" onchange="previewImage2()">
             <small>Ukuran Gambar Maksimal 1 MB</small>
             </div>
 
             <div class="col-md-6 mt-4">
             <label for="dokumentasi3">Dokumentasi 3 (Jika Ada)</label>
-            <input type="file" class="form-control input-rounded" name="dokumentasi3" value="{{ old('documentation3') }}">
+            <img width="50%" class="mb-2 img-preview3">
+            <input type="file" class="form-control input-rounded" name="dokumentasi3" value="{{ old('documentation3') }}" id="dok3" onchange="previewImage3()">
             <small>Ukuran Gambar Maksimal 1 MB</small>
             </div>
 
             <div class="col-md-6 mt-4">
             <label for="lainnya">Dokumentasi Lainnya (Jika Ada)</label>
-            <input type="file" class="form-control input-rounded" name="lainnya" value="{{ old('lainnya') }}">
-            <small>Ukuran File Maksimal 10 MB, Dianjurkan Dalam Bentuk PDF</small>
+            <img width="50%" class="mb-2 img-previewlainnya">
+            <input type="file" class="form-control input-rounded" name="lainnya" value="{{ old('lainnya') }}" id="lainnya" onchange="previewImageLainnya()">
+            <small>Ukuran File Maksimal 10 MB, Dapat Di Isi File Dokumen atau Gambar</small>
             </div>
 
             <div class="col-md-6 mt-4">
@@ -439,5 +443,64 @@
         var char_penyelenggara = myPenyelenggara.value.split('');
         wordPenyelenggara.innerText = char_penyelenggara.length;
     });
+
+    function previewImage1(){
+        const image = document.getElementById('dok1');
+        const imgPreview = document.querySelector('.img-preview1');
+
+        imgPreview.style.display = 'block';
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(image.files[0]);
+
+        oFReader.onload = function(oFREvent){
+            imgPreview.src = oFREvent.target.result;
+        }
+
+    }
+
+    function previewImage2(){
+        const image = document.getElementById('dok2');
+        const imgPreview = document.querySelector('.img-preview2');
+
+        imgPreview.style.display = 'block';
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(image.files[0]);
+
+        oFReader.onload = function(oFREvent){
+            imgPreview.src = oFREvent.target.result;
+        }
+
+    }
+
+    function previewImage3(){
+        const image = document.getElementById('dok3');
+        const imgPreview = document.querySelector('.img-preview3');
+
+        imgPreview.style.display = 'block';
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(image.files[0]);
+
+        oFReader.onload = function(oFREvent){
+            imgPreview.src = oFREvent.target.result;
+        }
+
+    }
+
+    
+    function previewImageLainnya(){
+        const image = document.getElementById('lainnya');
+        const imgPreview = document.querySelector('.img-previewlainnya');
+
+        imgPreview.style.display = 'block';
+        imgPreview.setAttribute("alt", "File Terpasang")
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(image.files[0]);
+
+        oFReader.onload = function(oFREvent){
+            imgPreview.src = oFREvent.target.result;
+        }
+
+    }
+
 </script>
 @endsection
