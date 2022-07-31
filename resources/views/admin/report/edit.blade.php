@@ -351,7 +351,7 @@
                 <div class="col-md-6">
                     <label for="dokumentasi3">Dokumentasi 3 (Jika Ada)</label><br>
                     @if ($report->documentation->dokumentasi3 !== null)
-                        <img src="{{ asset('dokumentasi/'.$report->documentation->dokumentasi2) }}" width="50%" alt="ga ada" class="mb-2">
+                        <img src="{{ asset('dokumentasi/'.$report->documentation->dokumentasi3) }}" width="50%" alt="ga ada" class="mb-2">
                     @endif
                     <input type="file" class="form-control input-rounded" name="dokumentasi3" value="{{ $report->documentation->dokumentasi3 }}">
                         <small>Ukuran Gambar Maksimal 1 MB</small>
@@ -360,10 +360,17 @@
                 <div class="col-md-6">
                     <label for="lainnya">Dokumentasi Lainnya (Jika Ada)</label><br>
                     @if ($report->documentation->lainnya !== null)
-                                <a class="btn btn-info mt-3" href="{{ route('view_pdf',$report) }}" target="_blank"> Cek Surat Tugas</a>
+                        @if (pathinfo($report->documentation->lainnya, PATHINFO_EXTENSION) == 'png' || 
+                                pathinfo($report->documentation->lainnya, PATHINFO_EXTENSION) == 'jpg' ||
+                                pathinfo($report->documentation->lainnya, PATHINFO_EXTENSION) == 'jpeg'
+                                )
+                            <img src="{{ asset('lainnya/'.$report->documentation->lainnya) }}" width="50%" alt="ga ada" class="mb-2">
+                        @else
+                            <a class="btn btn-info mt-3" href="{{ route('view_pdf',$report) }}" target="_blank"> Cek Dokumentasi Lainnya</a>
                         @endif
+                    @endif
                     <input type="file" class="form-control input-rounded" name="lainnya" value="{{ $report->documentation->lainnya }}">
-                    <small>Ukuran File Maksimal 10 MB, Dianjurkan Dalam Bentuk PDF</small>
+                    <small>Ukuran File Maksimal 10 MB</small>
                 </div>
             </div>
 
@@ -373,7 +380,7 @@
                      @if ($report->documentation->st !== null)
                                 <a class="btn btn-info mt-3" href="{{ route('view_st',$report) }}" target="_blank"> Cek Surat Tugas</a>
                         @endif
-                    <input type="file" class="form-control input-rounded" name="st" value="{{ $report->documentation->lainnya }}">
+                    <input type="file" class="form-control input-rounded" name="st" value="{{ $report->documentation->st }}">
                     <small>Ukuran File Maksimal 3 MB, Dianjurkan Dalam Bentuk PDF</small>
                 </div>
             </div>
