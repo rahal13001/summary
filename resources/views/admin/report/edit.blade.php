@@ -344,7 +344,7 @@
                 <div class="col-md-6">
                     <label for="dokumentasi2">Dokumentasi 2 (Jika Ada)</label>
                     @if ($report->documentation->dokumentasi2 !== null)
-                        <img src="{{ asset('dokumentasi/'.$report->documentation->dokumentasi2) }}" width="50%" alt="ga ada" class="mb-2 img-preview2">
+                        <img src="{{ asset('dokumentasi/'.$report->documentation->dokumentasi2) }}" width="50%" alt="ga ada" class="mb-2 img-preview2 d-block">
                     @else
                         <img width="50%" class="mb-2 img-preview2">
                     @endif
@@ -376,8 +376,8 @@
                                 )
                             <img src="{{ asset('lainnya/'.$report->documentation->lainnya) }}" width="50%" alt="ga ada" class="mb-2 img-previewlainnya">
                         @else
+                            <a class="btn btn-info mt-3" href="{{ route('view_pdf',$report) }}" target="_blank" id="button_lainnya"> Cek Dokumentasi Lainnya</a>
                             <img width="50%" class="mb-2 img-previewlainnya">
-                            <a class="btn btn-info mt-3" href="{{ route('view_pdf',$report) }}" target="_blank"> Cek Dokumentasi Lainnya</a>
                         @endif
                     @else
                         <img width="50%" class="mb-2 img-previewlainnya">
@@ -523,6 +523,11 @@
        function previewImageLainnya(){
         const image = document.getElementById('lainnya');
         const imgPreview = document.querySelector('.img-previewlainnya');
+        const tombol = document.getElementById("button_lainnya");
+
+        if(tombol){
+             tombol.style.visibility = 'hidden';
+        }
 
         imgPreview.style.display = 'block';
         imgPreview.setAttribute("alt", "File Terpasang")
