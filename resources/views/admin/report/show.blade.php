@@ -105,7 +105,12 @@
                                     pathinfo($report->documentation->lainnya, PATHINFO_EXTENSION) == 'jpg' ||
                                     pathinfo($report->documentation->lainnya, PATHINFO_EXTENSION) == 'jpeg'
                                     )
-                                       <img src="{{ asset('lainnya/'.$report->documentation->lainnya) }}" width="50%" alt="ga ada" class="mb-2">
+                                    
+                                    <p class="mt-2 card-title">Dokumentasi Lainnya</p>
+                                       <a href="{{ asset('lainnya/'.$report->documentation->lainnya) }}" target="_blank">
+                                       <img src="{{ asset('lainnya/'.$report->documentation->lainnya) }}" class="media-object" width="100%" alt="ga keluar">
+                                       </a>
+
                                     @else
                                        <a class="btn btn-info mt-3" href="{{ route('view_pdf',$report) }}" target="_blank"> Cek Dokumentasi Lainnya</a>
                                     @endif
