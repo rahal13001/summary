@@ -304,6 +304,7 @@ class ReportsController extends Controller
             'bulan' => $bulan,
             'tahun' => $tahun,
             'who' => $request->who,
+            'why' => $request->why,
             'how' => $request->how,
             'where' => $request->where,
             'total_jam' => $request->total_jam,
