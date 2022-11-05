@@ -2,7 +2,7 @@
 
 @section('style')
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ asset('parsley/parsley.css') }}">
+    <link rel="stylesheet" href="{{ asset('parsley/parsley.css') }}"/>
 @endsection
 
 <style>
@@ -23,7 +23,7 @@
         background-color: darkred;
     }
 
-    trix-editor em {
+     trix-editor em {
     font-style: normal;
     background-color: #f38080;
     }
@@ -112,26 +112,27 @@
 
 @section('content')
 
-        @if ($errors->any())
-                <div class="alert alert-danger alert-dismissible fade show">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    Tambah Data Gagal !!! <i class="bi bi-emoji-frown"></i>
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                             <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-        @endif
+    @if ($errors->any())
+        <div class="alert alert-danger alert-dismissible fade show">
+             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+             Edit Data Gagal !!! <i class="bi bi-emoji-frown"></i>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
-    <form action="{{ route('myreport_update', $report) }}" method="post" enctype="multipart/form-data" data-parsley-validate="" data-parsley-excluded="[disabled]">
+
+    <form action="{{ route('report_update', $report) }}" method="post" enctype="multipart/form-data">
        @csrf
-        @method('put')
+       @method('put')
        <div class="form-group">
          <label for="user_id">Nama Penyusun</label>
          <select name="user_id" id="user_id" class="form-control input-rounded select2" required data-parsley-required-message="Uuupss Lupa Pilih Nama...">
             <option disabled selected>Isikan Nama Pembuat</option>
-           @foreach ($user as $pengguna )
+            @foreach ($user as $pengguna )
                <option {{ $report->user_id == $pengguna->id ? 'selected' : '' }} value="{{ $pengguna->id }}"> {{ $pengguna->name }}</option>
             @endforeach
             
@@ -144,29 +145,28 @@
         <div class="form-group mt-3">
          <label for="pengikut">Pilih Pengikut</label>
          <select name="pengikut[]" id="pengikut" class="form-control input-rounded select2" multiple>
-           @foreach ($users as $fol )
+                @foreach ($users as $fol )
                     <option {{ $report->follower->find($fol) ? 'selected' : ''}} value="{{ $fol->id }}"> {{ $fol->name }}</option>
-                @endforeach    
-            
+                @endforeach            
             </select>                   
          @error('pengikut')
             <div class="text-danger mt-2 d-block">{{ $message }}</div>
          @enderror                                  
        </div>
 
-       <div class="form-group mt-3">
+        <div class="form-group mt-3">
             <label for="no_st">Nomor Surat Tugas</label>
-            <input type="text" name="no_st" id="no_st" class="form-control input-rounded" placeholder="Masukan Nomor Surat Tugas" value="{{ $report->no_st }}" maxlength="250">                  
+            <input type="text" name="no_st" id="no_st" class="form-control input-rounded" placeholder="Masukan Judul Kegiatan" value="{{$report->no_st}}">                  
             @error('no_st')
-            <div class="text-danger mt-2 d-block">{{ $message }}</div> 
+            <div class="text-danger mt-2 d-block">{{ $message }}</div>
             @enderror                                  
         </div>
 
         <div class="form-group mt-3">
             <label for="what">What</label>
-            <input type="text" name="what" id="what" class="form-control input-rounded" placeholder="Masukan Judul Kegiatan"  value="{{$report->what}}" maxlength="250" required data-parsley-required-message="Yuk Isi Dulu Kolom What-nya Kaka...">                  
-            <small id="jumlah_what">0</small>
-            <small> / 250 (Termasuk Spasi)</small>
+            <input type="text" name="what" id="what" class="form-control input-rounded" placeholder="Masukan Judul Kegiatan" value="{{$report->what}}"  required data-parsley-required-message="Yuk Isi Dulu Kolom What-nya Kaka...">                  
+               <small id="jumlah_what">0</small>
+                <small> / 250 (Termasuk Spasi)</small>
             @error('what')
             <div class="text-danger mt-2 d-block">{{ $message }}</div>
             @enderror                                  
@@ -186,7 +186,6 @@
                 @foreach ($indicator as $iku)
                     <option {{ $report->indicators->find($iku) ? 'selected' : ' ' }} value= "{{ $iku->id}}">{{ $iku->nama }}</option>
                 @endforeach       
-            
             </select>                   
          @error('indicator')
             <div class="text-danger mt-2 d-block">{{ $message }}</div>
@@ -195,29 +194,37 @@
 
        <div class="form-group mt-3">
             <label for="where">Where</label>
-            <input type="text" name="where" id="where" class="form-control input-rounded" placeholder="Masukan Lokasi/Tempat" value="{{ $report->where }}" maxlength="250" required data-parsley-required-message="Sabar Kasih Tahu Dulu Ini Kegiatannya Dimana ?">                  
-            <small id="jumlah_where">0</small>
+            <input type="text" name="where" id="where" class="form-control input-rounded" placeholder="Masukan Lokasi/Tempat" value="{{ $report->where }}" required data-parsley-required-message="Sabar Kasih Tahu Dulu Ini Kegiatannya Dimana ?">                  
+             <small id="jumlah_where">0</small>
             <small> / 250 (Termasuk Spasi)</small>
             @error('where')
             <div class="text-danger mt-2 d-block">{{ $message }}</div>
             @enderror                                  
         </div>
-        <div class="row mt-3">
+    <div class="row">
         <div class="form-group col-md-6">
             <label for="when">When</label>
-            <input type="date" name="when" id="when" class="form-control input-rounded" placeholder="Masukan Tanggal Mulai" value="{{ $report->when }}" maxlength="250" required data-parsley-required-message="Wait Kasih Tahu Kapan Kegiatannya...">                  
+            <input type="date" name="when" id="when" class="form-control input-rounded" placeholder="Masukan Tanggal Mulai" value="{{ $report->when }}" required data-parsley-required-message="Wait Kasih Tahu Kapan Kegiatannya...">                  
             @error('when')
             <div class="text-danger mt-2 d-block">{{ $message }}</div>
             @enderror                                  
         </div>
 
         <div class="form-group col-md-6">
-            <label for="tanggal_selesai">Tanggal Selesai (Isi When Terlebih Dahulu)</label>
+            <label for="tanggal_selesai">Tanggal Selesai</label>
             <input type="date" name="tanggal_selesai" id="tanggal_selesai" class="form-control input-rounded" placeholder="Masukan Tanggal Selesai" value="{{ $report->tanggal_selesai }}" readonly required data-parsley-required-message="Kegiatannya Sampai Kapan ???">                  
             @error('tanggal_selesai')
             <div class="text-danger mt-2 d-block">{{ $message }}</div>
             @enderror                                  
         </div>
+    </div>
+
+     <div class="form-group mt-3">
+            <label for="total_peserta">Total Peserta</label>
+            <input type="number" name="total_peserta" id="total_peserta" class="form-control input-rounded" placeholder="Masukan Total Peserta" value="{{ $report->total_peserta }}" step="0.01" required data-parsley-required-message="Infoin Jumlah Pesertanya Dong">                  
+            @error('total_peserta')
+            <div class="text-danger mt-2 d-block">{{ $message }}</div>
+            @enderror                                  
         </div>
 
         <div class="form-group mt-3">
@@ -229,14 +236,6 @@
         </div>
 
         <div class="form-group mt-3">
-            <label for="total_peserta">Total Peserta</label>
-            <input type="number" name="total_peserta" id="total_peserta" class="form-control input-rounded" placeholder="Masukan Total Peserta" value="{{ $report->total_peserta }}" step="0.01" required data-parsley-required-message="Infoin Jumlah Pesertanya Dong">                  
-            @error('total_peserta')
-            <div class="text-danger mt-2 d-block">{{ $message }}</div>
-            @enderror                                  
-        </div>
-
-    <div class="form-group mt-3">
         Persentase Jumlah Wanita <br>
         <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" name="gender_wanita" id="inlineRadio0" value="0" {{ ($report->gender_wanita=="0")? "checked" : "" }}>
@@ -286,14 +285,15 @@
 
         <div class="form-group mt-3">
             <label for="why">Why</label>
-            <input type="text" name="why" id="why" class="form-control input-rounded" placeholder="Masukan Alasan/Dasar Kegiatan" value="{{ $report->why }}" required data-parsley-required-message="Diisi Dulu Ya Kolom Why-nya">                  
-            <small id="jumlah_why">0</small>
+            <input type="text" name="why" id="why" class="form-control input-rounded" placeholder="Masukan Alasan/Dasar Kegiatan" value="{{ $report->why}}" required data-parsley-required-message="Diisi Dulu Ya Kolom Why-nya">                  
+               <small id="jumlah_why">0</small>
             <small> / 250 (Termasuk Spasi)</small>
             @error('why')
             <div class="text-danger mt-2 d-block">{{ $message }}</div>
             @enderror                                  
         </div>
 
+        
          <div class="form-group mt-3">
             <label for="penyelenggara">Penyelenggara</label>
             <input type="text" name="penyelenggara" id="penyelenggara" class="form-control input-rounded" placeholder="Masukan Penyelenggara" value="{{ $report->penyelenggara }}" required data-parsley-required-message="Tolong Isi Dulu Siapa Penyelenggaranya">                  
@@ -304,16 +304,14 @@
             @enderror                                  
         </div>
 
-        <div class="form-group mt-3">
+       <div class="form-group mt-3">
             <label for="who">Who</label>
             <div class="form-floating">
-            <textarea class="form-control" placeholder="Masukan Pihak Yang Terlibat" id="textwho" name="who" required data-parsley-required-message="Ada Yang Lupa Nih Kolom Who Masih Kosong">{{ $report->who }}</textarea>
-              <label for="who">Masukan Pihak Yang Terlibat</label>
+            <textarea class="form-control" placeholder="Masukan Pihak Yang Terlibat" id="textwho" name="who"  required data-parsley-required-message="Ada Yang Lupa Nih Kolom Who Masih Kosong">{{ $report->who }}</textarea>
+              <label for="floatingTextarea">Masukan Pihak Yang Terlibat</label>
             </div>
-            <div id="countwho">
                 <small id="jumlah_who">0</small>
-                <small id="max_who">/ 3000 Karakter (Termasuk Spasi)</small>
-            </div>      
+                <small id="max_who">/ 3000 Karakter (Termasuk Spasi)</small>         
             @error('who')
             <div class="text-danger mt-2 d-block">{{ $message }}</div>
             @enderror                                  
@@ -321,11 +319,11 @@
 
         <div class="form-group mt-3">
             <label for="how">How</label>
-              <input id="how" type="hidden" name="how" value="{{ $report->how }}" placeholder="Masukan Inti Kegiatan, Bukan jadwal atau rangkaian acara" maxlength=1000 >
-                <trix-editor input="how" required data-parsley-required-message="Isi Dulu Dong, Marry Kepo Nih Gimana Si Kegiatannya Berlangsung"></trix-editor> 
+              <input id="how" type="hidden" name="how" value="{{ $report->how }}" placeholder="Masukan Inti Kegiatan, Bukan jadwal atau rangkaian acara"  required data-parsley-required-message="Isi Dulu Dong, Marry Kepo Nih Gimana Si Kegiatannya Berlangsung">
+                <trix-editor input="how"></trix-editor>
                  <div id="progress"></div>
-                 <div id="counter"></div>         
-                <small>Maksimal 10.000 Karakter (Termasuk Spasi)</small>
+                 <div id="counter"></div>   
+               <small>Maksimal 10000 Karakter (Termasuk Spasi)</small>                 
             @error('how')
             <div class="text-danger mt-2 d-block">{{ $message }}</div>
             @enderror                                  
@@ -333,45 +331,46 @@
 
         <div class="form-group mt-3">
             <div class="row">
-                  <div class="col-md-6">
+                <div class="col-md-6">
                     <label for="dokumentasi1">Dokumentasi 1</label><br>
                      @if ($report->documentation->dokumentasi1 !== null)
                     <img src="{{ asset('dokumentasi/'.$report->documentation->dokumentasi1) }}" width="50%" alt="ga ada" class="mb-2 img-preview1">
                     @else
                     <img width="50%" class="mb-2 img-preview1">
                     @endif
-                    <input type="file" class="form-control input-rounded" name="dokumentasi1" value="{{ $report->documentation->dokumentasi1 }}" id="dok1" onchange="previewImage1()" data-parsley-max-file-size="1024">
+                    <input type="file" class="form-control input-rounded" name="dokumentasi1" value="{{ $report->documentation->dokumentasi1 }}" id="dok1" onchange="previewImage1()">
                     <small>Ukuran Gambar Maksimal 1 MB</small>
                 </div>
 
-            <div class="col-md-6 mt-4">
-            <label for="dokumentasi2">Dokumentasi 2 (Jika Ada)</label>
+                <div class="col-md-6">
+                    <label for="dokumentasi2">Dokumentasi 2 (Jika Ada)</label>
                     @if ($report->documentation->dokumentasi2 !== null)
                         <img src="{{ asset('dokumentasi/'.$report->documentation->dokumentasi2) }}" width="50%" alt="ga ada" class="mb-2 img-preview2 d-block">
                     @else
                         <img width="50%" class="mb-2 img-preview2">
                     @endif
-            <input type="file" class="form-control input-rounded" name="dokumentasi2" value="{{ $report->documentation->dokumentasi3 }}" id = "dok2" onchange="previewImage2()" data-parsley-max-file-size="1024">
-            <small>Ukuran Gambar Maksimal 1024 KB / 1 MB</small> 
+                    <input type="file" class="form-control input-rounded" name="dokumentasi2" value="{{ $report->documentation->dokumentasi2 }}" id="dok2" onchange="previewImage2()">
+                    <small>Ukuran Gambar Maksimal 1 MB</small>
+                </div>
             </div>
 
-            <div class="col-md-6 mt-4">
-            <label for="dokumentasi3">Dokumentasi 3 (Jika Ada)</label>
-            
-                @if ($report->documentation->dokumentasi3 !== null)
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <label for="dokumentasi3">Dokumentasi 3 (Jika Ada)</label><br>
+                    
+                    @if ($report->documentation->dokumentasi3 !== null)
                         <img src="{{ asset('dokumentasi/'.$report->documentation->dokumentasi3) }}" width="50%" alt="ga ada" class="mb-2 img-preview3">
                     @else
                         <img width="50%" class="mb-2 img-preview3">
                     @endif
-            
-            <input type="file" class="form-control input-rounded" name="dokumentasi3" value="{{ $report->documentation->dokumentasi3 }}" id="dok3" onchange="previewImage3()" data-parsley-max-file-size="1024">
-            <small>Ukuran Gambar Maksimal 1024 KB / 1 MB</small> 
-            </div>
 
-            <div class="col-md-6 mt-4">
-            <label for="lainnya">Dokumentasi Lainnya (Jika Ada)</label>
+                    <input type="file" class="form-control input-rounded" name="dokumentasi3" value="{{ $report->documentation->dokumentasi3 }}" id="dok3" onchange="previewImage3()">
+                        <small>Ukuran Gambar Maksimal 1 MB</small>
+                </div>
 
-                @if ($report->documentation->lainnya !== null)
+                <div class="col-md-6">
+                    <label for="lainnya">Dokumentasi Lainnya (Jika Ada)</label><br>
+                    @if ($report->documentation->lainnya !== null)
                         @if (pathinfo($report->documentation->lainnya, PATHINFO_EXTENSION) == 'png' || 
                                 pathinfo($report->documentation->lainnya, PATHINFO_EXTENSION) == 'jpg' ||
                                 pathinfo($report->documentation->lainnya, PATHINFO_EXTENSION) == 'jpeg'
@@ -384,31 +383,31 @@
                     @else
                         <img width="50%" class="mb-2 img-previewlainnya">
                     @endif
-         
-            <input type="file" class="form-control input-rounded" name="lainnya" value="{{ $report->documentation->lainnya }}" id="lainnya" onchange="previewImageLainnya()">
-            <small>Ukuran File Maksimal 10240 KB / 10 MB, Dapat Di Isi File Dokumen atau Gambar</small>
+                        
+                    <input type="file" class="form-control input-rounded" name="lainnya" value="{{ $report->documentation->lainnya }}" id="lainnya" onchange="previewImageLainnya()">
+                    <small>Ukuran File Maksimal 10 MB</small>
+                </div>
             </div>
 
-            <div class="col-md-6 mt-4">
-            <label for="st">Masukan Surat Tugas (Jika Ada)</label>
-
-                 @if ($report->documentation->st !== null)
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <label for="st">Surat Tugas (Jika Ada)</label><br>
+                     @if ($report->documentation->st !== null)
                                 <a class="btn btn-info mt-3" href="{{ route('view_st',$report) }}" target="_blank"> Cek Surat Tugas</a>
                         @endif
+                    <input type="file" class="form-control input-rounded" name="st" value="{{ $report->documentation->st }}">
+                    <small>Ukuran File Maksimal 3 MB, Dianjurkan Dalam Bentuk PDF</small>
+                </div>
+            </div>
 
-            <input type="file" class="form-control input-rounded" name="st"  value="{{ $report->documentation->st }}">
-            <small>Ukuran File Maksimal 3072 KB / 3 MB, Dianjurkan Dalam Bentuk PDF</small>
-            </div>
-            </div>
         </div>
 
-        <div class="mt-4 text-center">
-         <button type="submit" class="btn btn-info float-left">Submit</button>
-
-        @can('show user')
-         <a href="{{ route('report_index') }}" class="btn btn-outline-danger mx-2 my-2 float-right">Kembali Ke 5w1H Semua</a>
+        <div class="mt-4">
+         <button type="submit" class="btn btn-info mr-2">Submit</button>
+         @can('show user')
+         <a href="{{ route('report_index') }}" class="btn btn-outline-danger mx-3 my-3 float-right">Kembali Ke 5w1H Semua</a>
          @endcan
-         <a href="{{ route('myreport') }}" class="btn btn-outline-danger float-right">Kembali Ke 5w1H-Ku</a>
+         <a href="{{ route('myreport') }}" class="btn btn-outline-danger mr-2 float-right">Kembali Ke 5w1H-Ku</a>
         </div>
     </form>
 
@@ -421,16 +420,17 @@
         alert('Tidak bisa sisipkan file disini, Unggah File di Form Dokumentasi !');
     });
 
-      
-        const what = document.querySelector('#what');
-        const slug = document.querySelector('#slug');
-        what.addEventListener('change', function(){
-            fetch('/5w1h/posts/checkSlug?what='+what.value)
-                .then(response => response.json())
-                 .then(data => slug.value = data.slug)
-    });
-                        
+
+                                const what = document.querySelector('#what');
+                                const slug = document.querySelector('#slug');
+
+                                what.addEventListener('change', function(){
+                                    fetch('/5w1h/posts/checkSlug?what='+what.value)
+                                    .then(response => response.json())
+                                    .then(data => slug.value = data.slug)
+                                });
 </script>
+
 <script>
     //hitung who
     var myWho = document.getElementById('textwho');
@@ -459,7 +459,7 @@
         wordWhere.innerText = char_where.length;
     });
 
-    //hitung what
+   //hitung what
     var myWhat = document.getElementById('what');
     var wordWhat = document.getElementById('jumlah_what');
 
@@ -468,8 +468,7 @@
         wordWhat.innerText = char_what.length;
     });
 
-    
-    //hitung penyelenggara
+      //hitung penyelenggara
     var myPenyelenggara = document.getElementById('penyelenggara');
     var wordPenyelenggara = document.getElementById('jumlah_penyelenggara');
 
@@ -478,7 +477,9 @@
         wordPenyelenggara.innerText = char_penyelenggara.length;
     });
 
-    function previewImage1(){
+    
+
+     function previewImage1(){
         const image = document.getElementById('dok1');
         const imgPreview = document.querySelector('.img-preview1');
 
@@ -520,10 +521,14 @@
 
     }
 
-    
-    function previewImageLainnya(){
+       function previewImageLainnya(){
         const image = document.getElementById('lainnya');
         const imgPreview = document.querySelector('.img-previewlainnya');
+        const tombol = document.getElementById("button_lainnya");
+
+        if(tombol){
+             tombol.style.display = 'none';
+        }
 
         imgPreview.style.display = 'block';
         imgPreview.setAttribute("alt", "File Terpasang")
@@ -538,6 +543,7 @@
 
 
 </script>
+
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <script src="{{ asset('parsley/parsley.min.js') }}"></script>
 
@@ -555,30 +561,13 @@
                 end.toggleAttribute('readonly')
         
         }
+         console.log(start.value);
     });
-
-    window.Parsley.addValidator('maxFileSize', {
-  validateString: function(_value, maxSize, parsleyInstance) {
-    if (!window.FormData) {
-      alert('You are making all developpers in the world cringe. Upgrade your browser!');
-      return true;
-    }
-    var files = parsleyInstance.$element[0].files;
-    return files.length != 1  || files[0].size <= maxSize * 1024;
-  },
-  requirementType: 'integer',
-  messages: {
-    en: 'Filenya Terlalu Besar :( Maksimal %s Kb Ya....',
-  }
-});
-
-//ajax parsley
-$(document).ready(function(){  
-    $('#form_data').parsley();
-});
    
 
-
+// const parsdoc1 = document.getElementById('dokumentasi1');
+// console.log(parsdoc1);
+// if(parsdoc1 !== null){
 //     window.Parsley.addValidator('maxFileSize', {
 //   validateString: function(_value, maxSize, parsleyInstance) {
 //     if (!window.FormData) {
@@ -593,6 +582,7 @@ $(document).ready(function(){
 //     en: 'Filenya Terlalu Besar :( Maksimal %s Kb Ya....',
 //   }
 // });
+// }
 
 </script>
 @endsection

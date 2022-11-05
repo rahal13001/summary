@@ -72,7 +72,7 @@
                  </tr>
                    </thead>
                </table>
-               </div>   
+            </div>   
 
                <div class="col-md-6 mt-n3">
                        <div class="container-fluid overflow-auto">

@@ -25,7 +25,7 @@
     <script defer src="/assets/plugins/fontawesome/js/all.min.js"></script>
     
     <!-- App CSS -->  
-    <link id="theme-style" rel="stylesheet" href="../assets/css/portal.css">
+    {{-- <link id="theme-style" rel="stylesheet" href="../assets/css/portal.css"> --}}
 
      {{-- trix editor --}}
     <link href="{{ asset('/css/trix.css') }}" rel="stylesheet" />
