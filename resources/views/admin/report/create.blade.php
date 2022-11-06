@@ -320,7 +320,7 @@
 
         <div class="form-group mt-3">
             <label for="how">How</label>
-              <input id="how" type="hidden" name="how" value="{{ old('how') }}" placeholder="Masukan Inti Kegiatan, Bukan jadwal atau rangkaian acara" maxlength=1000 required data-parsley-required-message="Isi Dulu Dong, Marry Kepo Nih Gimana Si Kegiatannya Berlangsung">
+              <input id="how" type="hidden" name="how" value="{{ old('how') }}" placeholder="Masukan Inti Kegiatan, Bukan jadwal atau rangkaian acara" maxlength=10000 required data-parsley-required-message="Isi Dulu Dong, Marry Kepo Nih Gimana Si Kegiatannya Berlangsung">
                 <trix-editor input="how">{{Request::old('how')}}</trix-editor> 
                  <div id="progress"></div>
                  <div id="counter"></div>         

@@ -285,7 +285,7 @@
 
         <div class="form-group mt-3">
             <label for="why">Why</label>
-            <input type="text" name="why" id="why" class="form-control input-rounded" placeholder="Masukan Alasan/Dasar Kegiatan" value="{{ old('why') }}" required data-parsley-required-message="Diisi Dulu Ya Kolom Why-nya">                  
+            <input type="text" name="why" id="why" class="form-control input-rounded" placeholder="Masukan Alasan/Dasar Kegiatan" value="{{ old('why') }}" maxlength="250" required data-parsley-required-message="Diisi Dulu Ya Kolom Why-nya">                  
             <small id="jumlah_why">0</small>
             <small> / 250 (Termasuk Spasi)</small>
             @error('why')
@@ -295,7 +295,7 @@
 
          <div class="form-group mt-3">
             <label for="penyelenggara">Penyelenggara</label>
-            <input type="text" name="penyelenggara" id="penyelenggara" class="form-control input-rounded" placeholder="Masukan Penyelenggara" value="{{ old('penyelenggara') }}" required data-parsley-required-message="Tolong Isi Dulu Siapa Penyelenggaranya">                  
+            <input type="text" name="penyelenggara" id="penyelenggara" class="form-control input-rounded" placeholder="Masukan Penyelenggara" value="{{ old('penyelenggara') }}" maxlength=250 required data-parsley-required-message="Tolong Isi Dulu Siapa Penyelenggaranya">                  
             <small id="jumlah_penyelenggara">0</small>
             <small> / 250 (Termasuk Spasi)</small>
             @error('penyelenggara')
@@ -306,7 +306,7 @@
         <div class="form-group mt-3">
             <label for="who">Who</label>
             <div class="form-floating">
-            <textarea class="form-control" placeholder="Masukan Pihak Yang Terlibat" id="textwho" name="who" required data-parsley-required-message="Ada Yang Lupa Nih Kolom Who Masih Kosong">{{Request::old('who')}}</textarea>
+            <textarea class="form-control" placeholder="Masukan Pihak Yang Terlibat" id="textwho" name="who" maxlength="3000" required data-parsley-required-message="Ada Yang Lupa Nih Kolom Who Masih Kosong">{{Request::old('who')}}</textarea>
               <label for="who">Masukan Pihak Yang Terlibat</label>
             </div>
             <div id="countwho">
@@ -320,7 +320,7 @@
 
         <div class="form-group mt-3">
             <label for="how">How</label>
-              <input id="how" type="hidden" name="how" value="{{ old('how') }}" placeholder="Masukan Inti Kegiatan, Bukan jadwal atau rangkaian acara" maxlength=1000 required data-parsley-required-message="Isi Dulu Dong, Marry Kepo Nih Gimana Si Kegiatannya Berlangsung">
+              <input id="how" type="hidden" name="how" value="{{ old('how') }}" placeholder="Masukan Inti Kegiatan, Bukan jadwal atau rangkaian acara" maxlength="10000" required data-parsley-required-message="Isi Dulu Dong, Marry Kepo Nih Gimana Si Kegiatannya Berlangsung">
                 <trix-editor input="how">{{Request::old('how')}}</trix-editor> 
                  <div id="progress"></div>
                  <div id="counter"></div>         

@@ -321,7 +321,7 @@
 
         <div class="form-group mt-3">
             <label for="how">How</label>
-              <input id="how" type="hidden" name="how" value="{{ $report->how }}" placeholder="Masukan Inti Kegiatan, Bukan jadwal atau rangkaian acara" maxlength=1000 >
+              <input id="how" type="hidden" name="how" value="{{ $report->how }}" placeholder="Masukan Inti Kegiatan, Bukan jadwal atau rangkaian acara" maxlength=10000 >
                 <trix-editor input="how" required data-parsley-required-message="Isi Dulu Dong, Marry Kepo Nih Gimana Si Kegiatannya Berlangsung"></trix-editor> 
                  <div id="progress"></div>
                  <div id="counter"></div>         
