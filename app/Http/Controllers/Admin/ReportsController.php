@@ -101,7 +101,7 @@ class ReportsController extends Controller
 
         $report = Report::with('user')->get();
         $user = User::orderBy('name')->get();
-        $indicator = Indicator::where('status', 'aktif')->get();   
+        $indicator = Indicator::where('status', 'Aktif')->get();
 
         return view('admin.report.create', compact(['report', 'user', 'indicator']));
     }

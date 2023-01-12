@@ -84,9 +84,10 @@
                         <script>
                                 const nama = document.querySelector('#nama');
                                 const slug = document.querySelector('#slug');
+                                const tahun = document.querySelector('#tahun');
 
-                                nama.addEventListener('change', function(){
-                                    fetch('/5w1h/post/checkSlug?nama='+nama.value)
+                                tahun.addEventListener('change', function(){
+                                    fetch('/5w1h/post/checkSlug?nama='+nama.value+tahun.value)
                                     .then(response => response.json())
                                     .then(data => slug.value = data.slug)
                                 });
