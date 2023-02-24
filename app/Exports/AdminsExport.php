@@ -54,29 +54,38 @@ class AdminsExport implements FromQuery, WithHeadings, WithStyles, ShouldAutoSiz
     public function map($query): array
     {
 
-        if (is_null($query->documentation->dokumentasi2)) {
+        if (is_null($query->documentation)) {
             $dokumentasi2 = '';
-        }else {
-            $dokumentasi2 = 'http://summary.timurbersinar.com/dokumentasi/'.$query->documentation->dokumentasi2;
-        }
-
-          if (is_null($query->documentation->dokumentasi3)) {
             $dokumentasi3 = '';
-        }else {
-            $dokumentasi3 = 'http://summary.timurbersinar.com/dokumentasi/'.$query->documentation->dokumentasi3;
-        }
-
-          if (is_null($query->documentation->lainnya)) {
             $lainnya = '';
-        }else {
-            $lainnya = 'http://summary.timurbersinar.com/lihat_lainnya/'.$query->documentation->lainnya;
-        }
-
-          if (is_null($query->documentation->st)) {
             $st = '';
-        }else {
-            $st = 'http://summary.timurbersinar.com/lihat_st/'.$query->documentation->st;
         }
+        else{
+            if (is_null($query->documentation->dokumentasi2)) {
+                $dokumentasi2 = '';
+            }else {
+                $dokumentasi2 = 'http://summary.timurbersinar.com/dokumentasi/'.$query->documentation->dokumentasi2;
+            }
+    
+              if (is_null($query->documentation->dokumentasi3)) {
+                $dokumentasi3 = '';
+            }else {
+                $dokumentasi3 = 'http://summary.timurbersinar.com/dokumentasi/'.$query->documentation->dokumentasi3;
+            }
+    
+              if (is_null($query->documentation->lainnya)) {
+                $lainnya = '';
+            }else {
+                $lainnya = 'http://summary.timurbersinar.com/lihat_lainnya/'.$query->documentation->lainnya;
+            }
+    
+              if (is_null($query->documentation->st)) {
+                $st = '';
+            }else {
+                $st = 'http://summary.timurbersinar.com/lihat_st/'.$query->documentation->st;
+            }
+        }
+ 
 
         // foreach ($query->indicators as $iku) {
         //    $ikunya[] = $iku->nomor;
