@@ -54,25 +54,25 @@ class AdminsExport implements FromQuery, WithHeadings, WithStyles, ShouldAutoSiz
     public function map($query): array
     {
 
-        if ($query->documentation->dokumentasi2 === NULL) {
+        if (is_null($query->documentation->dokumentasi2)) {
             $dokumentasi2 = '';
         }else {
             $dokumentasi2 = 'http://summary.timurbersinar.com/dokumentasi/'.$query->documentation->dokumentasi2;
         }
 
-          if ($query->documentation->dokumentasi3 === NULL) {
+          if (is_null($query->documentation->dokumentasi3)) {
             $dokumentasi3 = '';
         }else {
             $dokumentasi3 = 'http://summary.timurbersinar.com/dokumentasi/'.$query->documentation->dokumentasi3;
         }
 
-          if ($query->documentation->lainnya === NULL) {
+          if (is_null($query->documentation->lainnya)) {
             $lainnya = '';
         }else {
             $lainnya = 'http://summary.timurbersinar.com/lihat_lainnya/'.$query->documentation->lainnya;
         }
 
-          if ($query->documentation->st === NULL) {
+          if (is_null($query->documentation->st)) {
             $st = '';
         }else {
             $st = 'http://summary.timurbersinar.com/lihat_st/'.$query->documentation->st;

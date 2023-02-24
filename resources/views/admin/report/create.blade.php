@@ -332,35 +332,39 @@
 
         <div class="form-group mt-3">
             <div class="row">
-            <div class="col-md-6 mt-4">
+            <div class="col-md-6">
             <label for="dokumentasi1">Dokumentasi 1</label>
             <img width="50%" class="mb-2 img-preview1">
             <input type="file" class="form-control input-rounded" name="dokumentasi1" value="{{ old('documentation1') }}" id = "dok1" onchange="previewImage1()" required data-parsley-max-file-size="1024" required data-parsley-required-message="Dokumentasi 1 Mohon Diisi Ya :)">
             <small>Ukuran Gambar Maksimal 1024 KB / 1 MB</small> 
             </div>
 
-            <div class="col-md-6 mt-4">
+            <div class="col-md-6">
             <label for="dokumentasi2">Dokumentasi 2 (Jika Ada)</label>
             <img width="50%" class="mb-2 img-preview2">
             <input type="file" class="form-control input-rounded" name="dokumentasi2" value="{{ old('documentation2') }}" id = "dok2" onchange="previewImage2()" data-parsley-max-file-size="1024">
             <small>Ukuran Gambar Maksimal 1024 KB / 1 MB</small> 
             </div>
+        </div>
 
-            <div class="col-md-6 mt-4">
+        <div class="form-group mt-3">
+            <div class="col-md-6">
             <label for="dokumentasi3">Dokumentasi 3 (Jika Ada)</label>
             <img width="50%" class="mb-2 img-preview3">
             <input type="file" class="form-control input-rounded" name="dokumentasi3" value="{{ old('documentation3') }}" id="dok3" onchange="previewImage3()" data-parsley-max-file-size="1024">
             <small>Ukuran Gambar Maksimal 1024 KB / 1 MB</small> 
             </div>
 
-            <div class="col-md-6 mt-4">
+            <div class="col-md-6">
             <label for="lainnya">Dokumentasi Lainnya (Jika Ada)</label>
             <img width="50%" class="mb-2 img-previewlainnya">
             <input type="file" class="form-control input-rounded" name="lainnya" value="{{ old('lainnya') }}" id="lainnya" onchange="previewImageLainnya()" data-parsley-max-file-size="10240">
             <small>Ukuran File Maksimal 10240 KB / 10 MB, Dapat Di Isi File Dokumen atau Gambar</small>
             </div>
-
-            <div class="col-md-6 mt-4">
+        </div>
+        
+        <div class="form-group mt-3">
+            <div class="col-md-6">
             <label for="st">Masukan Surat Tugas (Jika Ada)</label>
             <input type="file" class="form-control input-rounded" name="st" value="{{ old('st') }}" data-parsley-max-file-size="3072">
             <small>Ukuran File Maksimal 3072 KB / 3 MB, Dianjurkan Dalam Bentuk PDF</small>
