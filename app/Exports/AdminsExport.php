@@ -55,12 +55,18 @@ class AdminsExport implements FromQuery, WithHeadings, WithStyles, ShouldAutoSiz
     {
 
         if (is_null($query->documentation)) {
+            $dokumentasi1 = '';
             $dokumentasi2 = '';
             $dokumentasi3 = '';
             $lainnya = '';
             $st = '';
         }
         else{
+            if (is_null($query->documentation->dokumentasi1)) {
+                $dokumentasi1 = '';
+            }else {
+                $dokumentasi1 = 'http://summary.timurbersinar.com/dokumentasi/'.$query->documentation->dokumentasi1;
+            }
             if (is_null($query->documentation->dokumentasi2)) {
                 $dokumentasi2 = '';
             }else {
@@ -109,7 +115,7 @@ class AdminsExport implements FromQuery, WithHeadings, WithStyles, ShouldAutoSiz
             $query->penyelenggara,
             $query->who,
             strip_tags($query->how),
-            'http://summary.timurbersinar.com/dokumentasi/'.$query->documentation->dokumentasi1,
+            $dokumentasi1,
             $dokumentasi2,
             $dokumentasi3,
             $lainnya,
